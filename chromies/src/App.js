@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <div className="overview" > <Overview /> </div>
-      <div className="questions-answers" > <QuestionsAndAnswers /> </div>
       <div className="related-comparison" > <RelatedAndComparison /> </div>
+      <div className="questions-answers" > <QuestionsAndAnswers /> </div>
       <div className="ratings-reviews" > <RatingsAndReviews /> </div>
     </div>
   );
