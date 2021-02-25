@@ -6,8 +6,7 @@ const cors = require('cors')
 
 //Data
 const gitToken = require('../env/config.js')
-const atelier = require('../externalAPI/atelierAPI.js')
-const data = require('../database/index.js');
+const queries = require('../database/index.js');
 const mongoose = require('mongoose');
 
 //Middleware Execution
