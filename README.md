@@ -6,15 +6,25 @@ A front-end Ecommerce web application for educational purposes. Showcasing a var
 
 ## Tech/Frame works:
 
-* Bootstrap
 * React
 * JQuery
 * Axios
+* Express
 * Underscore
+* [React-Bootstrap](https://www.npmjs.com/package/react-bootstrap)
 * Bluebird
-* Mocha
-* Chai
-
+* [Jest](https://jestjs.io/)
+   * General purpose testing platform with code coverage analysis
+* [Enzyme](https://github.com/enzymejs/enzyme)
+   * React Testing Framework (works well with Jest, Mocha)
+* [Supertest](https://github.com/visionmedia/supertest)
+   * HTTP Assertion Testing
+<!-- * [Frisby.js](https://docs.frisbyjs.com/)
+   * API Testing framework -->
+* [Puppeteer](https://github.com/puppeteer/puppeteer)
+   * Chrome active control testing
+* [CircleCI](https://circleci.com/)
+   * Automated continuous integration testing
 
 ## Before starting:
 
