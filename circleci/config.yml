@@ -1,0 +1,12 @@
+version: 2
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14.15.4
+    # working_directory: ~/client
+    steps:
+      - checkout
+      - npm install
+      - npm test
