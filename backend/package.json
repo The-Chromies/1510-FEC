@@ -19,16 +19,13 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "build": "react-scripts build",
+    "start": "nodemon ./app.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
     ]
   },
   "browserslist": {
