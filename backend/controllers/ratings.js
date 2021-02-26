@@ -1,6 +1,6 @@
 var models = require('../models');
 
-const query = models.related.queries
+const query = models.ratings.queries
 
 module.exports = {
     get: function (req, res) {
