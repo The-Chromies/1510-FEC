@@ -7,10 +7,10 @@ jobs:
       - image: circleci/node:14.15.4
     steps:
       - checkout
+      - node/install-packages
       - run:
-          name: The First Step
-          command: |
-          echo "Hello World!"
+          name: 'run tests'
+          command: npm run test
 #   test:
 #     docker:
 #       - image: circleci/node:14.15.4
@@ -18,12 +18,12 @@ jobs:
 #       - checkout
 #       - run: echo "this is the test job"
 
-# # Orchestrate our job run sequence
-# workflows:
-#   build_and_test:
-#     jobs:
-#       - build
-#       - test
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
 
 
 # version: 2.1
