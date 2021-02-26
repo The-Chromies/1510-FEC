@@ -21,8 +21,7 @@
   },
   "scripts": {
     "start": "nodemon ./app.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
