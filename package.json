@@ -65,5 +65,8 @@
   },
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
-  ]
+  ],
+  "jest" : {
+    "coverageReporters": ["text-summary"]
+  }
 }
