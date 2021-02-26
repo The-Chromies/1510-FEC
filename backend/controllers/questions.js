@@ -5,10 +5,10 @@ const query = models.questions.queries
 module.exports = {
     get: function (req, res) {
         query.getProducts(function(err, results) {
-        if (err) { 
+        if (err) {
             console.log('Error found')
             console.log(err)
-            res.status(400).send(err) 
+            res.status(404).send(err)
         } else {
             console.log('Success found')
             console.log(results)
