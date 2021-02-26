@@ -25,4 +25,6 @@ router.get('/related', controller.related.get);
 // router.put('/related', controller.related.put);
 // router.delete('/related', controller.related.delete);
 
+router.post('/interactions', controller.interactions.post);
+
 module.exports = router;

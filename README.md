@@ -4,7 +4,7 @@
 
 A front-end Ecommerce web application for educational purposes. Showcasing a variety of products and their various aspects.
 
-## Tech/Frame works:
+## Tech/Frameworks:
 
 * React
 * JQuery
@@ -26,15 +26,15 @@ A front-end Ecommerce web application for educational purposes. Showcasing a var
 * [CircleCI](https://circleci.com/)
    * Automated continuous integration testing
 
-## Before starting:
+## Starting Client:
 
-Set directory to "chromies"
+cd into "client"
 
 Run command: `npm install`
 
 ## Available Scripts
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -46,3 +46,20 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+
+## Starting Server:
+
+cd into "backend"
+
+Run command: `npm install`
+
+## Available Scripts
+
+### `npm run start`
+
+Runs the server to support API and client communication.
+
+### `npm run test:watch`
+
+Launches the test runner in the interactive watch mode.
