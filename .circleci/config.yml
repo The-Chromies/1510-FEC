@@ -10,7 +10,7 @@ jobs:
   test:
     working_directory: ~/client
     docker:
-      - image: cimg/node:14.15.4
+      - image: circleci/node:14.15.4
   steps:
     - checkout
     # potentially add cache set up for optimization in the future
