@@ -7,7 +7,6 @@ const cors = require('cors')
 //Data
 const gitToken = require('../env/config.js')
 const queries = require('../database/index.js');
-const mongoose = require('mongoose');
 
 //Middleware Execution
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,3 +28,4 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
+module.exports = app
