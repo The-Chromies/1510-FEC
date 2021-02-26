@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   test:
+    working_directory: ~/client
     docker:
       - image: circleci/node:14.15.4
     steps:
