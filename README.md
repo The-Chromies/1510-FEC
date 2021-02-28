@@ -1,5 +1,7 @@
 # 1510-FEC
 
+[![codecov](https://codecov.io/gh/The-Chromies/1510-FEC/branch/main/graph/badge.svg?token=YE0W3JD8JF)](https://codecov.io/gh/The-Chromies/1510-FEC)
+
 ## Description:
 
 A front-end Ecommerce web application for educational purposes. Showcasing a variety of products and their various aspects.
