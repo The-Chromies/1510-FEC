@@ -60,6 +60,6 @@ Run command: `npm install`
 
 Runs the server to support API and client communication.
 
-### `npm run test:watch`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.
