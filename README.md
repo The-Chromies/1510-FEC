@@ -1,8 +1,20 @@
 # 1510-FEC
 
-## Description:
+## Overview:
 
 A front-end Ecommerce web application for educational purposes. Showcasing a variety of products and their various aspects.
+
+## Table of Contents:
+
+* Frontend: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/src.md)
+* PWA setup: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/public.md)
+* Backend: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/backend.md)
+* Continuous Integration: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/.circleci.md)
+
+## Description:
+
+1510-FEC is an Ecommerce web application built with React and Express. This application communicates with an API to fetch, post, and update data. User interactions are tracked with click tracking and recorded to the Atelier API. Users will be able to select a product and view style options visually as well as style data. Users will be able to view the reviews, related products, and previous questions and answers for each product. Within the review and question and answers modules, the user will have the option to add a review, question, or answer as well as report inappropriate content.
+
 
 ## Tech/Frameworks:
 
@@ -28,8 +40,6 @@ A front-end Ecommerce web application for educational purposes. Showcasing a var
 
 ## Starting Client:
 
-cd into "client"
-
 Run command: `npm install`
 
 ## Available Scripts
@@ -37,15 +47,14 @@ Run command: `npm install`
 ### `npm run start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 
 ## Starting Server:
@@ -63,3 +72,7 @@ Runs the server to support API and client communication.
 ### `npm run test`
 
 Launches the test runner in the interactive watch mode.
+
+## Usage:
+
+This application is for educational purposes only.
