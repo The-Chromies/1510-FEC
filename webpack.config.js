@@ -22,7 +22,7 @@ module.exports = {
     ],
   },
   plugins: [htmlPlugin],
-  // resolve: {
-  //   extensions: ['.js', '.jsx']
-  // }
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
