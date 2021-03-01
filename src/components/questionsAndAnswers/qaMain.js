@@ -1,4 +1,4 @@
-import './qa.css';
+// import './qa.css';
 import React from 'react';
 
 function QuestionsAndAnswers() {
