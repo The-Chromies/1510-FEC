@@ -6,10 +6,10 @@ A front-end Ecommerce web application for educational purposes. Showcasing a var
 
 ## Table of Contents:
 
-* Frontend: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/src.md)
-* PWA setup: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/public.md)
-* Backend: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/backend.md)
-* Continuous Integration: [a link](https://github.com/The-Chromies/1510-FEC/tree/main/.circleci.md)
+* [Frontend](https://github.com/The-Chromies/1510-FEC/tree/main/src)
+* [PWA setup](https://github.com/The-Chromies/1510-FEC/tree/main/public)
+* [Backend](https://github.com/The-Chromies/1510-FEC/tree/main/backend)
+* [Continuous Integration](https://github.com/The-Chromies/1510-FEC/tree/main/.circleci)
 
 ## Description:
 
