@@ -1,14 +1,15 @@
 import './ov.css';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ImageGallery from './imageGallery.js';
-import ProductInfo from './addToCart.js';
-import StyleSelector from './styleSelector.js';
-import AddToCart from './addToCart.js';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import ImageGallery from './imageGallery';
+// import ProductInfo from './addToCart';
+// import StyleSelector from './styleSelector';
+// import AddToCart from './addToCart';
 
 function Overview() {
   return (
-    <div className="overview-container"> Overview
+    <div className="overview-container">
+      Overview
     </div>
   );
 }
