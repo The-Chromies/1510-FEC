@@ -1,4 +1,4 @@
-import './rc.css';
+// import './rc.css';
 import React from 'react';
 
 function RelatedAndComparison() {
