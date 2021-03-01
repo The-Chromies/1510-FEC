@@ -14,7 +14,8 @@ router.get('/questions', controller.questions.get);
 // router.delete('/questions', controller.questions.delete);
 
 
-router.get('/ratings', controller.ratings.get);
+router.get('/ratingsProduct', controller.ratings.getProducts);
+router.get('/ratingsReviews', controller.ratings.getReviews);
 // router.post('/ratings', controller.ratings.post);
 // router.put('/ratings', controller.ratings.put);
 // router.delete('/ratings', controller.ratings.delete);
