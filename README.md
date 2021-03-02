@@ -77,6 +77,11 @@ Runs the server to support API and client communication.
 
 Launches the test runner in the interactive watch mode.
 
+### `npm run open-coverage`
+
+Opens html test coverage report.
+
+
 ## Usage:
 
 This application is for educational purposes only.
