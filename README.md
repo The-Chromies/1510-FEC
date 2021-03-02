@@ -52,9 +52,13 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.
+
+### `npm run open-coverage`
+
+Opens html test coverage report.
 
 
 ## Starting Server:
@@ -72,6 +76,11 @@ Runs the server to support API and client communication.
 ### `npm run test`
 
 Launches the test runner in the interactive watch mode.
+
+### `npm run open-coverage`
+
+Opens html test coverage report.
+
 
 ## Usage:
 
