@@ -5,7 +5,7 @@ function QuestionsAndAnswers() {
   return (
     <div className="question-answer-container">
       Questions and Answers
-    </div>
+pwd    </div>
   );
 }
 

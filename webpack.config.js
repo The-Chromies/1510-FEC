@@ -34,3 +34,5 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
 };
+
+//bundle all files to serve all static files.. sends off to see in browser. babel is a compiler that trtanslats jsx to javascript for the browser to read.
