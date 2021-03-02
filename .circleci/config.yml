@@ -12,8 +12,12 @@ jobs:
           name: 'run frontend tests'
           command: npm run test
       - run:
+          name: 'cd into backend'
+          command: pwd
+          working_directory: /backend
+      - run:
           name: 'run backend tests'
-          command: cd backend && npm run test
+          command: npm run test
 
 workflows:
   build_and_test:
