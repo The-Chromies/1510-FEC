@@ -10,6 +10,7 @@ backend/env/config.js
 
 # testing
 /coverage
+/backend/coverage
 
 # production
 /build
