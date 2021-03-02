@@ -7,6 +7,7 @@ import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
 import StyleSelector from './components/styleSelector';
 import AddToCart from './components/addToCart';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview() {
   const [ product, setProduct] = useState({});
@@ -35,6 +36,22 @@ function Overview() {
         <AddToCart className="add-to-cart" product={product}/>
       </div>
     </React.Fragment>
+
+    // <Container>
+    // <Row className="rating-review-container">
+    //     <Col xs={6} md={4}>
+    //       <SummaryContainer />
+    //     </Col>
+    //     <Col xs={6} md={8}>
+    //       <ReviewFilter className="review-filter" />
+    //       <ReviewListContainer className="container" reviewList={reviewList} />
+    //     </Col>
+    //   </Row>
+    // </Container>
+
+
+
+
     // <Container>
     //   {/* Overview */}
     //   <Col><ImageGallery product={product}/></Col>
