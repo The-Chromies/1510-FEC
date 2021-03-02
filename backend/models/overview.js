@@ -5,10 +5,10 @@ const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/';
 
 const queries = {
   // get a given product based on id - used for product information component
-  getProducts: (id, callback) => {
+  getProduct: (id, callback) => {
     const options = {
       method: 'get',
-      url: `${apiUrl}products`,
+      url: `${apiUrl}products/${id}`,
       // Add product id
       headers: {
         'User-Agent': 'request',
@@ -31,7 +31,7 @@ const queries = {
   getStyles: (id, callback) => {
     const options = {
       method: 'get',
-      url: `${apiUrl}products${id}styles`,
+      url: `${apiUrl}products/${id}/styles`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
