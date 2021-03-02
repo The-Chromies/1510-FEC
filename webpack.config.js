@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -16,10 +16,14 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
-    htmlPlugin
+    htmlPlugin,
     // ,
     // new HtmlWebpackPlugin({
     //   title: 'Progressive Web Application',

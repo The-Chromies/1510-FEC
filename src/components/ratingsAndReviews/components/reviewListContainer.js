@@ -5,7 +5,7 @@ import ReviewBox from './reviewBox';
 function ReviewListContainer({ reviewList }) {
   return (
     <div className="review-container">
-      {reviewList.map((review) => <ReviewBox review={review} />)}
+      {reviewList.map((review) => <ReviewBox key={review.review_id} review={review} />)}
     </div>
   );
 }
