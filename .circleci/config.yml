@@ -18,9 +18,10 @@ jobs:
       # command: |
       #       $ProgressPreference = "SilentlyContinue"
       #       Compress-Archive .\\<< parameters.label >> .\\<< parameters.label >>.zip
+      - run: 'list working directory'
+          command: ls
       - run:
           name: 'run backend tests'
-          command: ls
           command: cd /1510-FEC/backend && npm run test
 
 workflows:
