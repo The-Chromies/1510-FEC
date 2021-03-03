@@ -4,7 +4,16 @@ import PropTypes from 'prop-types';
 function SummaryStar({ name, count }) {
   return (
     <div>
-      <span>{`${name}-Star : ${count}`}</span>
+      <span>
+        {' '}
+        { count }
+        {' : '}
+      </span>
+      <span>
+        {' '}
+        { name }
+        {' '}
+      </span>
     </div>
   );
 }
