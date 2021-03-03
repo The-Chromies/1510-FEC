@@ -22,7 +22,7 @@ jobs:
       #     command: ls
       - run:
           name: 'run backend tests'
-          command: cd ~/backend && npm run test
+          command: npm --prefix ./backend run test
 
 workflows:
   build_and_test:
