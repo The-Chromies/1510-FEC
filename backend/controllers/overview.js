@@ -4,27 +4,19 @@ const query = models.overview.queries;
 
 module.exports = {
   getProduct: (req, res) => {
-    query.getProduct(18201, (err, results) => {
+    query.getProduct(req.params.id, (err, results) => {
       if (err) {
-        console.log('Error found');
-        console.log(err);
         res.status(404).send(err);
       } else {
-        console.log('Success found');
-        console.log(results);
         res.status(200).send(results);
       }
     });
   },
   getStyles: (req, res) => {
-    query.getStyles(18201, (err, results) => {
+    query.getStyles(req.params.id, (err, results) => {
       if (err) {
-        console.log('Error found');
-        console.log(err);
         res.status(404).send(err);
       } else {
-        console.log('Success found');
-        console.log(results);
         res.status(200).send(results);
       }
     });

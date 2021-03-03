@@ -7,12 +7,14 @@ import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
 import StyleSelector from './components/styleSelector';
 import AddToCart from './components/addToCart';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview() {
-  const [ product, setProduct] = useState({});
+  const [ product, setProduct ] = useState(null);
+  const [ styles, setStyles ] = useState(null);
 
   const getProduct = () => {
-    axios.get('http://localhost:3000/overview/product')
+    axios.get('http://localhost:3000/overview/product/18201')
       .then((res) => {
         setProduct(res.data);
       })
@@ -21,36 +23,37 @@ function Overview() {
       })
   };
 
+  const getStyles = () => {
+    axios.get('http://localhost:3000/overview/styles/18201')
+      .then((res) => {
+        setStyles(res.data);
+      })
+      .catch((err) => {
+        console.log(error);
+      })
+  };
+
   useEffect(() => {
     getProduct();
+    getStyles();
   }, []);
 
+
   return (
-    <React.Fragment>
-      <Navbar></Navbar>
-      <div className="overview-container">
-        <ImageGallery className="image-gallery" product={product}/>
-        <ProductInfo className="product-info" product={product}/>
-        <StyleSelector className="style-selector" product={product}/>
-        <AddToCart className="add-to-cart" product={product}/>
-      </div>
-    </React.Fragment>
-    // <Container>
-    //   {/* Overview */}
-    //   <Col><ImageGallery product={product}/></Col>
-    //   <Col>
-    //     <Row>
-    //       <Col><ProductInfo product={product}/></Col>
-    //     </Row>
-    //     <Row>
-    //       <StyleSelector product={product}/>
-    //     </Row>
-    //     <Row>
-    //       <AddToCart product={product}/>
-    //     </Row>
-    //   </Col>
-    // </Container>
+    <Container>
+      <Row className="overview-container">
+        <Col xs={4} md={7}>
+          { styles ? <ImageGallery className="image-gallery" styles={styles}/> : null }
+        </Col>
+        <Col xs={3} md={5}>
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles}/> : null }
+          { styles ? <StyleSelector className="style-selector" styles={styles}/> : null }
+          { styles ? <AddToCart className="add-to-cart" styles={styles}/> : null }
+        </Col>
+      </Row>
+    </Container>
   );
 }
+
 
 export default Overview;

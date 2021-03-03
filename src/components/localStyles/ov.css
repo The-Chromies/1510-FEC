@@ -1,28 +1,18 @@
 .overview-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 20px;
   text-align: center;
   margin: 10px 30px;
 }
 
-.image-gallery {
-  grid-area: 1 / 1 / 3 / 1
-}
-
-.product-info {
-  grid-area: 1 / 2 / 1 / 2
-}
-
-.style-selector {
-  grid-area: 2 / 2 / 2 / 2
-}
-
-.add-to-cart {
-  grid-area: 3 / 2 / 3 / 2
-}
-
 .image-gallery, .product-info, .style-selector, .add-to-cart {
   outline: 2px solid black;
+}
+
+.main-image {
+  height: 300px;
+  width: 230px;
+}
+
+.thumbnail-img {
+  height: 100px;
+  width: 100px;
 }
