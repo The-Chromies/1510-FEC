@@ -9,8 +9,8 @@ function StyleSelector({styles}) {
   return (
     <div className="style-selector">
       {
-        styles.results.map((style) => (
-          <img src={style.photos[0].thumbnail_url} className="thumbnail-img"></img>
+        styles.results.map((style, i) => (
+          <img src={style.photos[0].thumbnail_url} className="thumbnail-img" key={i}></img>
         ))
       }
     </div>
