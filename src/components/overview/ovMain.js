@@ -10,8 +10,8 @@ import AddToCart from './components/addToCart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview() {
-  const [ product, setProduct ] = useState({});
-  const [ styles, setStyles ] = useState({})
+  const [ product, setProduct ] = useState(null);
+  const [ styles, setStyles ] = useState(null);
 
   const getProduct = () => {
     axios.get('http://localhost:3000/overview/product/18201')
@@ -35,26 +35,25 @@ function Overview() {
 
   useEffect(() => {
     getProduct();
-  }, []);
-
-  useEffect(() => {
     getStyles();
   }, []);
+
 
   return (
     <Container>
       <Row className="overview-container">
         <Col xs={4} md={7}>
-          <ImageGallery className="image-gallery" styles={styles}/>
+          { styles ? <ImageGallery className="image-gallery" styles={styles}/> : null }
         </Col>
         <Col xs={3} md={5}>
-          <ProductInfo className="product-info" product={product} styles={styles}/>
-          <StyleSelector className="style-selector" styles={styles}/>
-          <AddToCart className="add-to-cart" styles={styles}/>
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles}/> : null }
+          { styles ? <StyleSelector className="style-selector" styles={styles}/> : null }
+          { styles ? <AddToCart className="add-to-cart" styles={styles}/> : null }
         </Col>
       </Row>
     </Container>
   );
 }
+
 
 export default Overview;

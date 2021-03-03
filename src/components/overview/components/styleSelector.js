@@ -2,12 +2,23 @@ import React from 'react';
 import ImageGallery from './imageGallery.js';
 import ProductInfo from './addToCart.js';
 import AddToCart from './addToCart.js';
+import PropTypes from 'prop-types';
 
+function StyleSelector({styles}) {
 
-function StyleSelector() {
   return (
-    <div className="style-selector"> Style Selector </div>
+    <div className="style-selector">
+      {
+        styles.results.map((style) => (
+          <img src={style.photos[0].thumbnail_url} className="thumbnail-img"></img>
+        ))
+      }
+    </div>
   );
+}
+
+ProductInfo.propTypes = {
+  styles: PropTypes.instanceOf(Object).isRequired,
 }
 
 export default StyleSelector;

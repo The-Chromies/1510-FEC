@@ -6,3 +6,13 @@
 .image-gallery, .product-info, .style-selector, .add-to-cart {
   outline: 2px solid black;
 }
+
+.main-image {
+  height: 300px;
+  width: 230px;
+}
+
+.thumbnail-img {
+  height: 100px;
+  width: 100px;
+}
