@@ -11,8 +11,8 @@ const controller = require('./controllers');
 //      });
 
 // Connect controller methods to their corresponding routes
-router.get('/overview/product', controller.overview.getProduct);
-router.get('/overview/styles', controller.overview.getStyles);
+router.get('/overview/product/:id', controller.overview.getProduct);
+router.get('/overview/styles/:id', controller.overview.getStyles);
 // router.post('/overview', controller.overview.post);
 // router.put('/overview', controller.overview.put);
 // router.delete('/overview', controller.overview.delete);
@@ -23,7 +23,8 @@ router.get('/questions', controller.questions.get);
 // router.delete('/questions', controller.questions.delete);
 
 router.get('/ratings/product', controller.ratings.getProducts);
-router.get('/ratings/reviews', controller.ratings.getReviews);
+router.get('/ratings/review', controller.ratings.getReviews);
+router.get('/ratings/review/meta', controller.ratings.getReviewMeta);
 // // router.post('/ratings', controller.ratings.post);
 // // router.put('/ratings', controller.ratings.put);
 // // router.delete('/ratings', controller.ratings.delete);
