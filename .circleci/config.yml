@@ -18,7 +18,8 @@ jobs:
       # command: |
       #       $ProgressPreference = "SilentlyContinue"
       #       Compress-Archive .\\<< parameters.label >> .\\<< parameters.label >>.zip
-      - run: 'install backend dependencies'
+      - run:
+          name: 'install backend dependencies'
           command: npm --prefix ./backend install
       - run:
           name: 'run backend tests'
