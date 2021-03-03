@@ -4,7 +4,7 @@ const query = models.overview.queries;
 
 module.exports = {
   getProduct: (req, res) => {
-    query.getProduct(18201, (err, results) => {
+    query.getProduct(req.params.id, (err, results) => {
       if (err) {
         res.status(404).send(err);
       } else {
@@ -13,7 +13,7 @@ module.exports = {
     });
   },
   getStyles: (req, res) => {
-    query.getStyles(18201, (err, results) => {
+    query.getStyles(req.params.id, (err, results) => {
       if (err) {
         res.status(404).send(err);
       } else {

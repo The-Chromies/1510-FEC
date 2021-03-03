@@ -5,7 +5,6 @@ import renderer from 'react-test-renderer';
 import Adapter from 'enzyme-adapter-react-16';
 import App from '../App';
 
-
 describe('App', () => {
   it('should display Related And Comparison', () => {
     const wrapper = shallow(<App />);
