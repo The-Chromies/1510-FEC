@@ -4,7 +4,7 @@ const query = models.overview.queries;
 
 module.exports = {
   getProduct: (req, res) => {
-    query.getProducts(18201, (err, results) => {
+    query.getProduct(18201, (err, results) => {
       if (err) {
         console.log('Error found');
         console.log(err);
