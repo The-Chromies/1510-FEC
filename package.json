@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start-server": "cd backend  && npm start",
+    "start-server": "cd backend && npm start",
     "start": "webpack serve --open",
     "build": "webpack",
     "test": "jest",
