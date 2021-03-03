@@ -9,14 +9,14 @@ module.exports = {
     "\\.[jt]sx?$": "babel-jest"
   },
   // implement coverageThreshold when applicable tests are written - will fail circleci build if not met
-  "coverageThreshold": {
-    "global": {
-      "branches": 70,
-      "functions": 70,
-      "lines": 70,
-      "statements": 70
-    }
-  },
+  // "coverageThreshold": {
+  //   "global": {
+  //     "branches": 70,
+  //     "functions": 70,
+  //     "lines": 70,
+  //     "statements": 70
+  //   }
+  // },
   "setupFiles": [
     "./setupTests"
   ],
