@@ -12,18 +12,6 @@ jobs:
       - run:
           name: 'run frontend tests'
           command: npm run test
-      # - run:
-      #     name: 'cd into backend'
-      #     command: pwd
-      # command: |
-      #       $ProgressPreference = "SilentlyContinue"
-      #       Compress-Archive .\\<< parameters.label >> .\\<< parameters.label >>.zip
-      # - run:
-      #     name: 'install backend dependencies'
-      #     command: npm --prefix ./backend install
-      # - run:
-      #     name: 'run backend tests'
-      #     command: npm --prefix ./backend run test
 
 workflows:
   build_and_test:

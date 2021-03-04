@@ -12,9 +12,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Overview() {
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);
+  const [ selected, setSelected ] = useState(null);
 
-  const getProduct = () => {
-    axios.get('http://localhost:3000/overview/product/18201')
+  const getProduct = (id) => {
+    axios.get(`http://localhost:3000/overview/product/${id}`)
       .then((res) => {
         setProduct(res.data);
       })
@@ -23,10 +24,11 @@ function Overview() {
       })
   };
 
-  const getStyles = () => {
-    axios.get('http://localhost:3000/overview/styles/18201')
+  const getStyles = (id) => {
+    axios.get(`http://localhost:3000/overview/styles/${id}`)
       .then((res) => {
         setStyles(res.data);
+        setSelected(res.data.results[0]);
       })
       .catch((err) => {
         console.log(error);
@@ -34,21 +36,25 @@ function Overview() {
   };
 
   useEffect(() => {
-    getProduct();
-    getStyles();
+    getProduct('18078');
+    getStyles('18078');
   }, []);
+
+  const setSelectedStyle = (style) => {
+    setSelected(style);
+  };
 
 
   return (
     <Container>
       <Row className="overview-container">
-        <Col xs={4} md={7}>
-          { styles ? <ImageGallery className="image-gallery" styles={styles}/> : null }
+        <Col xs={12} s={12} md={6} lg={8}>
+          { styles ? <ImageGallery className="image-gallery" styles={styles} selected={selected}/> : null }
         </Col>
-        <Col xs={3} md={5}>
-          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles}/> : null }
-          { styles ? <StyleSelector className="style-selector" styles={styles}/> : null }
-          { styles ? <AddToCart className="add-to-cart" styles={styles}/> : null }
+        <Col xs={12} s={12} md={6} lg={4}>
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected}/> : null }
+          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle}/> : null }
+          { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
         </Col>
       </Row>
     </Container>
