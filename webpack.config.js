@@ -39,6 +39,6 @@ module.exports = {
   },
   // potentially for react router
   // devServer: {
-  //   historyAPIfallback: true,
+  //   historyAPIFallback: true,
   // }
 };
