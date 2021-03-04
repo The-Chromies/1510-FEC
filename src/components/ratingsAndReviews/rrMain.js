@@ -14,6 +14,7 @@ import metaTestData from './testData/metadataTest';
 function RatingsAndReviews() {
   const [reviewList, setReviewList] = useState([]);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
+  const [productId, setProductId] = useState('18445');
 
   const generateStarImage = (starCount) => {
     let remainder = 0;
@@ -49,8 +50,13 @@ function RatingsAndReviews() {
     return starArr;
   };
 
-  const findReviews = () => {
-    axios.get('http://localhost:3000/ratings/review')
+  const filterReviewList = () => {
+    // This will filter the reviews according to the star output and
+    // according to the number which should be fetched
+  };
+
+  const findReviews = (productId = '18445', sortKey = 'relevance') => {
+    axios.get(`http://localhost:3000/ratings/review/${productId}/${sortKey}`)
       .then((result) => {
         setReviewList(result.data.results);
       })
@@ -60,8 +66,8 @@ function RatingsAndReviews() {
       });
   };
 
-  const findReviewMeta = () => {
-    axios.get('http://localhost:3000/ratings/review/meta')
+  const findReviewMeta = (productId = '18445') => {
+    axios.get(`http://localhost:3000/ratings/reviewMeta/${productId}`)
       .then((result) => {
         console.log(result.data);
         setReviewMeta(result.data);
@@ -84,7 +90,7 @@ function RatingsAndReviews() {
           <SummaryContainer className="container" generateStarImage={generateStarImage} meta={reviewMeta} />
         </Col>
         <Col xs={6} md={8}>
-          <ReviewFilter className="review-filter" />
+          <ReviewFilter className="review-filter" meta={reviewMeta} findReviews={findReviews} productId={productId} />
           <ReviewListContainer className="container" generateStarImage={generateStarImage} reviewList={reviewList} />
         </Col>
       </Row>

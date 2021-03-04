@@ -24,16 +24,21 @@ function SummaryContainer({ meta, generateStarImage }) {
   var starImage = generateStarImage(ratingAvg);
   return (
     <Container className="container border-primary">
-      <div className="container border-primary">
+      <div className="border border-secondary shadow">
         <h3>Summary Container</h3>
         <Row>
-          <Col xs={4} md={4}>
-            {`${ratingAvg}`}
+          <Col xs={4} md={4} className="font-weight-bold">
+            <span className="text-center">
+              {' '}
+              {`${ratingAvg}`}
+              {' '}
+            </span>
           </Col>
-          <Col xs={7} md={7}>
-            {starImage}
+          <Col xs={8} md={8} className="align-content-start">
+            <span className="text-left">{starImage}</span>
           </Col>
         </Row>
+        <hr />
         {starList}
       </div>
     </Container>
@@ -42,7 +47,7 @@ function SummaryContainer({ meta, generateStarImage }) {
 
 SummaryContainer.propTypes = {
   meta: PropTypes.instanceOf(Object).isRequired,
-  generateStarImage: PropTypes.instanceOf(Array).isRequired,
+  generateStarImage: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default SummaryContainer;

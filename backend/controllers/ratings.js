@@ -1,3 +1,4 @@
+const { isUndefined } = require('underscore');
 const models = require('../models');
 
 const query = models.ratings.queries;
@@ -18,7 +19,9 @@ module.exports = {
   },
   getReviews(req, res) {
     // console.log('WE ARE HITTING THE CONTROLLER');
-    query.getReviews((err, results) => {
+    const { id } = req.params;
+    const { sortKey } = req.params;
+    query.getReviews(id, sortKey, (err, results) => {
       if (err) {
         // console.log('Error found');
         // console.log(err);
@@ -31,8 +34,9 @@ module.exports = {
     });
   },
   getReviewMeta(req, res) {
+    const { id } = req.params;
     // console.log('WE ARE HITTING THE CONTROLLER');
-    query.getReviewMeta((err, results) => {
+    query.getReviewMeta(id, (err, results) => {
       if (err) {
         // console.log('Error found');
         // console.log(err);

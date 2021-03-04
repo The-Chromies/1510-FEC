@@ -13,7 +13,7 @@ function ReviewListContainer({ reviewList, generateStarImage }) {
 
 ReviewListContainer.propTypes = {
   reviewList: PropTypes.instanceOf(Array).isRequired,
-  generateStarImage: PropTypes.instanceOf(Array).isRequired,
+  generateStarImage: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default ReviewListContainer;

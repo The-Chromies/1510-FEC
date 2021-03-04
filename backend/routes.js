@@ -23,8 +23,8 @@ router.get('/questions', controller.questions.get);
 // router.delete('/questions', controller.questions.delete);
 
 router.get('/ratings/product', controller.ratings.getProducts);
-router.get('/ratings/review', controller.ratings.getReviews);
-router.get('/ratings/review/meta', controller.ratings.getReviewMeta);
+router.get('/ratings/review/:id/:sortKey', controller.ratings.getReviews);
+router.get('/ratings/reviewMeta/:id', controller.ratings.getReviewMeta);
 // // router.post('/ratings', controller.ratings.post);
 // // router.put('/ratings', controller.ratings.put);
 // // router.delete('/ratings', controller.ratings.delete);

@@ -7,12 +7,12 @@ import {
 function SummaryStar({ name, count }) {
   return (
     <Row>
-      <Col xs={2} md={2}>
+      <Col xs={4} md={4} className="justify-content-end font-weight-bold">
         {' '}
         { count }
         {' '}
       </Col>
-      <Col xs={10} md={10}>
+      <Col xs={8} md={8}>
         {' '}
         { name }
         {' '}

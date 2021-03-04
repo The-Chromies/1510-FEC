@@ -12,15 +12,15 @@ function ReviewBox({ review, generateStarImage }) {
   const day = dateVal.getDate();
   const year = dateVal.getFullYear();
   return (
-    <div className="review-box border border-secondary mb-3 rounded shadow">
-      <Row>
-        <Col className="review-rating justify-content-start">
+    <div className="review-box border border-secondary p-2 mb-3 rounded shadow">
+      <Row className="flex-row">
+        <Col className="review-rating justify-content-start" xs={12} md={4}>
           <span>{generateStarImage(review.rating)}</span>
         </Col>
-        <Col className="review-profile text-uppercase font-weight-bold justify-content-end" xs={4} md={4}>
+        <Col className="review-profile text-uppercase font-weight-bold col-sm">
           <span>{review.reviewer_name}</span>
         </Col>
-        <Col className="review-profile text-muted font-weight-light justify-content-end">
+        <Col className="review-profile text-muted font-weight-light justify-content-end col-sm">
           <time>{`${month}-${day}-${year}`}</time>
         </Col>
       </Row>
