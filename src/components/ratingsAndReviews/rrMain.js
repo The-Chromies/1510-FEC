@@ -15,6 +15,40 @@ function RatingsAndReviews() {
   const [reviewList, setReviewList] = useState([]);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
 
+  const generateStarImage = (starCount) => {
+    let remainder = 0;
+    remainder = starCount - remainder;
+    const starArr = [];
+    for (let j = 0; j < 5; j++) {
+      switch (remainder) { // 4.25
+        case 0.25:
+          starArr.push(<img src="public/icons/star/quarterStar.png" className="star-image" />);
+          remainder -= 0.25;
+          break;
+        case 0.50:
+          starArr.push(<img src="public/icons/star/halfStar.png" className="star-image" />);
+          remainder -= 0.50;
+          break;
+        case 0.75:
+          starArr.push(<img src="public/icons/star/threeQuarterStar.png" className="star-image" />);
+          remainder -= 0.75;
+          break;
+        case 1:
+          starArr.push(<img src="public/icons/star/fullStar.png" className="star-image" />);
+          remainder -= 1;
+          break;
+        case 0:
+          starArr.push(<img src="public/icons/star/emptyStar.png" className="star-image" />);
+          break;
+        default:
+          starArr.push(<img src="public/icons/star/fullStar.png" className="star-image" />);
+          remainder -= 1;
+          break;
+      }
+    }
+    return starArr;
+  };
+
   const findReviews = () => {
     axios.get('http://localhost:3000/ratings/review')
       .then((result) => {
@@ -47,11 +81,11 @@ function RatingsAndReviews() {
     <Container>
       <Row className="rating-review-container">
         <Col xs={6} md={4}>
-          <SummaryContainer meta={reviewMeta} />
+          <SummaryContainer className="container" generateStarImage={generateStarImage} meta={reviewMeta} />
         </Col>
         <Col xs={6} md={8}>
           <ReviewFilter className="review-filter" />
-          <ReviewListContainer className="container" reviewList={reviewList} />
+          <ReviewListContainer className="container" generateStarImage={generateStarImage} reviewList={reviewList} />
         </Col>
       </Row>
     </Container>

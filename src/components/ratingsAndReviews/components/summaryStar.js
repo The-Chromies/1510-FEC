@@ -1,25 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Navbar, Container, Row, Col, Grid,
+} from 'react-bootstrap';
 
 function SummaryStar({ name, count }) {
   return (
-    <div>
-      <span>
+    <Row>
+      <Col xs={2} md={2}>
         {' '}
         { count }
-        {' : '}
-      </span>
-      <span>
+        {' '}
+      </Col>
+      <Col xs={10} md={10}>
         {' '}
         { name }
         {' '}
-      </span>
-    </div>
+      </Col>
+    </Row>
   );
 }
 
 SummaryStar.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.instanceOf(Array).isRequired,
   count: PropTypes.string.isRequired,
 };
 

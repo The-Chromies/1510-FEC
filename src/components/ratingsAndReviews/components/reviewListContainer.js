@@ -1,11 +1,12 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewBox from './reviewBox';
 
-function ReviewListContainer({ reviewList }) {
+function ReviewListContainer({ reviewList, generateStarImage }) {
   return (
-    <div className="review-container">
-      {reviewList.map((review) => <ReviewBox key={review.review_id} review={review} />)}
+    <div class="container review-container">
+      {reviewList.map((review) => <ReviewBox key={review.review_id} generateStarImage={generateStarImage} review={review} />)}
     </div>
   );
 }
