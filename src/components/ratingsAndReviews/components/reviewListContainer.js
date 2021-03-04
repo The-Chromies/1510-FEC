@@ -5,7 +5,7 @@ import ReviewBox from './reviewBox';
 
 function ReviewListContainer({ reviewList, generateStarImage }) {
   return (
-    <div class="container review-container">
+    <div className="container review-container">
       {reviewList.map((review) => <ReviewBox key={review.review_id} generateStarImage={generateStarImage} review={review} />)}
     </div>
   );
@@ -13,6 +13,7 @@ function ReviewListContainer({ reviewList, generateStarImage }) {
 
 ReviewListContainer.propTypes = {
   reviewList: PropTypes.instanceOf(Array).isRequired,
+  generateStarImage: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default ReviewListContainer;

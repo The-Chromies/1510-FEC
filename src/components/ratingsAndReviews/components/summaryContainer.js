@@ -13,9 +13,6 @@ function SummaryContainer({ meta, generateStarImage }) {
   // console.log(meta);
   const starList = [];
 
-  // Handler to generate stars
-  
-
   // eslint-disable-next-line react/prop-types
   const { ratings, ratingAvg } = meta;
   const keys = Object.keys(ratings);
@@ -37,7 +34,7 @@ function SummaryContainer({ meta, generateStarImage }) {
             {starImage}
           </Col>
         </Row>
-          {starList}
+        {starList}
       </div>
     </Container>
   );
@@ -45,6 +42,7 @@ function SummaryContainer({ meta, generateStarImage }) {
 
 SummaryContainer.propTypes = {
   meta: PropTypes.instanceOf(Object).isRequired,
+  generateStarImage: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default SummaryContainer;

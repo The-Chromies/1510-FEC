@@ -19,29 +19,29 @@ function RatingsAndReviews() {
     let remainder = 0;
     remainder = starCount - remainder;
     const starArr = [];
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 5; j += 1) {
       switch (remainder) { // 4.25
         case 0.25:
-          starArr.push(<img src="public/icons/star/quarterStar.png" className="star-image" />);
+          starArr.push(<img src="public/icons/star/quarterStar.png" alt="" className="star-image" />);
           remainder -= 0.25;
           break;
         case 0.50:
-          starArr.push(<img src="public/icons/star/halfStar.png" className="star-image" />);
+          starArr.push(<img src="public/icons/star/halfStar.png" alt="" className="star-image" />);
           remainder -= 0.50;
           break;
         case 0.75:
-          starArr.push(<img src="public/icons/star/threeQuarterStar.png" className="star-image" />);
+          starArr.push(<img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" />);
           remainder -= 0.75;
           break;
         case 1:
-          starArr.push(<img src="public/icons/star/fullStar.png" className="star-image" />);
+          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
           remainder -= 1;
           break;
         case 0:
-          starArr.push(<img src="public/icons/star/emptyStar.png" className="star-image" />);
+          starArr.push(<img src="public/icons/star/emptyStar.png" alt="" className="star-image" />);
           break;
         default:
-          starArr.push(<img src="public/icons/star/fullStar.png" className="star-image" />);
+          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
           remainder -= 1;
           break;
       }

@@ -7,38 +7,46 @@ import {
 function ReviewBox({ review, generateStarImage }) {
   // console.log(review)
 
-  var dateVal = new Date(review.date);
-  const month = dateVal.getMonth()+1;
+  const dateVal = new Date(review.date);
+  const month = dateVal.getMonth() + 1;
   const day = dateVal.getDate();
   const year = dateVal.getFullYear();
   return (
-      <div class="review-box border border-secondary mb-3 rounded shadow">
+    <div className="review-box border border-secondary mb-3 rounded shadow">
+      <Row>
+        <Col className="review-rating justify-content-start">
+          <span>{generateStarImage(review.rating)}</span>
+        </Col>
+        <Col className="review-profile text-uppercase font-weight-bold justify-content-end" xs={4} md={4}>
+          <span>{review.reviewer_name}</span>
+        </Col>
+        <Col className="review-profile text-muted font-weight-light justify-content-end">
+          <time>{`${month}-${day}-${year}`}</time>
+        </Col>
+      </Row>
+      <div className="review-content">
         <Row>
-          {/* <div > */}
-            <Col className="review-rating justify-content-start" >
-              <span>{generateStarImage(review.rating)}</span>
-            </Col>
-            <Col className="review-profile text-uppercase font-weight-bold justify-content-end" xs={4} md={4}>
-              <span>{review.reviewer_name}</span>
-            </Col>
-            <Col className="review-profile text-muted font-weight-light justify-content-end">
-              <time>{`${month}-${day}-${year}`}</time>
-            </Col>
-          {/* </div> */}
+          <Col>
+            <h3 className="review-title  text-bolder text-truncate">{review.summary}</h3>
+          </Col>
         </Row>
-        <div class="review-content">
-          <Row>
-            <Col>
-              <h3 class="review-title  text-bolder text-truncate">{review.summary}</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span class="review-body text-body border-info lead">{review.body}</span>
-            </Col>
-          </Row>
-          </div>
+        <Row>
+          <Col>
+            <span className="review-body text-body border-info lead">{review.body}</span>
+          </Col>
+        </Row>
       </div>
+      <div className="secondary-meters">
+        <Row>
+          <Col>
+            <button type="button" className="btn-sm  btn-success">Helpful</button>
+          </Col>
+          <Col>
+            <button type="button" className="btn-sm btn-outline-info">Report</button>
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 }
 
