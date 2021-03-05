@@ -23,11 +23,12 @@ const queries = {
         console.log(error, null);
       });
   },
-  getReviews: (callback) => {
+  getReviews: (id, sortKey, revCount, callback) => {
     // console.log('WE ARE HITTING THE GET REVIEWS');
+    console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
     const options = {
       method: 'get',
-      url: `${apiUrl}reviews?product_id=18445&page=1&count=10&sort=helpful`,
+      url: `${apiUrl}reviews?product_id=${id}&page=1&count=${revCount}&sort=${sortKey}`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
@@ -41,15 +42,17 @@ const queries = {
       callback(null, response.data);
     })
       .catch((error) => {
-        // console.log('inCatch Error models');
+        console.log('inCatch Error models');
         console.log(error, null);
       });
   },
-  getReviewMeta: (callback) => {
+  getReviewMeta: (id, callback) => {
+    console.log('InFindMeta server')
+    console.log(id);
     // console.log('WE ARE HITTING THE GET REVIEWS');
     const options = {
       method: 'get',
-      url: `${apiUrl}reviews/meta?product_id=18445`,
+      url: `${apiUrl}reviews/meta?product_id=${id}`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
@@ -59,6 +62,7 @@ const queries = {
     };
 
     axios(options).then((response) => {
+      console.log('InFindMeta success')
     //   console.log('inCatch success models');
       const ratingArray = response.data.ratings;
       const keyArray = Object.keys(ratingArray);
@@ -68,6 +72,7 @@ const queries = {
         revCount += Number(ratingArray[keyArray[i]]);
         sumValue += Number(keyArray[i]) * Number(ratingArray[keyArray[i]]);
       }
+      console.log('meta revcount: ', revCount);
       response.data.revCount = revCount;
       response.data.ratingAvg = (Math.round((sumValue / revCount) * 4) / 4).toFixed(2);
       callback(null, response.data);

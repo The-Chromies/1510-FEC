@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable vars-on-top */
 /* eslint-disable max-len */
@@ -9,74 +12,48 @@ import {
 } from 'react-bootstrap';
 import SummaryStar from './summaryStar';
 
-function SummaryContainer({ meta }) {
-  console.log(meta);
+function SummaryContainer({
+  meta, generateStarImage, handleStarClick, starFilter,
+}) {
+  // console.log(meta);
   const starList = [];
-
-  // Handler to generate stars
-  const generateStarImage = (starCount) => {
-    let remainder = 0;
-    remainder = starCount - remainder;
-    const starArr = [];
-    for (let j = 0; j < 5; j++) {
-      switch (remainder) { // 4.25
-        case 0.25:
-          starArr.push(<img src="public/icons/star/quarterStar.png" className="star-image" />);
-          remainder -= 0.25;
-          break;
-        case 0.50:
-          starArr.push(<img src="public/icons/star/halfStar.png" className="star-image" />);
-          remainder -= 0.50;
-          break;
-        case 0.75:
-          starArr.push(<img src="public/icons/star/threeQuarterStar.png" className="star-image" />);
-          remainder -= 0.75;
-          break;
-        case 1:
-          starArr.push(<img src="public/icons/star/fullStar.png" className="star-image" />);
-          remainder -= 1;
-          break;
-        case 0:
-          starArr.push(<img src="public/icons/star/emptyStar.png" className="star-image" />);
-          break;
-        default:
-          starArr.push(<img src="public/icons/star/fullStar.png" className="star-image" />);
-          remainder -= 1;
-          break;
-      }
-    }
-    return starArr;
-  };
 
   // eslint-disable-next-line react/prop-types
   const { ratings, ratingAvg } = meta;
   const keys = Object.keys(ratings);
-  for (let i = 0; i < keys.length; i++) {
-    starList.push(<SummaryStar key={keys[i]} name={generateStarImage(Number(keys[i]))} count={ratings[keys[i]]} />);
+  for (let i = 0; i < 5; i += 1) {
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+    starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i + 1); }}><SummaryStar tempKey={i} name={generateStarImage(Number(keys[i]), `star-list${i}`)} count={ratings[keys[i]] ? ratings[keys[i]] : 0} /></div>);
   }
 
-  // eslint-disable-next-line no-var
-  var starImage = generateStarImage(ratingAvg);
   return (
-    <div className="summary-container">
-      <h3>Summary Container</h3>
-      <Row>
-        <Col xs={4} md={4}>
-          {`${ratingAvg}`}
-        </Col>
-        <Col xs={7} md={7}>
-          {starImage}
-        </Col>
-      </Row>
-      <div>
+    <Container key="summary-inside" className="container border-primary">
+      <div className="border border-secondary shadow">
+        <h3>Summary Container</h3>
+        <Row>
+          <Col xs={4} md={4} className="font-weight-bold">
+            <span key="rating-avg" className="text-center">
+              {' '}
+              {`${ratingAvg}`}
+              {' '}
+            </span>
+          </Col>
+          <Col xs={8} md={8} className="align-content-start">
+            <span key="rating-avg-star" className="text-left">{generateStarImage(ratingAvg, 'summary-inside-star')}</span>
+          </Col>
+        </Row>
+        <hr />
+        {starFilter ? <span className="hoverStar text-center text-bolder" onClick={() => { handleStarClick(''); }}>Remove Filter</span> : null}
         {starList}
       </div>
-    </div>
+    </Container>
   );
 }
 
 SummaryContainer.propTypes = {
   meta: PropTypes.instanceOf(Object).isRequired,
+  generateStarImage: PropTypes.instanceOf(Function).isRequired,
+  handleStarClick: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default SummaryContainer;
