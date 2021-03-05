@@ -21,7 +21,9 @@ module.exports = {
     // console.log('WE ARE HITTING THE CONTROLLER');
     const { id } = req.params;
     const { sortKey } = req.params;
-    query.getReviews(id, sortKey, (err, results) => {
+    const { revCount } = req.params;
+    console.log('revcount: ', revCount);
+    query.getReviews(id, sortKey, revCount, (err, results) => {
       if (err) {
         // console.log('Error found');
         // console.log(err);

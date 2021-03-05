@@ -27,3 +27,13 @@
   height:20px;
   width:20px;
 }
+.hoverStar:hover {
+  background-color:lightgrey;
+}
+.fade {
+  opacity: 100;
+}
+
+.modal {
+  opacity: 100;
+}

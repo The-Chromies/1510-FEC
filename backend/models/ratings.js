@@ -23,12 +23,12 @@ const queries = {
         console.log(error, null);
       });
   },
-  getReviews: (id, sortKey, callback) => {
+  getReviews: (id, sortKey, revCount, callback) => {
     // console.log('WE ARE HITTING THE GET REVIEWS');
-    console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey}`);
+    console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
     const options = {
       method: 'get',
-      url: `${apiUrl}reviews?product_id=${id}&page=1&count=10&sort=${sortKey}`,
+      url: `${apiUrl}reviews?product_id=${id}&page=1&count=${revCount}&sort=${sortKey}`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
@@ -72,7 +72,7 @@ const queries = {
         revCount += Number(ratingArray[keyArray[i]]);
         sumValue += Number(keyArray[i]) * Number(ratingArray[keyArray[i]]);
       }
-      console.log(response.data.revCount)
+      console.log('meta revcount: ', revCount);
       response.data.revCount = revCount;
       response.data.ratingAvg = (Math.round((sumValue / revCount) * 4) / 4).toFixed(2);
       callback(null, response.data);

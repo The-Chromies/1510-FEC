@@ -4,15 +4,16 @@ import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
 
-function SummaryStar({ name, count }) {
+function SummaryStar({ tempKey, name, count }) {
+  // console.log(tempKey)
   return (
-    <Row>
-      <Col xs={4} md={4} className="justify-content-end font-weight-bold">
+    <Row key={`s${tempKey}`}>
+      <Col key={`c1${tempKey}`} xs={4} md={4} className="justify-content-end font-weight-bold">
         {' '}
         { count }
         {' '}
       </Col>
-      <Col xs={8} md={8}>
+      <Col key={`c2${tempKey}`} xs={8} md={8}>
         {' '}
         { name }
         {' '}
@@ -24,6 +25,7 @@ function SummaryStar({ name, count }) {
 SummaryStar.propTypes = {
   name: PropTypes.instanceOf(Array).isRequired,
   count: PropTypes.string.isRequired,
+  tempKey: PropTypes.number.isRequired,
 };
 
 export default SummaryStar;
