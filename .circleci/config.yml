@@ -3,6 +3,7 @@ jobs:
   test:
     docker:
       - image: circleci/node:14.15.4
+    working_directory: ~/1510-FEC
     steps:
       - checkout
       - run:
@@ -11,15 +12,10 @@ jobs:
       - run:
           name: 'run frontend tests'
           command: npm run test
-      # - run:
-      #     name: 'cd into backend'
-      #     command: pwd
-      #     working_directory: /backend
-      # - run:
-      #     name: 'run backend tests'
-      #     command: npm run test
 
 workflows:
   build_and_test:
     jobs:
       - test
+
+

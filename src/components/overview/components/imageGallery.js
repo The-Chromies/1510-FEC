@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react';
-
+import PropTypes from 'prop-types';
+import { Carousel } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ImageGallery({ styles }) {
-  // let url = styles.results[0].photos[0].url;
-  const getURL = () => {
-    let url = styles;
-    console.log(typeof url.results);
-    for (let key in url.results) {
-      // console.log(url.results[0])
-      // console.log(key)
-      console.log(url.results['0'])
-    }
-  }
+  let url = styles.results[0].photos[0].url;
+  let styleOptions = styles.results;
 
-  useEffect(() => {
-    getURL();
-  }, [ styles ]);
 
   return (
-    <div className="image-gallery">
-      Image Gallery
-      {/* <img src={url}></img> */}
-    </div>
+    <Carousel
+    wrap={false}
+    interval={null}
+    // indicators={false}
+    className="main-carousel">
+      {
+        styleOptions.map((style, i) => (
+          <Carousel.Item key={i}>
+          <img
+            className="main-carousel"
+            src={style.photos[0].url}
+          />
+
+          <Carousel.Caption>
+          </Carousel.Caption>
+        </Carousel.Item>
+        ))
+      }
+    </Carousel>
   );
+}
+
+ImageGallery.propTypes = {
+  styles: PropTypes.instanceOf(Object).isRequired,
 }
 
 export default ImageGallery;
