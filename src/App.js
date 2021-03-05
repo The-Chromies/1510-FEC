@@ -1,3 +1,6 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable max-len */
+/* eslint-disable prefer-const */
 // import './App.css';
 import React from 'react';
 import axios from 'axios';
@@ -10,22 +13,22 @@ function App() {
   // click tracking function to pass down to components
   const clickTracker = (widget, e) => {
     // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
-    let date = new Date;
-    let elementClicked = e.target.type.concat(`, ${e.target.className}`)
-    console.log(date.toTimeString())
+    let date = new Date();
+    let elementClicked = e.target.type.concat(`, ${e.target.className}`);
+    console.log(date.toTimeString());
     let clickData = {
       element: e.target.type,
       widget: widget,
-      time: date.toTimeString()
-    }
+      time: date.toTimeString(),
+    };
     axios.post('http://localhost:3000/', clickData)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   return (
     <div className="App">
