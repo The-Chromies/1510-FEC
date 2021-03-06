@@ -3,7 +3,7 @@ import { Button, Dropdown } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import QtyOption from './qtyOption';
 
-function AddToCart({ styles, selected }) {
+function AddToCart({ selected }) {
   const [ size, setSize ] = useState(0);
   const [ productToAdd, setProductToAdd ] = useState({size: '', qty: ''});
 
@@ -65,7 +65,7 @@ function AddToCart({ styles, selected }) {
 }
 
 AddToCart.propTypes = {
-  styles: PropTypes.instanceOf(Object).isRequired,
+  selected: PropTypes.instanceOf(Object).isRequired,
 }
 
 export default AddToCart;

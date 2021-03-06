@@ -14,7 +14,8 @@ function StyleSelector({styles, setSelectedStyle}) {
       {
         styles.results.map((style, i) => (
           <div key={i} className="thumbnail-img">
-            <img onClick={() => {setSelected(style); setSelectedStyle(style)}} src={style.photos[0].thumbnail_url} className="thumbnail-img" key={i}></img>
+            <img onClick={() => {setSelected(style); setSelectedStyle(style)}} src={style.photos[0].thumbnail_url}
+            className={ style === selected ? "selected-style" : "thumbnail-img" } key={i}></img>
             { style === selected && <img src="../public/imgs/check.png" className="style-check"/> }
           </div>
         ))
