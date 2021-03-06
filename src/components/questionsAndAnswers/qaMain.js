@@ -1,4 +1,4 @@
-// import './qa.css';
+//import './qa.css';
 import React from 'react';
 import Search from './Search.js';
 
@@ -7,7 +7,7 @@ function QuestionsAndAnswers() {
     <div className="question-answer-container">
       <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
       <div>
-        <Search />
+        {/* <Search /> */}
       </div>
 
       <div>
@@ -23,3 +23,13 @@ function QuestionsAndAnswers() {
 }
 
 export default QuestionsAndAnswers;
+
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import {
+//   Nav, Container, Row, Col, Grid, Modal, Button,
+// } from 'react-bootstrap';
+
+// function QuestionsAndAnswers() {
+//   const [questionList, setQuestionList] = useState(null);
+// }

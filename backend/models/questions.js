@@ -24,7 +24,7 @@ const queries = {
       });
   },
   getQuestions: (id, callback) => {
-    //console.log(' GET QUESTIONS FOR ONE PRODUCT');
+    console.log('IN THE MODELS');
     const options = {
       method: 'get',
       url: `${apiUrl}qa/questions?product_id=18201&page=1&count=5`,
@@ -34,7 +34,7 @@ const queries = {
         'Content-Type': 'application/json',
         Connection: 'keep-alive'
       },
-    };
+    }
     axios(options).then((response) => {
       callback(null, response.data);
     })

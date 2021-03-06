@@ -32,7 +32,7 @@ class Search extends React.Component {
           <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} placeholder='Have a question? Search for answers'/>
         </form>
         <br></br>
-        <h6>questions list</h6>
+        <h6>questions list from dummy data</h6>
         <QuestionsList question={this.dynamicSearch()}/>
       </div>
     );
