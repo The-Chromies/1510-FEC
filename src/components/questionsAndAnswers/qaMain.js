@@ -1,14 +1,21 @@
-//import './qa.css';
+import '../localStyles/qa.css';
 import React from 'react';
 import Search from './Search.js';
+import { Navbar, Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function QuestionsAndAnswers() {
   return (
-    <div className="question-answer-container">
-      <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
+    <div>
+      <nav class="navbar navbar-light bg-light">
+        <span class="navbar-header" id="qa-header">
+          Questions and Answers
+        </span>
+      </nav>
+      {/* <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
       <div>
         {/* <Search /> */}
-      </div>
+      {/* </div>
 
       <div>
         <span>
@@ -17,7 +24,7 @@ function QuestionsAndAnswers() {
         <span>
            add a question button
         </span>
-      </div>
+      </div> } */}
     </div>
   );
 }
@@ -31,5 +38,5 @@ export default QuestionsAndAnswers;
 // } from 'react-bootstrap';
 
 // function QuestionsAndAnswers() {
-//   const [questionList, setQuestionList] = useState(null);
+//   const [questionList, setQuestionList] = useState([]);
 // }
