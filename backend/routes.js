@@ -29,7 +29,8 @@ router.get('/ratings/reviewMeta/:id', controller.ratings.getReviewMeta);
 // // router.put('/ratings', controller.ratings.put);
 // // router.delete('/ratings', controller.ratings.delete);
 
-router.get('/related', controller.related.get);
+router.get('/related/product/:id', controller.related.getProduct);
+router.get('/related/relatedp/:id', controller.related.getRelated);
 // // router.post('/related', controller.related.post);
 // // router.put('/related', controller.related.put);
 // // router.delete('/related', controller.related.delete);
