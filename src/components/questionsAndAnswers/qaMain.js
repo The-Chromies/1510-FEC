@@ -3,15 +3,16 @@ import React from 'react';
 import Search from './Search.js';
 import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import QuestionsList from './QuestionsList.js';
 
 function QuestionsAndAnswers() {
   return (
     <div>
-      <nav class="navbar navbar-light bg-light">
-        <span class="navbar-header" id="qa-header">
-          Questions and Answers
-        </span>
-      </nav>
+      <h5 class="header">Questions &amp; Answers</h5>
+
+
+      <Search />
+      <p>quetstion list here</p>
       {/* <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
       <div>
         {/* <Search /> */}

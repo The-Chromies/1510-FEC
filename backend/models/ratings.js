@@ -67,13 +67,8 @@ const queries = {
       });
   },
   getReviewMeta: (id, callback) => {
-<<<<<<< HEAD
-    //console.log('InFindMeta server')
-    //console.log(id);
-=======
     console.log('InFindMeta server');
     console.log(id);
->>>>>>> 35097b541cc9cc4e636593b306be47bb1381aff4
     // console.log('WE ARE HITTING THE GET REVIEWS');
     const options = {
       method: 'get',
@@ -87,13 +82,10 @@ const queries = {
     };
 
     axios(options).then((response) => {
-<<<<<<< HEAD
       //console.log('InFindMeta success')
     //   console.log('inCatch success models');
-=======
       console.log('InFindMeta success');
       //   console.log('inCatch success models');
->>>>>>> 35097b541cc9cc4e636593b306be47bb1381aff4
       const ratingArray = response.data.ratings;
       const keyArray = Object.keys(ratingArray);
       let sumValue = 0;
