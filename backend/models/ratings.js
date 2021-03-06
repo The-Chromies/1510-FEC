@@ -4,6 +4,26 @@ const config = require('../env/config.js');
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/';
 
 const queries = {
+  createReview: (dataBody, callback) => {
+    const options = {
+      method: 'post',
+      url: `${apiUrl}/reviews/product_id=18445`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+      data: dataBody,
+    };
+
+    axios(options).then((response) => {
+      callback(null, response.data);
+    })
+      .catch((error) => {
+        console.log(error, null);
+      });
+  },
   getProducts: (callback) => {
     const options = {
       method: 'get',
