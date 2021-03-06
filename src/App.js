@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
 // import './App.css';
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
@@ -11,14 +11,14 @@ import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
 
 function App() {
+  const [ styles, setStyles ] = useState(null);
+
   // set up var to link review section
   const reviews = useRef(null);
 
   // func to navigate to review section
   const goToReviews = () => {
-    // window.scrollTo({ top: reviews.current.offsetTop, behavior: "smooth" })
     reviews.current.scrollIntoView({ behavior: 'smooth' })
-    //document.getElementById('please-work').scrollIntoView();
   };
 
   // click tracking function to pass down to components
@@ -41,11 +41,26 @@ function App() {
       });
   };
 
+  // retrieve images for a given product id
+  const getStyles = (id) => {
+    axios.get(`http://localhost:3000/overview/styles/${id}`)
+      .then((res) => {
+        setStyles(res.data);
+      })
+      .catch((err) => {
+        console.log(error);
+      })
+  };
+
+  useEffect(() => {
+    getStyles('18078');
+  }, []);
+
   return (
     // main application
     <div className="App">
       <div className="overview">
-        <Overview goToReviews={goToReviews}/>
+        <Overview goToReviews={goToReviews} getStyles={getStyles} styles={styles}/>
       </div>
       <div className="related-comparison">
         <RelatedAndComparison />

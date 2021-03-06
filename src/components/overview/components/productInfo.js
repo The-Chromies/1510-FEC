@@ -53,7 +53,7 @@ function ProductInfo({ product, selected, goToReviews }) {
         <Route path="/reviews" component={RatingsAndReviews}/>
       </Router>  */}
       <div>{starImage}</div>
-      <div className="review-link">Read all # reviews</div>
+      <div onClick={goToReviews} className="review-link">Read all # reviews</div>
       <div>{product.category}</div>
       <h3>{product.name}</h3>
       { selected && selected.sale_price === null ? <div>{`$${selected.original_price}`}</div> :
