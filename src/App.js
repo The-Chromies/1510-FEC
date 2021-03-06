@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
 // import './App.css';
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
@@ -16,9 +16,7 @@ function App() {
 
   // func to navigate to review section
   const goToReviews = () => {
-    // window.scrollTo({ top: reviews.current.offsetTop, behavior: "smooth" })
     reviews.current.scrollIntoView({ behavior: 'smooth' })
-    //document.getElementById('please-work').scrollIntoView();
   };
 
   // click tracking function to pass down to components
@@ -42,7 +40,6 @@ function App() {
   };
 
   return (
-    // main application
     <div className="App">
       <div className="overview">
         <Overview goToReviews={goToReviews}/>
@@ -57,14 +54,6 @@ function App() {
         <RatingsAndReviews/>
       </div>
     </div>
-
-    // setting up routes
-    // <Router>
-    //   <Route path="/overview" component={Overview} />
-    //   <Route path="/related" component={RelatedAndComparison} />
-    //   <Route path="/questions" component={QuestionsAndAnswers} />
-    //   <Route path="/reviews" component={RatingsAndReviews} />
-    // </Router>
   );
 }
 

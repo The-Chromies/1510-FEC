@@ -58,7 +58,7 @@ function Overview({ goToReviews }) {
     <Container>
       <Row className="overview-container">
         <Col xs={12} s={12} md={6} lg={8}>
-          { styles ? <ImageGallery className="image-gallery" selected={selected}/> : null }
+          { selected ? <ImageGallery className="image-gallery" selected={selected}/> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
           { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} goToReviews={goToReviews}/> : null }
