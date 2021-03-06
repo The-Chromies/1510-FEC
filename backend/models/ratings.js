@@ -7,7 +7,7 @@ const queries = {
   createReview: (dataBody, callback) => {
     const options = {
       method: 'post',
-      url: `${apiUrl}/reviews/product_id=18445`,
+      url: `${apiUrl}reviews`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,

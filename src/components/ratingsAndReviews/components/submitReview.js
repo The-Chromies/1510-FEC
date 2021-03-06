@@ -7,10 +7,10 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 
-function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, setRevCount, revCount }) {
-  const formValues = {
-    product_id: productId,
-    rating: 0,
+function ReviewListContainer({ productId, showNewRev, handleClose, handleOpen, setRevCount, revCount }) {
+  const formValues = Object.freeze({
+    product_id: Number(productId),
+    rating: 1,
     summary: '',
     body: '',
     recommend: false,
@@ -18,7 +18,7 @@ function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, se
     email: '',
     photos: [],
     characteristics: {},
-  };
+  });
   const [formData, setFormData] = useState(formValues);
 
   const htmlEncode = (str) => String(str).replace(/[^\w. ]/gi, (c) => `&#${c.charCodeAt(0)};`);
@@ -26,7 +26,7 @@ function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, se
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: htmlEncode(e.target.value.trim()),
+      [e.target.name]: e.target.value.trim(),
     });
   };
 
@@ -37,7 +37,7 @@ function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, se
     axios({
       method: 'post',
       url: 'http://localhost:3000/ratings/createReview',
-      data: JSON.stringify(formValues),
+      data: formData,
     })
       .then((result) => {
         console.log(result);
@@ -46,7 +46,8 @@ function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, se
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
+      handleClose();
   };
 
   return (
@@ -61,7 +62,7 @@ function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, se
               <Col sm={6} md={6}>
                 <label htmlFor="recipient-name">
                   Enter your Name:
-                  <input name="nickname" onChange={handleChange} type="text" className="form-control has-validation" id="recipient-name" pattern="^[a-zA-Z0-9_-]{3,16}$" placeholder="Nickname" required />
+                  <input name="name" onChange={handleChange} type="text" className="form-control has-validation" id="recipient-name" pattern="^[a-zA-Z0-9_-]{3,16}$" placeholder="Nickname" required />
                 </label>
               </Col>
               <Col sm={6} md={6}>
@@ -76,14 +77,14 @@ function ReviewListContainer({productId, showNewRev, handleClose, handleOpen, se
                 <label htmlFor="star-select">
                   How many Stars would you give this product?
                 </label>
-                <input name="rating" onChange={handleChange} type="range" className="custom-range" min="1" max="5" step="1" id="star-select" required />
+                <input name="rating" onChange={handleChange} type="range" value="1" className="custom-range" min="1" max="5" step="1" id="star-select" required />
               </Col>
             </Row>
             <hr />
             <div className="form-group">
               <label htmlFor="message-subject">
                 Review Title
-                <input name="subject" onChange={handleChange} type="text" className="form-control has-validation" id="message-subject" pattern="^.{1,50}" placeholder="Title Your Review" required />
+                <input name="summary" onChange={handleChange} type="text" className="form-control has-validation" id="message-subject" pattern="^.{1,50}" placeholder="Title Your Review" required />
               </label>
             </div>
             <div className="form-group">
