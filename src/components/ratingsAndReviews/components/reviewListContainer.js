@@ -7,7 +7,9 @@ import {
 import ReviewBox from './reviewBox';
 import SubmitReviewModal from './submitReview';
 
-function ReviewListContainer({ setRevCount, revCount, productId, reviewList, generateStarImage, handleFetchMore}) {
+function ReviewListContainer({
+  setRevCount, revCount, productId, reviewList, generateStarImage, handleFetchMore,
+}) {
   const [showNewRev, setShowNewRev] = useState(false);
   const handleClose = () => setShowNewRev(false);
   const handleOpen = () => setShowNewRev(true);
@@ -28,6 +30,9 @@ ReviewListContainer.propTypes = {
   reviewList: PropTypes.instanceOf(Array).isRequired,
   generateStarImage: PropTypes.instanceOf(Function).isRequired,
   handleFetchMore: PropTypes.instanceOf(Function).isRequired,
+  productId: PropTypes.string.isRequired,
+  setRevCount: PropTypes.instanceOf(Function).isRequired,
+  revCount: PropTypes.number.isRequired,
 };
 
 export default ReviewListContainer;

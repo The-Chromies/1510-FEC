@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Modal, Col, Row,
+  Modal, Col, Row,
 } from 'react-bootstrap';
 import axios from 'axios';
 
-function ReviewListContainer({ productId, showNewRev, handleClose, handleOpen, setRevCount, revCount }) {
+function ReviewListContainer({
+  productId, showNewRev, handleClose, setRevCount, revCount,
+}) {
   const formValues = Object.freeze({
     product_id: Number(productId),
     rating: 1,
@@ -21,7 +23,7 @@ function ReviewListContainer({ productId, showNewRev, handleClose, handleOpen, s
   });
   const [formData, setFormData] = useState(formValues);
 
-  const htmlEncode = (str) => String(str).replace(/[^\w. ]/gi, (c) => `&#${c.charCodeAt(0)};`);
+  //   const htmlEncode = (str) => String(str).replace(/[^\w. ]/gi, (c) => `&#${c.charCodeAt(0)};`);
 
   const handleChange = (e) => {
     setFormData({
@@ -41,13 +43,13 @@ function ReviewListContainer({ productId, showNewRev, handleClose, handleOpen, s
     })
       .then((result) => {
         console.log(result);
-        setRevCount(revCount + 1); //this should adjust the revCount and re-kick-off a fetch
-        //add local storage option here
+        setRevCount(revCount + 1); // this should adjust the revCount and re-kick-off a fetch
+        // add local storage option here
       })
       .catch((error) => {
         console.log(error);
       });
-      handleClose();
+    handleClose();
   };
 
   return (
@@ -77,7 +79,7 @@ function ReviewListContainer({ productId, showNewRev, handleClose, handleOpen, s
                 <label htmlFor="star-select">
                   How many Stars would you give this product?
                 </label>
-                <input name="rating" onChange={handleChange} type="range" value="1" className="custom-range" min="1" max="5" step="1" id="star-select" required />
+                <input name="rating" onChange={handleChange} type="range" value={formData.rating} className="custom-range" min="1" max="5" step="1" id="star-select" required />
               </Col>
             </Row>
             <hr />
@@ -104,7 +106,9 @@ function ReviewListContainer({ productId, showNewRev, handleClose, handleOpen, s
 ReviewListContainer.propTypes = {
   showNewRev: PropTypes.bool.isRequired,
   handleClose: PropTypes.instanceOf(Function).isRequired,
-  handleOpen: PropTypes.instanceOf(Function).isRequired,
+  productId: PropTypes.string.isRequired,
+  setRevCount: PropTypes.instanceOf(Function).isRequired,
+  revCount: PropTypes.number.isRequired,
 };
 
 export default ReviewListContainer;

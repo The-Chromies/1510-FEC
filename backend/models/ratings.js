@@ -67,7 +67,7 @@ const queries = {
       });
   },
   getReviewMeta: (id, callback) => {
-    console.log('InFindMeta server')
+    console.log('InFindMeta server');
     console.log(id);
     // console.log('WE ARE HITTING THE GET REVIEWS');
     const options = {
@@ -82,8 +82,8 @@ const queries = {
     };
 
     axios(options).then((response) => {
-      console.log('InFindMeta success')
-    //   console.log('inCatch success models');
+      console.log('InFindMeta success');
+      //   console.log('inCatch success models');
       const ratingArray = response.data.ratings;
       const keyArray = Object.keys(ratingArray);
       let sumValue = 0;
