@@ -11,8 +11,6 @@ import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
 
 function App() {
-  const [ styles, setStyles ] = useState(null);
-
   // set up var to link review section
   const reviews = useRef(null);
 
@@ -41,26 +39,10 @@ function App() {
       });
   };
 
-  // retrieve images for a given product id
-  const getStyles = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
-      .then((res) => {
-        setStyles(res.data);
-      })
-      .catch((err) => {
-        console.log(error);
-      })
-  };
-
-  useEffect(() => {
-    getStyles('18078');
-  }, []);
-
   return (
-    // main application
     <div className="App">
       <div className="overview">
-        <Overview goToReviews={goToReviews} getStyles={getStyles} styles={styles}/>
+        <Overview goToReviews={goToReviews}/>
       </div>
       <div className="related-comparison">
         <RelatedAndComparison />
@@ -72,14 +54,6 @@ function App() {
         <RatingsAndReviews/>
       </div>
     </div>
-
-    // setting up routes
-    // <Router>
-    //   <Route path="/overview" component={Overview} />
-    //   <Route path="/related" component={RelatedAndComparison} />
-    //   <Route path="/questions" component={QuestionsAndAnswers} />
-    //   <Route path="/reviews" component={RatingsAndReviews} />
-    // </Router>
   );
 }
 
