@@ -13,6 +13,8 @@ function Overview({ goToReviews, productId }) {
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);
   const [ selected, setSelected ] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
 
   const getProduct = (id) => {
     axios.get(`http://localhost:3000/overview/product/${id}`)
@@ -44,6 +46,14 @@ function Overview({ goToReviews, productId }) {
     setSelected(style);
   };
 
+  const resetIndex = (num) => {
+    setCurrentIndex(num);
+  };
+
+  const setExpandedState = (bool) => {
+    setExpanded(bool);
+  };
+
 
   return (
     // pure css formatting
@@ -58,11 +68,11 @@ function Overview({ goToReviews, productId }) {
     <Container>
       <Row className="overview-container">
         <Col xs={12} s={12} md={6} lg={8}>
-          { selected ? <ImageGallery className="image-gallery" selected={selected}/> : null }
+          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} expanded={expanded} setExpandedState={setExpandedState}/> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
           { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} goToReviews={goToReviews}/> : null }
-          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle}/> : null }
+          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex}/> : null }
           { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
         </Col>
       </Row>

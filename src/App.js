@@ -12,7 +12,7 @@ import Overview from './components/overview/ovMain';
 
 function App() {
   // given product id state
-  const [productId, setProductId] = useState(18445);
+  const [productId, setProductId] = useState(18078);
 
   // set up var to link review section
   const reviews = useRef(null);
@@ -33,7 +33,6 @@ function App() {
     // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
     let date = new Date();
     let elementClicked = e.target.type.concat(`, ${e.target.className}`);
-    console.log(date.toTimeString());
     let clickData = {
       element: e.target.type,
       widget: widget,
@@ -51,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <div className="overview">
-        <Overview goToReviews={goToReviews} />
+        <Overview goToReviews={goToReviews} productId={productId}/>
       </div>
       <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
         <RelatedAndComparison />
