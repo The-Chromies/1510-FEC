@@ -4,10 +4,10 @@ const config = require('../env/config.js');
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/';
 
 const queries = {
-  getProducts: (callback) => {
+  getProduct: (id, callback) => {
     const options = {
       method: 'get',
-      url: `${apiUrl}products`,
+      url: `${apiUrl}products/${id}`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
@@ -22,6 +22,27 @@ const queries = {
       .catch((error) => {
         console.log(error, null);
       });
+  },
+
+
+
+  getRelated: (id, cb) => {
+    const options = {
+      method: 'get',
+      url: `${apiUrl}products/${id}/related`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+    };
+
+    axios(options).then((response) => {
+      cb(null, response.data);
+    }).catch((err) => {
+      console.log(err, null);
+    });
   },
 };
 

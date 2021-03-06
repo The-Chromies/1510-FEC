@@ -38,7 +38,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   // potentially for react router
-  // devServer: {
-  //   historyAPIFallback: true,
-  // }
+  devServer: {
+    historyApiFallback: true,
+  }
 };
