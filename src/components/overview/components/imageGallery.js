@@ -3,28 +3,20 @@ import PropTypes from 'prop-types';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ImageGallery({ selected }) {
+function ImageGallery({ selected, currentIndex, resetIndex, expanded, setExpandedState}) {
 
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(0);
   const [currentThumbnail, setCurrentThumbnail] = useState(0);
+  // const [collapsed, setCollapsed] = useState(true);
 
   // Set the length to match current children from props
   useEffect(() => {
-    selected && setLength(selected.photos.length)
+    selected && setLength(selected.photos.length);
   }, [selected]);
 
-  const next = () => {
-    if (currentIndex < (length - 1)) {
-        setCurrentIndex(prevState => prevState + 1)
-    }
-  };
+  const next = () => currentIndex < (length - 1) && resetIndex(currentIndex + 1);
 
-  const prev = () => {
-    if (currentIndex > 0) {
-        setCurrentIndex(prevState => prevState - 1)
-    }
-  };
+  const prev = () => currentIndex > 0 && resetIndex(currentIndex - 1);
 
   return (
     // react bootstrap carousel
@@ -46,27 +38,35 @@ function ImageGallery({ selected }) {
     // </Carousel>
 
     // pure css carousel
-    <div className="carousel-container">
-    { currentIndex > 0 && <button className="left-arrow" onClick={prev}>&lt;</button> }
-      <div className="carousel-wrapper">
-        { selected &&
-          <div className="thumbnail-carousel">
-            { selected.photos.map((thumbnail, i) => (
-              <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {setCurrentIndex(i)}}/>
-            )) }
-          </div> }
-          <div className="carousel-content-wrapper">
-              <div className="carousel-content"  style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-                { selected &&
-                  selected.photos.map((thumbnail, i) => (
-                      <img key={i} className="main-carousel" src={thumbnail.url}/>
-                  ))
-                }
+    <React.Fragment>
+      { expanded ?
+        <div className="expanded-container">
+
+        </div>
+        :
+        <div className="carousel-container">
+        { currentIndex > 0 && <button className="left-arrow" onClick={prev}>&lt;</button> }
+          <div className="carousel-wrapper">
+            { selected &&
+              <div className="thumbnail-carousel">
+                { selected.photos.map((thumbnail, i) => (
+                  <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/>
+                )) }
+              </div> }
+              <div className="carousel-content-wrapper">
+                  <div className="carousel-content"  style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+                    { selected &&
+                      selected.photos.map((thumbnail, i) => (
+                          <img key={i} className="main-carousel" src={thumbnail.url} onClick={() => setExpandedState(true)}/>
+                      ))
+                    }
+                  </div>
               </div>
           </div>
-      </div>
-    { currentIndex < (length - 1) && <button className="right-arrow" onClick={next}>&gt;</button> }
-    </div>
+        { currentIndex < (length - 1) && <button className="right-arrow" onClick={next}>&gt;</button> }
+        </div>
+      }
+    </React.Fragment>
   );
 }
 
