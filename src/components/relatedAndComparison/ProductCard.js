@@ -35,7 +35,6 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
@@ -43,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
     display: 'inline-block',
-
   },
   media: {
     height: 0,
@@ -75,6 +73,9 @@ export default function RecipeReviewCard(props) {
     console.log('CLICKING CARD');
   }
 
+
+
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -88,13 +89,13 @@ export default function RecipeReviewCard(props) {
       />
       <CardMedia onClick={handleCardClick}
         className={classes.media}
-        // image="/static/images/cards/paella.jpg"
+        image={props.styles && props.styles[0].photos[0].thumbnail_url}
         title={props.product.name}
       />
       <CardContent onClick={handleCardClick}>
         <Typography variant="body2" color="textSecondary" component="p">
           <h2>{props.product.name}</h2>
-          {props.product.description}
+          {props.product.description.substring(0, 150).concat('...')}
           <h5>{props.product.default_price}</h5>
         </Typography>
       </CardContent>

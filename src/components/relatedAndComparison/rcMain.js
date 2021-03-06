@@ -9,6 +9,7 @@ function RelatedAndComparison() {
 
   const [relatedList, setRelatedList] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [styles, setStyles] = useState([]);
 
   // const getProduct = (id) => {
   //   axios.get(`http://localhost:3000/related/product/${id}`)
@@ -25,7 +26,7 @@ function RelatedAndComparison() {
   useEffect(() => {
     console.log('relatedList useEffect', relatedList)
     if (relatedList.length > 0) {
-      fufillPromise();
+      getRelatedAndStyle();
     }
   }, [relatedList])
 
@@ -50,9 +51,9 @@ function RelatedAndComparison() {
     }
 
 
-    const fufillPromise = () => {
+    const getRelatedAndStyle = () => {
       // console.log('running function fufillPromise', relatedList);
-      let promiseArr = relatedList.map((id) => {
+      let productDataArr = relatedList.map((id) => {
         // console.log('id from promise array', id);
         return axios.get(`http://localhost:3000/related/product/${id}`)
         .then((results) => {
@@ -62,12 +63,29 @@ function RelatedAndComparison() {
           console.log('promise array', err);
         })
       })
-      Promise.all(promiseArr)
+      let styleDataArr = relatedList.map((id) => {
+        return axios.get(`http://localhost:3000/overview/styles/${id}`)
+        .then((results) => {
+          return results.data;
+        })
+        .catch((err) => {
+          console.log('STYLES ERROR', err);
+        })
+      })
+      Promise.all(productDataArr)
       .then((results) => {
         console.log('TESTING:', results);
         setProductInfo(results)
       })
       .catch(err => console.log('promiseAll err', err));
+      Promise.all(styleDataArr)
+      .then((results) => {
+        console.log('TESTING STYLE', results);
+        setStyles(results)
+      })
+      .catch((err) => {
+        console.log('STYLE POMISE ALL ERROR', err);
+      })
     }
 
 
@@ -78,7 +96,9 @@ function RelatedAndComparison() {
   return (
     <div className="related-comparison-container" >
       Related And Comparison
-      <RelatedList relatedProducts={relatedList}  productInfo={productInfo}/>
+      {relatedList && productInfo && styles ?
+      <RelatedList relatedProducts={relatedList}  productInfo={productInfo} styles={styles}/>
+        : null}
     </div>
   );
 }

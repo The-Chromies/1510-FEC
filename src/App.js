@@ -63,7 +63,7 @@ function App() {
         <Overview goToReviews={goToReviews} getStyles={getStyles} styles={styles}/>
       </div>
       <div className="related-comparison">
-        <RelatedAndComparison />
+        <RelatedAndComparison getStyles={getStyles} />
       </div>
       <div className="questions-answers">
         <QuestionsAndAnswers />

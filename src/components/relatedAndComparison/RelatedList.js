@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 function RelatedList(props) {
   console.log('test in relatedList', props.productInfo);
   return (
-    <div>
+    <div className= 'relatedCarousel'>
       {props.productInfo.map((product) => {
         return (
-          <ProductCard product={product}/>
+          <ProductCard product={product} styles={props.styles}/>
         )
       })}
     </div>
