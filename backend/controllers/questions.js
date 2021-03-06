@@ -22,6 +22,7 @@ module.exports = {
       }
     });
   },
+
   getQuestions(req, res) {
     console.log('IN CONTROLLER');
     // console.log('THIS IS THE ID: ', req);
