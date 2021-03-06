@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../localStyles/ov.css';
 import axios from 'axios';
-import { Navbar, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Container, Row, Col, Carousel } from 'react-bootstrap';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
@@ -14,7 +14,6 @@ function Overview({ goToReviews, productId }) {
   const [ styles, setStyles ] = useState(null);
   const [ selected, setSelected ] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [expanded, setExpanded] = useState(false);
 
   const getProduct = (id) => {
     axios.get(`http://localhost:3000/overview/product/${id}`)
@@ -50,10 +49,6 @@ function Overview({ goToReviews, productId }) {
     setCurrentIndex(num);
   };
 
-  const setExpandedState = (bool) => {
-    setExpanded(bool);
-  };
-
 
   return (
     // pure css formatting
@@ -68,7 +63,7 @@ function Overview({ goToReviews, productId }) {
     <Container>
       <Row className="overview-container">
         <Col xs={12} s={12} md={6} lg={8}>
-          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} expanded={expanded} setExpandedState={setExpandedState}/> : null }
+          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex}/> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
           { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} goToReviews={goToReviews}/> : null }
