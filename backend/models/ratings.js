@@ -4,6 +4,26 @@ const config = require('../env/config.js');
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/';
 
 const queries = {
+  createReview: (dataBody, callback) => {
+    const options = {
+      method: 'post',
+      url: `${apiUrl}reviews`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+      data: dataBody,
+    };
+
+    axios(options).then((response) => {
+      callback(null, response.data);
+    })
+      .catch((error) => {
+        console.log(error, null);
+      });
+  },
   getProducts: (callback) => {
     const options = {
       method: 'get',
@@ -47,8 +67,13 @@ const queries = {
       });
   },
   getReviewMeta: (id, callback) => {
+<<<<<<< HEAD
     //console.log('InFindMeta server')
     //console.log(id);
+=======
+    console.log('InFindMeta server');
+    console.log(id);
+>>>>>>> 35097b541cc9cc4e636593b306be47bb1381aff4
     // console.log('WE ARE HITTING THE GET REVIEWS');
     const options = {
       method: 'get',
@@ -62,8 +87,13 @@ const queries = {
     };
 
     axios(options).then((response) => {
+<<<<<<< HEAD
       //console.log('InFindMeta success')
     //   console.log('inCatch success models');
+=======
+      console.log('InFindMeta success');
+      //   console.log('inCatch success models');
+>>>>>>> 35097b541cc9cc4e636593b306be47bb1381aff4
       const ratingArray = response.data.ratings;
       const keyArray = Object.keys(ratingArray);
       let sumValue = 0;

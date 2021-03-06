@@ -13,13 +13,13 @@ function StyleSelector({styles, setSelectedStyle}) {
       <div>Selected style: {selected.name}</div>
       {
         styles.results.map((style, i) => (
-          <React.Fragment key={i}>
-            <img onClick={() => {setSelected(style); setSelectedStyle(style)}} src={style.photos[0].thumbnail_url} className="thumbnail-img" key={i}></img>
-            { style === selected ? <img src="../public/imgs/check.png" className="style-check"/> : null }
-          </React.Fragment>
+          <div key={i} className="thumbnail-img">
+            <img onClick={() => {setSelected(style); setSelectedStyle(style)}} src={style.photos[0].thumbnail_url}
+            className={ style === selected ? "selected-style" : "thumbnail-img" } key={i}></img>
+            { style === selected && <img src="../public/imgs/check.png" className="style-check"/> }
+          </div>
         ))
       }
-
     </div>
   );
 }
