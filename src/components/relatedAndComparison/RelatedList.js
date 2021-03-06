@@ -5,22 +5,25 @@ import PropTypes from 'prop-types';
 
 
 function RelatedList(props) {
-  // console.log('test', relatedProducts);
+  console.log('test in relatedList', props.productInfo);
   return (
     <div>
-      {props.relatedProducts.map((product) => {
-        return(
-          <ProductCard product={product} productInfo={props.productInfo}/>
+      {props.productInfo.map((product) => {
+        return (
+          <ProductCard product={product}/>
         )
       })}
     </div>
+
+
+
   )
 }
 
 
 RelatedList.propTypes = {
   relatedProducts: PropTypes.instanceOf(Array).isRequired,
-  productInfo: PropTypes.instanceOf(Object).isRequired,
+  // productInfo: PropTypes.instanceOf(Array).isRequired,
 };
 
 
