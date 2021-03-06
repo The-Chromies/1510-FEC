@@ -11,6 +11,9 @@ import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
 
 function App() {
+  // given product id state
+  const [productId, setProductId] = useState(18078);
+
   // set up var to link review section
   const reviews = useRef(null);
 
@@ -19,18 +22,23 @@ function App() {
     reviews.current.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // func to make selected product accessible to all components
+  const getSelectedProduct = (id) => {
+    setProductId(id);
+  };
+
+
   // click tracking function to pass down to components
   const clickTracker = (widget, e) => {
     // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
     let date = new Date();
     let elementClicked = e.target.type.concat(`, ${e.target.className}`);
-    console.log(date.toTimeString());
     let clickData = {
       element: e.target.type,
       widget: widget,
       time: date.toTimeString(),
     };
-    axios.post('http://localhost:3000/', clickData)
+    axios.post('http://localhost:3000/interactions', JSON.stringify(clickData))
       .then((res) => {
         console.log(res);
       })
@@ -42,9 +50,9 @@ function App() {
   return (
     <div className="App">
       <div className="overview">
-        <Overview goToReviews={goToReviews} />
+        <Overview goToReviews={goToReviews} productId={productId}/>
       </div>
-      <div className="related-comparison">
+      <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
         <RelatedAndComparison />
       </div>
       <div className="questions-answers">
