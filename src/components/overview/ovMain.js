@@ -9,7 +9,7 @@ import StyleSelector from './components/styleSelector';
 import AddToCart from './components/addToCart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Overview({ goToReviews }) {
+function Overview({ goToReviews, productId }) {
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);
   const [ selected, setSelected ] = useState(null);
@@ -36,8 +36,8 @@ function Overview({ goToReviews }) {
   };
 
   useEffect(() => {
-    getProduct('18078');
-    getStyles('18078');
+    getProduct(productId);
+    getStyles(productId);
   }, []);
 
   const setSelectedStyle = (style) => {

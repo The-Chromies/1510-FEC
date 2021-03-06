@@ -35,6 +35,6 @@ router.get('/related/relatedp/:id', controller.related.getRelated);
 // // router.put('/related', controller.related.put);
 // // router.delete('/related', controller.related.delete);
 
-// router.post('/interactions', controller.interactions.post);
+router.post('/interactions', controller.interactions.post);
 
 module.exports = router;

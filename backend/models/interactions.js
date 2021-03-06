@@ -7,7 +7,7 @@ const queries = {
   addInteraction: (callback) => {
     const options = {
       method: 'post',
-      url: `${apiUrl}products`,
+      url: `${apiUrl}interactions`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
