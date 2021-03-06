@@ -4,7 +4,7 @@
 // import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
@@ -19,7 +19,7 @@ function App() {
 
   // func to navigate to review section
   const goToReviews = () => {
-    reviews.current.scrollIntoView({ behavior: 'smooth' })
+    reviews.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   // func to make selected product accessible to all components
@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="App">
       <div className="overview">
-        <Overview goToReviews={goToReviews} productId={productId}/>
+        <Overview goToReviews={goToReviews} />
       </div>
       <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
         <RelatedAndComparison />
@@ -60,7 +60,7 @@ function App() {
         <QuestionsAndAnswers />
       </div>
       <div className="ratings-reviews" ref={reviews}>
-        <RatingsAndReviews/>
+        <RatingsAndReviews />
       </div>
     </div>
   );
