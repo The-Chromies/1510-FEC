@@ -18,13 +18,34 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
   const zoomIn = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 2.5 + ')');
     $('.expanded-carousel-img').css('cursor', 'zoom-out');
-    $('.expanded-carousel-img').mousemove((e) => {
-      let moveX = (e.pageX * -1 / 15);
-      let moveY = (e.pageY * -1 / 15);
-      $('.expanded-carousel-img').css('background-position', moveX + 'px ' + moveY + 'px');
-    });
+    // $('.expanded-carousel-img').mousemove((e) => {
+
+    //   let moveX = (e.pageX * -1 / 15);
+    //   let moveY = (e.pageY * -1 / 15);
+    //   $('.expanded-carousel-img').css('background-position', moveX + 'px ' + moveY + 'px');
+    // });
     setZoomed(true);
   };
+
+  // zoomed && $('.expanded-carousel-img').mousemove((e) => {
+  //   // get position of image on the page
+  //   let bbox = e.target.getBoundingClientRect();
+
+  //   // measure how far the mouse is into the image
+  //   let mouseX = e.clientX - bbox.left;
+  //   let mouseY = e.clientY - bbox.top;
+
+  //   // figure out how far through the image the mouse is as a percentage
+  //   let xPercent = (mouseX / bbox.width) * 100;
+  //   let yPercent = (mouseY / bbox.height) * 100;
+
+  //   // use tranform- origin to center mouse zoom
+  //   $(this).css('transform-origin', (xPercent+'% ' + yPercent+'%'));
+  // });
+
+  // // $('.expanded-carousel-img').on('mousenter', () => {
+  // //   $(this)
+  // // })
 
   const zoomOut = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 1 + ')');
@@ -52,7 +73,7 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
             { selected &&
               selected.photos.map((thumbnail, i) => (
                 <Carousel.Item key={i}>
-                  <div className="expanded-carousel-img" onClick={zoomed ? zoomOut : zoomIn}>
+                    <div className="expanded-carousel-img" onClick={zoomed ? zoomOut : zoomIn}>
                     <img src={thumbnail.url} id="inner-expanded-img"/>
                   </div>
                 {/* <img

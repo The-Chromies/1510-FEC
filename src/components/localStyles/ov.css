@@ -15,6 +15,9 @@
   margin-right: auto;
   width: 50%;
   cursor: zoom-in; */
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
 }
 
 #inner-expanded-img {
@@ -23,6 +26,7 @@
   margin-right: auto;
   width: 50%;
   cursor: zoom-in;
+  position: relative;
 }
 
 /* when in most expanded state use cursor: zoom-out; */
