@@ -35,15 +35,15 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import CompareModal from './CompareModal.js';
+
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
     display: 'inline-block',
-
   },
   media: {
     height: 0,
@@ -63,8 +63,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeReviewCard(props) {
+  // console.log('CARDDDD', props.styles);
+  // console.log('HEY', props.styles[0].results)
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -75,26 +78,26 @@ export default function RecipeReviewCard(props) {
     console.log('CLICKING CARD');
   }
 
+
+
   return (
     <Card className={classes.root}>
       <CardHeader
         action={
-          <IconButton aria-label="settings">
-            <StarBorderIcon />
-          </IconButton>
+          <CompareModal/>
         }
         // title={props.product.category}
         subheader={props.product.category}
       />
       <CardMedia onClick={handleCardClick}
         className={classes.media}
-        // image="/static/images/cards/paella.jpg"
+          image={props.styles}
         title={props.product.name}
       />
       <CardContent onClick={handleCardClick}>
         <Typography variant="body2" color="textSecondary" component="p">
-          <h2>{props.product.name}</h2>
-          {props.product.description}
+          <h3>{props.product.name}</h3>
+          {props.product.description.substring(0, 100).concat('...')}
           <h5>{props.product.default_price}</h5>
         </Typography>
       </CardContent>
@@ -146,3 +149,12 @@ export default function RecipeReviewCard(props) {
     </Card>
   );
 }
+
+
+
+  // action={
+        //   <IconButton aria-label="settings">
+        //     <CompareModal onClick={handleOpen}/>
+        //     <StarBorderIcon />
+        //   </IconButton>
+        // }
