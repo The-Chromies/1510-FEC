@@ -12,7 +12,7 @@ import Overview from './components/overview/ovMain';
 
 function App() {
   // given product id state
-  const [productId, setProductId] = useState(18078);
+  const [productId, setProductId] = useState(18085);
 
   // set up var to link review section
   const reviews = useRef(null);

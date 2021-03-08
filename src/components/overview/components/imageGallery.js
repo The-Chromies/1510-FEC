@@ -32,9 +32,13 @@ function ImageGallery({ selected, currentIndex, resetIndex }) {
           <div className="carousel-wrapper">
             { selected &&
               <div className="thumbnail-carousel">
+                { selected.photos.length > 7 && currentThumbnail > 6 ? <button className="up-arrow">&and;</button> : null }
                 { selected.photos.map((thumbnail, i) => (
-                  <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/>
+                  <React.Fragment>
+                    { i < 7 && <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/>}
+                  </React.Fragment>
                 )) }
+                { selected.photos.length > 7 && currentThumbnail < 6 ? <button className="down-arrow">&or;</button> : null }
               </div> }
               <div className="carousel-content-wrapper">
                   <div className="carousel-content"  style={{ transform: `translateX(-${currentIndex * 100}%)` }}>

@@ -17,7 +17,7 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
 
   const zoomIn = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 2.5 + ')');
-    $('.expanded-carousel-img').css('cursor', 'zoom-out');
+    $('#inner-expanded-img').css('cursor', 'zoom-out');
     // $('.expanded-carousel-img').mousemove((e) => {
 
     //   let moveX = (e.pageX * -1 / 15);
@@ -49,7 +49,7 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
 
   const zoomOut = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 1 + ')');
-    $('.expanded-carousel-img').css('cursor', 'zoom-im');
+    $('#inner-expanded-img').css('cursor', 'zoom-in');
     setZoomed(false);
   }
 
@@ -74,7 +74,8 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
               selected.photos.map((thumbnail, i) => (
                 <Carousel.Item key={i}>
                     <div className="expanded-carousel-img" onClick={zoomed ? zoomOut : zoomIn}>
-                    <img src={thumbnail.url} id="inner-expanded-img"/>
+                      <img src={thumbnail.url} id="inner-expanded-img"/>
+                      {/* <div style={{ backgroundImage: `url(${thumbnail.url})`}} id="inner-expanded-img"></div> */}
                   </div>
                 {/* <img
                   className="expanded-carousel-img"

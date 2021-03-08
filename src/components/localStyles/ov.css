@@ -140,21 +140,23 @@
   top: 50%;
   position: absolute;
   z-index: 1;
-  width: 60px;
+  width: 65px;
+  height: 387px;
+  overflow: hidden;
   transform: translateY(-50%);
 }
 
 .thumbnail-carousel-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .selected-thumbnail {
-  width: 75px;
-  height: 75px;
-  border-radius: 37.5px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
   border: 2px solid white;
   filter: drop-shadow(8px 8px 10px black);
   cursor: pointer;
@@ -164,7 +166,7 @@
 /* style selector */
 
 .style-selector {
-  height: 210px;
+  height: 240px;
   width: 280px;
 }
 

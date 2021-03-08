@@ -76,4 +76,47 @@ function Overview({ goToReviews, productId }) {
 }
 
 
+/*
+possible products:
+18201
+  related:
+  18407
+  18871
+  18112
+
+18078
+  related:
+  18079
+  18080
+  18085 - has > 7 thumbnail imgs
+  18084
+
+18445
+  related:
+  18331
+  18405
+  18632
+  19074
+  18191
+  18978
+  18416
+
+18079
+  related:
+  18080
+  18084
+  18083
+  18082
+
+18080
+  related:
+  18083
+  18086
+  18084
+  18079
+  18078
+
+*/
+
+
 export default Overview;
