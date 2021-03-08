@@ -5,21 +5,32 @@ import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuestionsList from './QuestionsList.js';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+const plusIcon = <FontAwesomeIcon icon={faPlus} />
+
 function QuestionsAndAnswers() {
   return (
     <div>
-      <h5 class="header">Questions &amp; Answers</h5>
+
+      <Container>
+        <h5 class="header">Questions &amp; Answers</h5>
+      </Container>
+
 
 
       <Search />
       <QuestionsList />
 
-      <span>
-      <Button variant="outline-secondary">Secondary</Button>
-      </span>
-      <span>
-      <Button variant="outline-secondary">Secondary</Button>
-      </span>
+      <Container>
+        <span>
+          <Button variant="outline-secondary">MORE OUTLINED QUESTIONS</Button>
+        </span>
+        <span>
+          <Button variant="outline-secondary">ADD A QUESTION {plusIcon}</Button>
+        </span>
+      </Container>
+
       {/* <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
       <div>
         {/* <Search /> */}
