@@ -14,7 +14,8 @@ import { ContactContextProvider } from "./Global-Context";
 
 function App() {
   // given product id state
-  const [productId, setProductId] = useState(18078);
+  // const [productId, setProductId] = useState(18078);
+  // var {productId, setProductId} = useContext(ContactContext);
 
   // set up var to link review section
   const reviews = useRef(null);
@@ -25,9 +26,9 @@ function App() {
   };
 
   // func to make selected product accessible to all components
-  const getSelectedProduct = (id) => {
-    setProductId(id);
-  };
+  // const getSelectedProduct = (id) => {
+  //   setProductId(id);
+  // };
 
 
   // click tracking function to pass down to components
@@ -53,9 +54,9 @@ function App() {
     <ContactContextProvider>
       <div className="App">
         <div className="overview">
-          <Overview goToReviews={goToReviews} productId={productId}/>
+          <Overview goToReviews={goToReviews} />
         </div>
-        <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
+        <div className="related-comparison" >
           <RelatedAndComparison />
         </div>
         <div className="questions-answers">

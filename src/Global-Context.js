@@ -1,14 +1,18 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable prefer-const */
-import React, { useState, createContext } from "react";
+import React, { useState, createContext } from 'react';
 
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [test, setTest] = useState(0);
-  let orangutan = "thisworked"
-  
+
+  let [productId, setProductId] = useState(18085);
+  // Look at 18078 summary container is strange
+  // Look at at images for 18079 in overview
+  // Ratings and review should not show up for 18080
+
+
   const generateStarImage = (starCount, keyId) => {
     let remainder = 0;
     remainder = starCount - remainder;
@@ -44,8 +48,13 @@ export const ContactContextProvider = (props) => {
   };
 
   return (
-    <ContactContext.Provider value={[test, setTest, orangutan, generateStarImage]}>
+    <ContactContext.Provider value={{
+      productId,
+      setProductId,
+      generateStarImage,
+    }}
+    >
       {props.children}
     </ContactContext.Provider>
   );
-}
+};

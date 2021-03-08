@@ -14,18 +14,12 @@ import ReviewFilter from './components/reviewFilter';
 import metaTestData from './testData/metadataTest';
 
 function RatingsAndReviews() {
-  var [test, setTest, orangutan, generateStarImage] = useContext(ContactContext);
-  console.log('+++++TEST+++++')
-  console.log(test)
-  setTest(2);
-  console.log(test)
-  console.log(orangutan)
-  console.log(generateStarImage)
+  let {generateStarImage, productId, setProductId} = useContext(ContactContext);
 
   const [reviewList, setReviewList] = useState(null);
   const [reviewListFull, setReviewListFull] = useState([]);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
-  const [productId, setProductId] = useState('18445');
+  // const [productId, setProductId] = useState('18445');
   const [revCount, setRevCount] = useState(0);
   const [starFilter, setStarFilter] = useState('');
 
