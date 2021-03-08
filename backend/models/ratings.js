@@ -45,7 +45,7 @@ const queries = {
   },
   getReviews: (id, sortKey, revCount, callback) => {
     // console.log('WE ARE HITTING THE GET REVIEWS');
-    console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
+    //console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
     const options = {
       method: 'get',
       url: `${apiUrl}reviews?product_id=${id}&page=1&count=${revCount}&sort=${sortKey}`,
@@ -82,6 +82,8 @@ const queries = {
     };
 
     axios(options).then((response) => {
+      //console.log('InFindMeta success')
+    //   console.log('inCatch success models');
       console.log('InFindMeta success');
       //   console.log('inCatch success models');
       const ratingArray = response.data.ratings;
@@ -92,7 +94,7 @@ const queries = {
         revCount += Number(ratingArray[keyArray[i]]);
         sumValue += Number(keyArray[i]) * Number(ratingArray[keyArray[i]]);
       }
-      console.log('meta revcount: ', revCount);
+      //console.log('meta revcount: ', revCount);
       response.data.revCount = revCount;
       response.data.ratingAvg = (Math.round((sumValue / revCount) * 4) / 4).toFixed(2);
       callback(null, response.data);
