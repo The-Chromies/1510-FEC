@@ -9,10 +9,17 @@ import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
+import { ContactContextProvider } from "./Global-Context";
+
 
 function App() {
   // given product id state
+<<<<<<< HEAD
   const [productId, setProductId] = useState(18085);
+=======
+  // const [productId, setProductId] = useState(18078);
+  // var {productId, setProductId} = useContext(ContactContext);
+>>>>>>> 7784c73ddb07b954bfb122d8b7c90e3fa5d4f28d
 
   // set up var to link review section
   const reviews = useRef(null);
@@ -23,9 +30,9 @@ function App() {
   };
 
   // func to make selected product accessible to all components
-  const getSelectedProduct = (id) => {
-    setProductId(id);
-  };
+  // const getSelectedProduct = (id) => {
+  //   setProductId(id);
+  // };
 
 
   // click tracking function to pass down to components
@@ -48,20 +55,22 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="overview">
-        <Overview goToReviews={goToReviews} productId={productId}/>
+    <ContactContextProvider>
+      <div className="App">
+        <div className="overview">
+          <Overview goToReviews={goToReviews} />
+        </div>
+        <div className="related-comparison" >
+          <RelatedAndComparison />
+        </div>
+        <div className="questions-answers">
+          <QuestionsAndAnswers />
+        </div>
+        <div className="ratings-reviews" ref={reviews}>
+          <RatingsAndReviews />
+        </div>
       </div>
-      <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
-        <RelatedAndComparison />
-      </div>
-      <div className="questions-answers">
-        <QuestionsAndAnswers />
-      </div>
-      <div className="ratings-reviews" ref={reviews}>
-        <RatingsAndReviews />
-      </div>
-    </div>
+    </ContactContextProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../localStyles/ov.css';
 import axios from 'axios';
 import { Navbar, Container, Row, Col, Carousel } from 'react-bootstrap';
@@ -7,9 +7,12 @@ import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
 import StyleSelector from './components/styleSelector';
 import AddToCart from './components/addToCart';
+import { ContactContext } from '../../Global-Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Overview({ goToReviews, productId }) {
+function Overview({ goToReviews }) {
+  let {productId, setProductId, generateStarImage} = useContext(ContactContext);
+
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);
   const [ selected, setSelected ] = useState(null);
@@ -66,7 +69,7 @@ function Overview({ goToReviews, productId }) {
           { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex}/> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
-          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} goToReviews={goToReviews}/> : null }
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} generateStarImage={generateStarImage} goToReviews={goToReviews}/> : null }
           { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex}/> : null }
           { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
         </Col>

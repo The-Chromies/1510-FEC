@@ -30,7 +30,7 @@ ReviewListContainer.propTypes = {
   reviewList: PropTypes.instanceOf(Array).isRequired,
   generateStarImage: PropTypes.instanceOf(Function).isRequired,
   handleFetchMore: PropTypes.instanceOf(Function).isRequired,
-  productId: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
   setRevCount: PropTypes.instanceOf(Function).isRequired,
   revCount: PropTypes.number.isRequired,
 };
