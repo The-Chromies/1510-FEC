@@ -22,7 +22,7 @@ module.exports = {
     const { id } = req.params;
     const { sortKey } = req.params;
     const { revCount } = req.params;
-    console.log('revcount: ', revCount);
+    //console.log('revcount: ', revCount);
     query.getReviews(id, sortKey, revCount, (err, results) => {
       if (err) {
         // console.log('Error found');
