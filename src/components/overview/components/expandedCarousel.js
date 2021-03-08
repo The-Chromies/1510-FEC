@@ -15,17 +15,22 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
     setIndex(currentIndex)
   }, [currentIndex]);
 
+  const moveMouse = () => {
+    $('.inner-expanded-img').mousemove((e) => {
+
+      let moveX = (e.pageX * -1 / 15);
+      let moveY = (e.pageY * -1 / 15);
+      $('.inner-expanded-img').css('background-position', moveX + 'px ' + moveY + 'px');
+    })
+  };
+  zoomed && moveMouse();
+
   const zoomIn = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 2.5 + ')');
-    $('#inner-expanded-img').css('cursor', 'zoom-out');
-    // $('.expanded-carousel-img').mousemove((e) => {
-
-    //   let moveX = (e.pageX * -1 / 15);
-    //   let moveY = (e.pageY * -1 / 15);
-    //   $('.expanded-carousel-img').css('background-position', moveX + 'px ' + moveY + 'px');
-    // });
+    $('.expanded-carousel-img').css('cursor', 'zoom-out');
     setZoomed(true);
   };
+
 
   // zoomed && $('.expanded-carousel-img').mousemove((e) => {
   //   // get position of image on the page
@@ -49,39 +54,30 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
 
   const zoomOut = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 1 + ')');
-    $('#inner-expanded-img').css('cursor', 'zoom-in');
     setZoomed(false);
+    $('.expanded-carousel-img').css('cursor', 'zoom-in');
   }
 
   return (
     <>
     <Modal
-      centered size="lg" className=" modal full-screen-popup d-block" animation="false" show={expanded} onHide={setCollapsed}>
+      centered size="xl" className=" modal full-screen-popup d-block" animation="false" show={expanded} onHide={setCollapsed}>
       <Modal.Header closeButton>
       </Modal.Header>
       <Modal.Body>
-        {/* // react bootstrap carousel */}
         <div className="setIndicators">
           <Carousel
           wrap={false}
           interval={null}
-          // {currentIndex && activeIndex={index}}
           activeIndex={index}
           onSelect={setIndex}
-          // indicators={false}
           className="expanded-carousel">
             { selected &&
               selected.photos.map((thumbnail, i) => (
                 <Carousel.Item key={i}>
                     <div className="expanded-carousel-img" onClick={zoomed ? zoomOut : zoomIn}>
-                      <img src={thumbnail.url} id="inner-expanded-img"/>
-                      {/* <div style={{ backgroundImage: `url(${thumbnail.url})`}} id="inner-expanded-img"></div> */}
+                      <div style={{ background: `url(${thumbnail.url}) no-repeat`}} className="inner-expanded-img"></div>
                   </div>
-                {/* <img
-                  className="expanded-carousel-img"
-                  src={thumbnail.url}
-                  onClick={zoomed ? zoomOut : zoomIn}
-                /> */}
               </Carousel.Item>
               ))
             }
