@@ -57,7 +57,6 @@ function ImageGallery({ selected, currentIndex, resetIndex }) {
                 { selected.photos.map((thumbnail, i) => (
                   <React.Fragment>
                     {displayThumbnails.includes(i) && <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/>}
-                    {/* // <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/> */}
                   </React.Fragment>
                 )) }
               </div> }

@@ -27,6 +27,7 @@
   width: 50%;
   cursor: zoom-in;
   position: relative;
+  object-fit: contain;
 }
 
 /* when in most expanded state use cursor: zoom-out; */
@@ -107,6 +108,8 @@
 }
 
 .main-carousel {
+  height: 570px;
+  object-fit: contain;
   cursor: zoom-in;
 }
 
@@ -132,6 +135,7 @@
 
 .up-arrow, .down-arrow {
   position: absolute;
+  transform: translateY(-50%);
   z-index: 1;
   width: 20px;
   height: 20px;
@@ -142,11 +146,12 @@
 
 .up-arrow {
   top: 10px;
+  top: 7%;
   left: 30px;
 }
 
 .down-arrow {
-  top: 420px;
+  bottom: 17%;
   left: 30px;
 }
 
@@ -171,6 +176,7 @@
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+  object-fit: contain;
 }
 
 .selected-thumbnail {
@@ -180,6 +186,7 @@
   border: 2px solid white;
   filter: drop-shadow(8px 8px 10px black);
   cursor: pointer;
+  object-fit: contain;
 }
 
 
@@ -199,6 +206,7 @@
   top: 0;
   left: 0;
   cursor: pointer;
+  object-fit: contain;
 }
 
 .selected-style {
@@ -211,6 +219,7 @@
   left: 0;
   border: 2px solid white;
   filter: drop-shadow(8px 8px 10px black);
+  object-fit: contain;
 }
 
 .style-check {
