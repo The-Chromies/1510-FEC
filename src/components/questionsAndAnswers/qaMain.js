@@ -1,7 +1,7 @@
 import '../localStyles/qa.css';
 import React from 'react';
 import Search from './Search.js';
-import { Navbar, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuestionsList from './QuestionsList.js';
 
@@ -12,7 +12,14 @@ function QuestionsAndAnswers() {
 
 
       <Search />
-      <p>quetstion list here</p>
+      <QuestionsList />
+
+      <span>
+      <Button variant="outline-secondary">Secondary</Button>
+      </span>
+      <span>
+      <Button variant="outline-secondary">Secondary</Button>
+      </span>
       {/* <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
       <div>
         {/* <Search /> */}

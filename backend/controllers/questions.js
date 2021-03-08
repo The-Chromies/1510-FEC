@@ -25,11 +25,14 @@ module.exports = {
 
   getQuestions(req, res) {
     console.log('IN CONTROLLER');
-    // console.log('THIS IS THE ID: ', req);
+    //console.log('THIS IS THE ID: ', req.params.id);
     query.getQuestions(req.params.id, (err, results) => {
       if (err) {
+        console.log('FAILURE IN DA CONTROLLER');
         res.status(404).send(err);
       } else {
+        console.log('SUCCESS IN DA CONTROLLER');
+        console.log(results);
         res.status(200).send(results);
       }
     });

@@ -12,20 +12,6 @@ class Search extends React.Component {
 
   render() {
     return(
-      // <div class="container">
-      //   <div class="row">
-      //     <div class="col-sm-8">
-      //     <form class="box">
-      //       <input class="search-bar" placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'>
-      //       </input>
-      //     </form>
-      //     </div>
-      //   <div class="col-sm-2">
-      //     {searchIcon}
-      //   </div>
-
-      //   </div>
-      // </div>
       <div class="input-group mb-5 col-md-8">
         <input type="text" class="form-control py-2 border-right-0 border" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." aria-label="Recipient's username" aria-describedby="basic-addon2"/>
       <div class="input-group-append">

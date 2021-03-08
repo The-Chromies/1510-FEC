@@ -17,7 +17,7 @@ router.get('/overview/styles/:id', controller.overview.getStyles);
 // router.put('/overview', controller.overview.put);
 // router.delete('/overview', controller.overview.delete);
 
-router.get('/questions', controller.questions.getQuestions);
+router.get('/qa/questions', controller.questions.getQuestions);
 // router.post('/questions', controller.questions.post);
 // router.put('/questions', controller.questions.put);
 // router.delete('/questions', controller.questions.delete);
