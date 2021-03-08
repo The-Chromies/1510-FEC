@@ -14,12 +14,7 @@ import { ContactContextProvider } from "./Global-Context";
 
 function App() {
   // given product id state
-<<<<<<< HEAD
-  const [productId, setProductId] = useState(18085);
-=======
-  // const [productId, setProductId] = useState(18078);
-  // var {productId, setProductId} = useContext(ContactContext);
->>>>>>> 7784c73ddb07b954bfb122d8b7c90e3fa5d4f28d
+  // const [productId, setProductId] = useState(18085);
 
   // set up var to link review section
   const reviews = useRef(null);

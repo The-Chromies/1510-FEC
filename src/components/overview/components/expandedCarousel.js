@@ -15,47 +15,22 @@ function ExpandedCarousel({ expanded, selected, currentIndex, setExpandedState, 
     setIndex(currentIndex)
   }, [currentIndex]);
 
-  const moveMouse = () => {
-    $('.inner-expanded-img').mousemove((e) => {
-
-      let moveX = (e.pageX * -1 / 15);
-      let moveY = (e.pageY * -1 / 15);
-      $('.inner-expanded-img').css('background-position', moveX + 'px ' + moveY + 'px');
-    })
-  };
-  zoomed && moveMouse();
-
   const zoomIn = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 2.5 + ')');
     $('.expanded-carousel-img').css('cursor', 'zoom-out');
+    $('.inner-expanded-img').mousemove((e) => {
+      $('.inner-expanded-img').css('backgroundPositionX', -e.offsetX + "px");
+      $('.inner-expanded-img').css('backgroundPositionY', -e.offsetY + "px");
+    })
     setZoomed(true);
   };
 
 
-  // zoomed && $('.expanded-carousel-img').mousemove((e) => {
-  //   // get position of image on the page
-  //   let bbox = e.target.getBoundingClientRect();
-
-  //   // measure how far the mouse is into the image
-  //   let mouseX = e.clientX - bbox.left;
-  //   let mouseY = e.clientY - bbox.top;
-
-  //   // figure out how far through the image the mouse is as a percentage
-  //   let xPercent = (mouseX / bbox.width) * 100;
-  //   let yPercent = (mouseY / bbox.height) * 100;
-
-  //   // use tranform- origin to center mouse zoom
-  //   $(this).css('transform-origin', (xPercent+'% ' + yPercent+'%'));
-  // });
-
-  // // $('.expanded-carousel-img').on('mousenter', () => {
-  // //   $(this)
-  // // })
-
   const zoomOut = () => {
     $('.expanded-carousel-img').css('transform', 'scale(' + 1 + ')');
-    setZoomed(false);
     $('.expanded-carousel-img').css('cursor', 'zoom-in');
+    $('.inner-expanded-img').unbind('mousemove');
+    setZoomed(false);
   }
 
   return (
