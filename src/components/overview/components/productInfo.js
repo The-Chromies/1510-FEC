@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { FacebookShareButton, PinterestShareButton, TwitterShareButton, FacebookIcon, PinterestIcon, TwitterIcon } from "react-share";
 
-
+// num of reviews for selected product & rating average of product passed down as props
 function ProductInfo({ product, selected, goToReviews }) {
   // star image function
   const generateStarImage = (starCount) => {
@@ -11,7 +11,7 @@ function ProductInfo({ product, selected, goToReviews }) {
     remainder = starCount - remainder;
     let starArr = [];
     for (let j = 0; j < 5; j++) {
-      switch (remainder) { //4.25
+      switch (remainder) {
         case 0.25:
           starArr.push(<img src="../public/icons/star/quarterStar.png" key={j} className="star-image"></img>);
           remainder -= 0.25;
@@ -40,30 +40,23 @@ function ProductInfo({ product, selected, goToReviews }) {
     return starArr;
   };
   // replace w/ dynamic rating average for each product selected
-  var starImage = generateStarImage(4);
-
-  // onClick={goToReviews()}
+  var starImage = generateStarImage(4.25);
 
   return (
     <div className="product-info">
-      {/* stars & read X reviews linking to reviews
-      <Router>
-        <div className="product-info"> </div>
-        react router to potentially set up routes w/in our app - link to review section w/in product review listing
-        <Route path="/reviews" component={RatingsAndReviews}/>
-      </Router>  */}
       <div>{starImage}</div>
+      {/* replace w/ num of reviews for a given product passed down as props */}
       <div onClick={goToReviews} className="review-link">Read all # reviews</div>
       <div>{product.category}</div>
       <h3>{product.name}</h3>
       { selected && selected.sale_price === null ? <div>{`$${selected.original_price}`}</div> :
       selected && selected.sale_price !== null ?
-      <React.Fragment>
+      <div className="modified-prices">
         <div className="original-price">{`$${selected.original_price}`}</div>
         <div className="sale-price">{`$${selected.sale_price}`}</div>
-      </React.Fragment>
+      </div>
       : <div>{`$${product.default_price}`}</div> }
-      <div>{product.description}</div>
+      <div className="product-description">&#10;{product.description}</div>
       {/* facebook redirect error will go away after deployment/no longer using localhost
       currently will reciever error: Parameter 'href' should represent a valid URL */}
       <FacebookShareButton  url="http://localhost:8080" quote="Check out this product!" >
@@ -79,28 +72,6 @@ function ProductInfo({ product, selected, goToReviews }) {
   );
 }
 
-
-
-// use case
-{/* <Row>
-<Col xs={4} md={4} >
-{`${ratingAvg}`}
-</Col>
-<Col xs={7} md={7} >
-{starImage}
-</Col>
-</Row> */}
-
-
-
-
-
-/*
-to set up routes in another file
-import { Link } from 'react-router-dom';
-
-- wrap element in <Link to="/somePath"></Link>
-*/
 
 ProductInfo.propTypes = {
   product: PropTypes.instanceOf(Object).isRequired,
