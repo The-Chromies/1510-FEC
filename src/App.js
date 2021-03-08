@@ -45,7 +45,7 @@ function App() {
         <Overview goToReviews={goToReviews}/>
       </div>
       <div className="related-comparison">
-        <RelatedAndComparison getStyles={getStyles} />
+        <RelatedAndComparison />
       </div>
       <div className="questions-answers">
         <QuestionsAndAnswers />

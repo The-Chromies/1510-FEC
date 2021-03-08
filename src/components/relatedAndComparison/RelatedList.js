@@ -8,9 +8,9 @@ function RelatedList(props) {
   console.log('test in relatedList', props.productInfo);
   return (
     <div className= 'relatedCarousel'>
-      {props.productInfo.map((product) => {
+      {props.productInfo.map((product, i) => {
         return (
-          <ProductCard product={product} styles={props.styles}/>
+          <ProductCard product={product} key={i} styles={props.styles[i].results[0].photos[0].thumbnail_url}/>
         )
       })}
     </div>

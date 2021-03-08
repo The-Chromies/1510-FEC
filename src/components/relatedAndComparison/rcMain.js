@@ -9,7 +9,7 @@ function RelatedAndComparison() {
 
   const [relatedList, setRelatedList] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
-  const [styles, setStyles] = useState([]);
+  const [styles, setStyles] = useState(null);
 
   // const getProduct = (id) => {
   //   axios.get(`http://localhost:3000/related/product/${id}`)
