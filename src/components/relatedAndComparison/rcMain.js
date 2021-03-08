@@ -1,11 +1,16 @@
 // import './rc.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import RelatedList from './RelatedList';
 import axios from 'axios';
+import { ContactContext } from '../../Global-Context';
 
 
 
 function RelatedAndComparison() {
+  //Global Context addition
+  let {productId, setProductId} = useContext(ContactContext);
+
+
 
   const [relatedList, setRelatedList] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
@@ -90,7 +95,7 @@ function RelatedAndComparison() {
 
 
     useEffect(() => {
-    getRelatedProducts('18112')
+    getRelatedProducts(productId)
   }, []);
 
   return (
