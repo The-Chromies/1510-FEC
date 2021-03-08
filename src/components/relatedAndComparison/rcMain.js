@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import RelatedList from './RelatedList';
 import axios from 'axios';
+import '../localStyles/rc.css';
+
 
 
 

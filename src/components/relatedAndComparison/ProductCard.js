@@ -82,7 +82,7 @@ export default function RecipeReviewCard(props) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
+      <CardHeader className="cardHeader"
         action={
           <CompareModal/>
         }
@@ -95,7 +95,7 @@ export default function RecipeReviewCard(props) {
         title={props.product.name}
       />
       <CardContent onClick={handleCardClick}>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography className="cardInfo" variant="body2" color="textSecondary" component="p">
           <h3>{props.product.name}</h3>
           {props.product.description.substring(0, 100).concat('...')}
           <h5>{props.product.default_price}</h5>
