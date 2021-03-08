@@ -23,6 +23,25 @@ const queries = {
         console.log(error, null);
       });
   },
+  getQuestions: (id, callback) => {
+    console.log('IN THE MODELS');
+    const options = {
+      method: 'get',
+      url: `${apiUrl}qa/questions?product_id=18201&page=1&count=5`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive'
+      },
+    }
+    axios(options).then((response) => {
+      callback(null, response.data);
+    })
+      .catch((error) => {
+        console.log(error, null);
+      });
+  }
 };
 
 module.exports.queries = queries;

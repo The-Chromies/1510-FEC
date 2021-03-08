@@ -128,6 +128,7 @@ function RatingsAndReviews() {
   }, [sortKey]);
 
   // Anytime the find review meta executes, use the new revcount to fetch that number of reviews
+  // Second Trigger for this housed after new review Submit
   useEffect(() => {
     findReviews();
   }, [revCount]);
@@ -165,7 +166,7 @@ function RatingsAndReviews() {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} handleFetchMore={handleFetchMore} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} setRevCount={setRevCount} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>

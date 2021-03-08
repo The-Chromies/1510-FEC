@@ -17,7 +17,7 @@ router.get('/overview/styles/:id', controller.overview.getStyles);
 // router.put('/overview', controller.overview.put);
 // router.delete('/overview', controller.overview.delete);
 
-router.get('/questions', controller.questions.get);
+router.get('/qa/questions', controller.questions.getQuestions);
 // router.post('/questions', controller.questions.post);
 // router.put('/questions', controller.questions.put);
 // router.delete('/questions', controller.questions.delete);
@@ -25,6 +25,7 @@ router.get('/questions', controller.questions.get);
 router.get('/ratings/product', controller.ratings.getProducts);
 router.get('/ratings/review/:id/:sortKey/:revCount', controller.ratings.getReviews);
 router.get('/ratings/reviewMeta/:id', controller.ratings.getReviewMeta);
+router.post('/ratings/createReview', controller.ratings.createReview);
 // // router.post('/ratings', controller.ratings.post);
 // // router.put('/ratings', controller.ratings.put);
 // // router.delete('/ratings', controller.ratings.delete);
@@ -35,6 +36,6 @@ router.get('/related/relatedp/:id', controller.related.getRelated);
 // // router.put('/related', controller.related.put);
 // // router.delete('/related', controller.related.delete);
 
-// router.post('/interactions', controller.interactions.post);
+router.post('/interactions', controller.interactions.post);
 
 module.exports = router;
