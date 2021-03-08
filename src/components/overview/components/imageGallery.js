@@ -10,6 +10,7 @@ function ImageGallery({ selected, currentIndex, resetIndex }) {
   const [currentThumbnail, setCurrentThumbnail] = useState(0);
   const [expanded, setExpanded] = useState(false);
 
+
   // Set the length to match current children from props
   useEffect(() => {
     selected && setLength(selected.photos.length);
@@ -29,27 +30,25 @@ function ImageGallery({ selected, currentIndex, resetIndex }) {
       <ExpandedCarousel show={expanded} expanded={expanded} selected={selected} currentIndex={currentIndex} onHide={setCollapsed} setExpandedState={setExpandedState} setCollapsed={setCollapsed}/>
       <div className="carousel-container">
         { currentIndex > 0 && <button className="left-arrow" onClick={prev}>&lt;</button> }
+        { selected.photos.length > 7 && currentThumbnail > 6 ? <button className="up-arrow">&and;</button> : null }
           <div className="carousel-wrapper">
             { selected &&
               <div className="thumbnail-carousel">
-                { selected.photos.length > 7 && currentThumbnail > 6 ? <button className="up-arrow">&and;</button> : null }
                 { selected.photos.map((thumbnail, i) => (
-                  <React.Fragment>
-                    { i < 7 && <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/>}
-                  </React.Fragment>
+                  <img key={i} className={currentIndex === i ? "selected-thumbnail" : "thumbnail-carousel-img"} src={thumbnail.thumbnail_url} onClick={() => {resetIndex(i)}}/>
                 )) }
-                { selected.photos.length > 7 && currentThumbnail < 6 ? <button className="down-arrow">&or;</button> : null }
               </div> }
               <div className="carousel-content-wrapper">
                   <div className="carousel-content"  style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     { selected &&
                       selected.photos.map((thumbnail, i) => (
-                          <img key={i} className="main-carousel" src={thumbnail.url} onClick={setExpandedState}/>
-                      ))
-                    }
+                        <img key={i} className="main-carousel" src={thumbnail.url} onClick={setExpandedState}/>
+                        ))
+                      }
                   </div>
               </div>
           </div>
+        { selected.photos.length > 7 && currentThumbnail < 6 ? <button className="down-arrow">&or;</button> : null }
         { currentIndex < (length - 1) && <button className="right-arrow" onClick={next}>&gt;</button> }
         </div>
     </React.Fragment>

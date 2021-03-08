@@ -130,6 +130,26 @@
   right: 120px;
 }
 
+.up-arrow, .down-arrow {
+  position: absolute;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.up-arrow {
+  top: 10px;
+  left: 30px;
+}
+
+.down-arrow {
+  top: 420px;
+  left: 30px;
+}
+
 @media only screen and (max-width: 1200px) {
   .right-arrow {
     right: 20px;
@@ -141,7 +161,7 @@
   position: absolute;
   z-index: 1;
   width: 65px;
-  height: 387px;
+  height: 365px;
   overflow: hidden;
   transform: translateY(-50%);
 }
