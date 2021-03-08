@@ -1,15 +1,17 @@
 import '../localStyles/qa.css';
-import React from 'react';
+import React, {useContext} from 'react';
 import Search from './Search.js';
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuestionsList from './QuestionsList.js';
+import { ContactContext } from '../../Global-Context';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 const plusIcon = <FontAwesomeIcon icon={faPlus} />
 
 function QuestionsAndAnswers() {
+  var {productId, setProductId} = useContext(ContactContext);
   return (
     <div>
 

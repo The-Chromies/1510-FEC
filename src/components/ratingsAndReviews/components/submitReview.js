@@ -106,7 +106,7 @@ function ReviewListContainer({
 ReviewListContainer.propTypes = {
   showNewRev: PropTypes.bool.isRequired,
   handleClose: PropTypes.instanceOf(Function).isRequired,
-  productId: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
   setRevCount: PropTypes.instanceOf(Function).isRequired,
   revCount: PropTypes.number.isRequired,
 };
