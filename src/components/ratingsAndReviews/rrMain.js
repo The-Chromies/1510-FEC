@@ -1,5 +1,5 @@
 /* eslint-disable vars-on-top */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {
   Navbar, Container, Row, Col, Grid, Modal, Button,
@@ -7,12 +7,21 @@ import {
 import '../localStyles/rr.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ContactContext } from '../../Global-Context';
 import ReviewListContainer from './components/reviewListContainer';
 import SummaryContainer from './components/summaryContainer';
 import ReviewFilter from './components/reviewFilter';
 import metaTestData from './testData/metadataTest';
 
 function RatingsAndReviews() {
+  var [test, setTest, orangutan, generateStarImage] = useContext(ContactContext);
+  console.log('+++++TEST+++++')
+  console.log(test)
+  setTest(2);
+  console.log(test)
+  console.log(orangutan)
+  console.log(generateStarImage)
+
   const [reviewList, setReviewList] = useState(null);
   const [reviewListFull, setReviewListFull] = useState([]);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
@@ -24,40 +33,6 @@ function RatingsAndReviews() {
   let [fetchNum, setFetchNum] = useState(1);
   // eslint-disable-next-line prefer-const
   let [sortKey, setSortKey] = useState('relevant');
-
-  const generateStarImage = (starCount, keyId) => {
-    let remainder = 0;
-    remainder = starCount - remainder;
-    const starArr = [];
-    for (let j = 0; j < 5; j += 1) {
-      switch (remainder) { // 4.25
-        case 0.25:
-          starArr.push(<img src="public/icons/star/quarterStar.png" alt="" className="star-image" />);
-          remainder -= 0.25;
-          break;
-        case 0.50:
-          starArr.push(<img src="public/icons/star/halfStar.png" alt="" className="star-image" />);
-          remainder -= 0.50;
-          break;
-        case 0.75:
-          starArr.push(<img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" />);
-          remainder -= 0.75;
-          break;
-        case 1:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
-          remainder -= 1;
-          break;
-        case 0:
-          starArr.push(<img src="public/icons/star/emptyStar.png" alt="" className="star-image" />);
-          break;
-        default:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
-          remainder -= 1;
-          break;
-      }
-    }
-    return starArr;
-  };
 
   const handleFetchMore = () => {
     if (fetchNum < reviewListFull.length) {

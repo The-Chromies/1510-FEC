@@ -9,7 +9,8 @@ import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
-import globalContext from './globalContext';
+import { ContactContextProvider } from "./Global-Context";
+
 
 function App() {
   // given product id state
@@ -49,20 +50,22 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="overview">
-        <Overview goToReviews={goToReviews} productId={productId}/>
+    <ContactContextProvider>
+      <div className="App">
+        <div className="overview">
+          <Overview goToReviews={goToReviews} productId={productId}/>
+        </div>
+        <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
+          <RelatedAndComparison />
+        </div>
+        <div className="questions-answers">
+          <QuestionsAndAnswers />
+        </div>
+        <div className="ratings-reviews" ref={reviews}>
+          <RatingsAndReviews />
+        </div>
       </div>
-      <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
-        <RelatedAndComparison />
-      </div>
-      <div className="questions-answers">
-        <QuestionsAndAnswers />
-      </div>
-      <div className="ratings-reviews" ref={reviews}>
-        <RatingsAndReviews />
-      </div>
-    </div>
+    </ContactContextProvider>
   );
 }
 
