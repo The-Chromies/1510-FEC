@@ -32,16 +32,16 @@ const queries = {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
         'Content-Type': 'application/json',
-        Connection: 'keep-alive'
+        Connection: 'keep-alive',
       },
-    }
+    };
     axios(options).then((response) => {
       callback(null, response.data);
     })
       .catch((error) => {
         console.log(error, null);
       });
-  }
+  },
 };
 
 module.exports.queries = queries;
