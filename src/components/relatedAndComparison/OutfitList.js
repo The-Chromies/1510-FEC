@@ -26,6 +26,8 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
+    maxHeight: 380,
+    minHeight: 380,
     display: 'inline-block',
   },
   media: {
@@ -89,7 +91,7 @@ export default function OutfitList(props) {
         />
         <CardContent onClick={handleCardClick}>
           <div className="cardInfo" variant="body2" color="textSecondary">
-            <h3>Product Name</h3>
+            <h4>Product Name</h4>
             {'Product Description'.substring(0, 100).concat('...')}
             <h5>default Price</h5>
           </div>

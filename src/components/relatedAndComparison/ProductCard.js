@@ -27,6 +27,8 @@ import CompareModal from './CompareModal.js';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
+    maxHeight: 380,
+    minHeight: 380,
     display: 'inline-block',
   },
   media: {
@@ -80,7 +82,7 @@ export default function ProductCardRelated(props) {
       />
       <CardContent onClick={handleCardClick}>
         <div className="cardInfo" variant="body2" color="textSecondary">
-          <h3>{props.product.name}</h3>
+          <h4>{props.product.name}</h4>
           {props.product.description.substring(0, 100).concat('...')}
           <h5>{props.product.default_price}</h5>
           <div>{props.stars(props.rating)}</div>
