@@ -1,6 +1,6 @@
 const models = require('../models');
 
-const query = models.overview.queries;
+const query = models.interactions.queries;
 
 module.exports = {
   post: (req, res) => {
