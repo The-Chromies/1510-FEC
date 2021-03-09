@@ -11,7 +11,7 @@ import { ContactContext } from '../../Global-Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview({ goToReviews }) {
-  let {productId, setProductId, generateStarImage, clickTracker} = useContext(ContactContext);
+  let {productId, setProductId, generateStarImage, revCount, ratingAvg} = useContext(ContactContext);
 
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);

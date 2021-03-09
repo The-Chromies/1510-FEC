@@ -8,7 +8,7 @@ import { ContactContext } from '../../Global-Context';
 
 function RelatedAndComparison() {
   //Global Context addition
-  let {productId, setProductId} = useContext(ContactContext);
+  let {productId, setProductId, revCount, ratingAvg} = useContext(ContactContext);
 
 
 

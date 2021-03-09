@@ -9,8 +9,7 @@ import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
-import { ContactContextProvider } from "./Global-Context";
-
+import { ContactContextProvider } from './Global-Context';
 
 function App() {
   // given product id state
@@ -24,13 +23,40 @@ function App() {
     reviews.current.scrollIntoView({ behavior: 'smooth' });
   };
 
+<<<<<<< HEAD
+=======
+  // func to make selected product accessible to all components
+  // const getSelectedProduct = (id) => {
+  //   setProductId(id);
+  // };
+
+  // click tracking function to pass down to components
+  const clickTracker = (widget, e) => {
+    // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
+    let date = new Date();
+    let elementClicked = e.target.type.concat(`, ${e.target.className}`);
+    let clickData = {
+      element: e.target.type,
+      widget: widget,
+      time: date.toTimeString(),
+    };
+    axios.post('http://localhost:3000/interactions', JSON.stringify(clickData))
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+>>>>>>> 1f0c4dd2de404c37a1b714a93528e4fe650db383
   return (
     <ContactContextProvider>
       <div className="App">
         <div className="overview">
           <Overview goToReviews={goToReviews} />
         </div>
-        <div className="related-comparison" >
+        <div className="related-comparison">
           <RelatedAndComparison />
         </div>
         <div className="questions-answers">
