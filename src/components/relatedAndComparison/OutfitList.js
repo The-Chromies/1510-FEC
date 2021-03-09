@@ -1,26 +1,4 @@
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/extensions */
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-
-// const ProductCard = (props) => {
-//   return(
-//     <div>
-//       <h1>{props.product}</h1>
-//       {/* <h3>{props.productInfo.name}</h3> */}
-//       {/* <div>{props.productInfo.category}</div> */}
-//     </div>
-//   )
-// };
-
-// ProductCard.propTypes = {
-//   product: PropTypes.instanceOf(Object).isRequired,
-//   // productInfo: PropTypes.instanceOf(Array).isRequired,
-
-// };
-
-// export default ProductCard;
-
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -38,11 +16,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import CompareModal from './CompareModal.js';
-
-// import Carousel from 'react-multi-carousel';
-// import { Paper, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ProductCardRelated(props) {
+export default function OutfitList(props) {
   // console.log('CARDDDD', props.styles);
   // console.log('HEY', props.styles[0].results)
   const classes = useStyles();
@@ -82,27 +59,36 @@ export default function ProductCardRelated(props) {
   };
 
   return (
+  // <Button className="AddOutfit">
+  //   action={
+  //     <AddBoxIcon/>
+
+  //   }
+  // </Button>
 
     <Card className={classes.root}>
       <CardHeader
         className="cardHeader"
         action={
-          <CompareModal />
+          <DeleteIcon />
         }
         // title={props.product.category}
-        subheader={props.product.category}
+        // subheader={props.product.category}
+        subheader="Product Category"
+
       />
       <CardMedia
         onClick={handleCardClick}
         className={classes.media}
         image={props.styles}
-        title={props.product.name}
+        // title={props.product.name}
+        title="Product Name"
       />
       <CardContent onClick={handleCardClick}>
         <div className="cardInfo" variant="body2" color="textSecondary">
-          <h3>{props.product.name}</h3>
-          {props.product.description.substring(0, 100).concat('...')}
-          <h5>{props.product.default_price}</h5>
+          <h3>Product Name</h3>
+          {'Product Description'.substring(0, 100).concat('...')}
+          <h5>default Price</h5>
         </div>
       </CardContent>
       <CardActions disableSpacing>
@@ -154,15 +140,7 @@ export default function ProductCardRelated(props) {
   );
 }
 
-ProductCardRelated.propTypes = {
+OutfitList.propTypes = {
   // relatedProducts: PropTypes.instanceOf(Array).isRequired,
-  product: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(Array).isRequired,
 };
-
-// action={
-//   <IconButton aria-label="settings">
-//     <CompareModal onClick={handleOpen}/>
-//     <StarBorderIcon />
-//   </IconButton>
-// }

@@ -6,8 +6,6 @@ import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-
-
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -36,9 +34,9 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-          <IconButton aria-label="settings">
-            <StarBorderIcon onClick={handleOpen}/>
-          </IconButton>
+      <IconButton aria-label="settings">
+        <StarBorderIcon onClick={handleOpen} />
+      </IconButton>
 
       <Modal
         aria-labelledby="transition-modal-title"
