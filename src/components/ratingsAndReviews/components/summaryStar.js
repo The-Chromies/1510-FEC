@@ -5,8 +5,6 @@ import {
 } from 'react-bootstrap';
 
 function SummaryStar({ tempKey, name, count }) {
-
-
   // console.log(tempKey)
   return (
     <Row key={`s${tempKey}`}>

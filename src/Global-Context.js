@@ -6,7 +6,7 @@ import React, { useState, createContext } from 'react';
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [productId, setProductId] = useState(18078);
+  let [productId, setProductId] = useState(18079);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
   // Look at 18078 summary container is strange

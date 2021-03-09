@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -7,7 +8,7 @@ import axios from 'axios';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
   console.log(review);
-  const [helpfulness, setHelpfulness] = useState(review.helpfulness)
+  const [helpfulness, setHelpfulness] = useState(review.helpfulness);
 
   const dateVal = new Date(review.date);
   const month = dateVal.getMonth() + 1;
@@ -16,6 +17,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
 
   const helpRef = useRef();
   const reportRef = useRef();
+  const bodyRef = useRef();
 
   const handleHelp = (e, id) => {
     console.log(id);
@@ -54,6 +56,41 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       });
   };
 
+  // Handle review body shortening
+  const revBody = [];
+  const revCutoff = 10;
+  const shortBody = review.body.substring(0, revCutoff).concat('...');
+  const longBody = review.body;
+
+  // Function to extend review
+  const extendBody = () => {
+    console.log('clicked');
+    console.log(bodyRef);
+
+    if (bodyRef.current) {
+      bodyRef.current.innerHTML = `${longBody}`;
+      bodyRef.current.revBody.push(<div>{longBody}</div>);
+    }
+  };
+
+  // Render Initial review practice
+  if (review.body.length > revCutoff) {
+    revBody.push(
+      <div ref={bodyRef}>
+        {shortBody}
+        {' '}
+        <div role="button" tabIndex={0} className="text-uppercase font-italic link" onClick={extendBody}>
+          Show more
+          {' '}
+        </div>
+      </div>,
+    );
+    revBody.push();
+    // <p className='font-italic'><u>Read More</u></p>
+  } else {
+    revBody.push(<div>{longBody}</div>);
+  }
+
   return (
     <div className="review-box border border-secondary p-2 mb-3 rounded shadow">
       <Row className="flex-row" key={`r1${tempKey}`}>
@@ -75,7 +112,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
         </Row>
         <Row key={`r3${tempKey}`}>
           <Col key={`c5${tempKey}`}>
-            <span className="review-body text-body border-info lead">{review.body}</span>
+            <span className="review-body text-body border-info lead">{revBody}</span>
           </Col>
         </Row>
       </div>
