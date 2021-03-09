@@ -7,22 +7,36 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import QtyOption from './qtyOption';
 
 function AddToCart({ selected, sendClick }) {
   const [size, setSize] = useState(0);
   const [sku, setSku] = useState(0);
+  const [noSize, setNoSize] = useState(false);
 
   const addSize = (e) => {
     setSize(e.target.value);
+    setNoSize(false);
+  };
+
+  const openSize = () => {
+    if (size === 0 || size === 'Select size') {
+      setNoSize(true);
+      $('.size').show().focus().click();
+      // open(select);
+      // $('.size').slideToggle(100);
+    }
   };
 
   return (
     <div className="add-to-cart">
+      {noSize
+      && <h4>Please select size</h4>}
       <div className="dropdowns">
         { selected && Object.keys(selected.skus)[0] !== 'null' ?
           // eslint-disable-next-line react/jsx-wrap-multilines
-          <select className="size" onChange={(e) => { addSize(e); sendClick(e); }}>
+          <select className="size" id="size" onChange={(e) => { addSize(e); sendClick(e); }}>
             <option>Select Size</option>
             { Object.keys(selected.skus).map((skuId, i) => (
               <option key={i} id={sku}>{selected.skus[skuId].size}</option>
@@ -50,7 +64,7 @@ function AddToCart({ selected, sendClick }) {
           </select>}
       </div>
       <div className="add-buttons">
-        <button type="submit" className="add-to-cart-button" onClick={(e) => { sendClick(e); }}>Add to Cart</button>
+        <button type="submit" className="add-to-cart-button" onClick={(e) => { openSize(); sendClick(e); }}>Add to Cart</button>
         <div onClick={(e) => { sendClick(e); }} className="add-to-related">
           <img src="../public/imgs/star.png" alt="" id="related-star" />
         </div>
