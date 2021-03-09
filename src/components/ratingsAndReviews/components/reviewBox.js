@@ -17,6 +17,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
 
   const helpRef = useRef();
   const reportRef = useRef();
+  const reviewRef = useRef();
   const bodyRef = useRef();
 
   const handleHelp = (e, id) => {
@@ -46,8 +47,10 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
     })
       .then((result) => {
         if (reportRef.current) {
+          console.log(reviewRef)
           reportRef.current.setAttribute('disabled', 'disabled');
           reportRef.current.setAttribute('class', 'disabled');
+          reviewRef.current.setAttribute('hidden', 'true');
         }
         console.log(result);
       })
@@ -58,7 +61,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
 
   // Handle review body shortening
   const revBody = [];
-  const revCutoff = 10;
+  const revCutoff = 250;
   const shortBody = review.body.substring(0, revCutoff).concat('...');
   const longBody = review.body;
 
@@ -92,7 +95,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
   }
 
   return (
-    <div className="review-box border border-secondary p-2 mb-3 rounded shadow">
+    <div ref={reviewRef} className="review-box border border-secondary p-2 mb-3 rounded shadow">
       <Row className="flex-row" key={`r1${tempKey}`}>
         <Col className="review-rating justify-content-start" xs={12} md={4} key={`c1${tempKey}`}>
           <span>{generateStarImage(review.rating, `star${tempKey}`)}</span>
