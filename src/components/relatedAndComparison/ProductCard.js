@@ -1,27 +1,9 @@
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-
-// const ProductCard = (props) => {
-//   return(
-//     <div>
-//       <h1>{props.product}</h1>
-//       {/* <h3>{props.productInfo.name}</h3> */}
-//       {/* <div>{props.productInfo.category}</div> */}
-//     </div>
-//   )
-// };
-
-
-// ProductCard.propTypes = {
-//   product: PropTypes.instanceOf(Object).isRequired,
-//   // productInfo: PropTypes.instanceOf(Array).isRequired,
-
-// };
-
-// export default ProductCard;
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/extensions */
 
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -36,9 +18,11 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import PropTypes from 'prop-types';
 import CompareModal from './CompareModal.js';
 
-
+// import Carousel from 'react-multi-carousel';
+// import { Paper, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,44 +46,45 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function RecipeReviewCard(props) {
+export default function ProductCardRelated(props) {
   // console.log('CARDDDD', props.styles);
   // console.log('HEY', props.styles[0].results)
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const handleCardClick = () => {
-    //*****must route to overview with id of selected product*****
+    //* ****must route to overview with id of selected product*****
     console.log('CLICKING CARD');
-  }
-
-
+  };
+  console.log('jahdisagdaydg', props.productFeatures);
 
   return (
     <Card className={classes.root}>
       <CardHeader
+        className="cardHeader"
         action={
-          <CompareModal/>
+          <CompareModal productFeatures={props.productFeatures} />
         }
         // title={props.product.category}
         subheader={props.product.category}
       />
-      <CardMedia onClick={handleCardClick}
+      <CardMedia
+        onClick={handleCardClick}
         className={classes.media}
-          image={props.styles}
+        image={props.styles}
         title={props.product.name}
       />
       <CardContent onClick={handleCardClick}>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <div className="cardInfo" variant="body2" color="textSecondary">
           <h3>{props.product.name}</h3>
           {props.product.description.substring(0, 100).concat('...')}
           <h5>{props.product.default_price}</h5>
-        </Typography>
+          <div>{props.stars(props.rating)}</div>
+        </div>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -150,11 +135,18 @@ export default function RecipeReviewCard(props) {
   );
 }
 
+ProductCardRelated.propTypes = {
+  // relatedProducts: PropTypes.instanceOf(Array).isRequired,
+  product: PropTypes.instanceOf(Array).isRequired,
+  styles: PropTypes.instanceOf(String).isRequired,
+  productFeatures: PropTypes.instanceOf(Object).isRequired,
+  rating: PropTypes.instanceOf(Array).isRequired,
+  stars: PropTypes.instanceOf(Function).isRequired,
+};
 
-
-  // action={
-        //   <IconButton aria-label="settings">
-        //     <CompareModal onClick={handleOpen}/>
-        //     <StarBorderIcon />
-        //   </IconButton>
-        // }
+// action={
+//   <IconButton aria-label="settings">
+//     <CompareModal onClick={handleOpen}/>
+//     <StarBorderIcon />
+//   </IconButton>
+// }

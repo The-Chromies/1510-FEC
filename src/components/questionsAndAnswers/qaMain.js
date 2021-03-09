@@ -1,27 +1,49 @@
 import '../localStyles/qa.css';
-import React, {useContext} from 'react';
-import Search from './Search.js';
-import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import {
+  Navbar, Container, Row, Col, Button, Modal,
+} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import Search from './Search';
+import AddQuestion from './AddQuestion';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import QuestionsList from './QuestionsList.js';
+import QuestionsList from './QuestionsList';
 import { ContactContext } from '../../Global-Context';
 
+const plusIcon = <FontAwesomeIcon icon={faPlus} />;
+
 function QuestionsAndAnswers() {
-  var {productId, setProductId} = useContext(ContactContext);
+  const { productId, setProductId } = useContext(ContactContext);
+  const handleOpen = () => setShowNewRev(true);
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <div>
-      <h5 class="header">Questions &amp; Answers</h5>
 
+      <Container>
+        <h5 class="header">Questions &amp; Answers</h5>
+      </Container>
 
       <Search />
       <QuestionsList />
 
-      <span>
-      <Button variant="outline-secondary">Secondary</Button>
-      </span>
-      <span>
-      <Button variant="outline-secondary">Secondary</Button>
-      </span>
+      <Container>
+        <Row>
+          <Col>
+            <Button variant="outline-secondary">MORE OUTLINED QUESTIONS</Button>
+          </Col>
+          <Col>
+            <Button variant="outline-secondary" onClick={() => setModalShow(true)}>
+              ADD A QUESTION {plusIcon}
+            </Button>
+            <AddQuestion show={modalShow} onHide={() => setModalShow(false)}/>
+          </Col>
+          <Col></Col>
+          <Col></Col>
+        </Row>
+      </Container>
+
       {/* <h5 id='QuestionsAndAnswersHeader'>Questions and Answers</h5>
       <div>
         {/* <Search /> */}
