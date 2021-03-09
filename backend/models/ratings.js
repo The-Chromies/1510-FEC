@@ -45,7 +45,7 @@ const queries = {
   },
   getReviews: (id, sortKey, revCount, callback) => {
     // console.log('WE ARE HITTING THE GET REVIEWS');
-    //console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
+    // console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
     const options = {
       method: 'get',
       url: `${apiUrl}reviews?product_id=${id}&page=1&count=${revCount}&sort=${sortKey}`,

@@ -16,9 +16,9 @@ class Search extends React.Component {
          <div class="input-group mb-5">
         <input type="text" class="form-control py-2 border-right-0 border" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." aria-label="Recipient's username" aria-describedby="basic-addon2"/>
       <div class="input-group-append">
-      <button class="btn btn-outline-secondary border-left-0 border" type="button">{searchIcon}</button>
-    </div>
-</div>
+        <button class="btn btn-outline-secondary border-left-0 border" type="button">{searchIcon}</button>
+         </div>
+        </div>
       </Container>
     )
   }
