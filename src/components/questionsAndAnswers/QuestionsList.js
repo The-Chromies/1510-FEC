@@ -9,12 +9,11 @@ const QuestionList =  (props) => (
       //   {console.log(props.question)}
       //   {props.question.map((question, i) => <Question question={question} key={question+1}/>)}
       // </div>
-      <Container key="summary-inside" className="container border-primary">
-      <div className="border border-secondary shadow">
-        <h5>fill with questions here</h5>
-
-      </div>
-    </Container>
+      <Container key="summary-inside" className="container border-primary question-container">
+        <div className="border border-secondary shadow">
+          <h5>fill with questions here</h5>
+        </div>
+      </Container>
 )
 
 export default QuestionList;

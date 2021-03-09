@@ -2,9 +2,9 @@
   text-align: center;
 }
 
-.header {
+/* .header {
   padding-left: 10%;
-}
+} */
 
 .search-bar {
   width: 100%;
@@ -14,4 +14,8 @@
 
 .input-group.mb-5.col-md-8 {
   padding-left: 10%;
+}
+
+.question-container {
+  margin-bottom: 2%;
 }
