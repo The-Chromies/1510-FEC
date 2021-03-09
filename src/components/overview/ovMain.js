@@ -1,7 +1,11 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 import '../localStyles/ov.css';
 import axios from 'axios';
-import { Navbar, Container, Row, Col, Carousel } from 'react-bootstrap';
+import {
+  Navbar, Container, Row, Col, Carousel,
+} from 'react-bootstrap';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
@@ -11,11 +15,13 @@ import { ContactContext } from '../../Global-Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview({ goToReviews }) {
-  let {productId, setProductId, generateStarImage, revCount, ratingAvg} = useContext(ContactContext);
+  const {
+    productId, setProductId, generateStarImage, revCount, ratingAvg, clickTracker,
+  } = useContext(ContactContext);
 
-  const [ product, setProduct ] = useState(null);
-  const [ styles, setStyles ] = useState(null);
-  const [ selected, setSelected ] = useState(null);
+  const [product, setProduct] = useState(null);
+  const [styles, setStyles] = useState(null);
+  const [selected, setSelected] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const sendClick = (e) => {
@@ -28,8 +34,8 @@ function Overview({ goToReviews }) {
         setProduct(res.data);
       })
       .catch((err) => {
-        console.log(error);
-      })
+        console.log(err);
+      });
   };
 
   const getStyles = (id) => {
@@ -39,8 +45,8 @@ function Overview({ goToReviews }) {
         setSelected(res.data.results[0]);
       })
       .catch((err) => {
-        console.log(error);
-      })
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -56,32 +62,30 @@ function Overview({ goToReviews }) {
     setCurrentIndex(num);
   };
 
-
   return (
-    // pure css formatting
-    // <React.Fragment>
-    //   { styles ? <ImageGallery className="image-gallery" selected={selected}/> : null }
-    //   { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected}/> : null }
-    //   { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle}/> : null }
-    //   { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
-    // </React.Fragment>
+  // pure css formatting
+  // <React.Fragment>
+  //   { styles ? <ImageGallery className="image-gallery" selected={selected}/> : null }
+  //   { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected}/> : null }
+  //   { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle}/> : null }
+  //   { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
+  // </React.Fragment>
 
     // react bootstrap formatting
     <Container>
       <Row className="overview-container">
         <Col xs={12} s={12} md={6} lg={8}>
-          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick}/> : null }
+          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick} /> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
-          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} generateStarImage={generateStarImage} sendClick={sendClick} goToReviews={goToReviews}/> : null }
-          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick}/> : null }
-          { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected} sendClick={sendClick}/> : null }
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} generateStarImage={generateStarImage} sendClick={sendClick} goToReviews={goToReviews} /> : null }
+          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick} /> : null }
+          { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected} sendClick={sendClick} /> : null }
         </Col>
       </Row>
     </Container>
   );
 }
-
 
 /*
 possible products:
@@ -124,6 +128,5 @@ possible products:
   18078
 
 */
-
 
 export default Overview;
