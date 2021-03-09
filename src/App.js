@@ -9,8 +9,7 @@ import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
-import { ContactContextProvider } from "./Global-Context";
-
+import { ContactContextProvider } from './Global-Context';
 
 function App() {
   // given product id state
@@ -28,7 +27,6 @@ function App() {
   // const getSelectedProduct = (id) => {
   //   setProductId(id);
   // };
-
 
   // click tracking function to pass down to components
   const clickTracker = (widget, e) => {
@@ -55,7 +53,7 @@ function App() {
         <div className="overview">
           <Overview goToReviews={goToReviews} />
         </div>
-        <div className="related-comparison" >
+        <div className="related-comparison">
           <RelatedAndComparison />
         </div>
         <div className="questions-answers">
