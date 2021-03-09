@@ -24,31 +24,6 @@ function App() {
     reviews.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // func to make selected product accessible to all components
-  // const getSelectedProduct = (id) => {
-  //   setProductId(id);
-  // };
-
-
-  // click tracking function to pass down to components
-  const clickTracker = (widget, e) => {
-    // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
-    let date = new Date();
-    let elementClicked = e.target.type.concat(`, ${e.target.className}`);
-    let clickData = {
-      element: e.target.type,
-      widget: widget,
-      time: date.toTimeString(),
-    };
-    axios.post('http://localhost:3000/interactions', JSON.stringify(clickData))
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <ContactContextProvider>
       <div className="App">

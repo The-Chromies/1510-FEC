@@ -11,12 +11,16 @@ import { ContactContext } from '../../Global-Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview({ goToReviews }) {
-  let {productId, setProductId, generateStarImage} = useContext(ContactContext);
+  let {productId, setProductId, generateStarImage, clickTracker} = useContext(ContactContext);
 
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);
   const [ selected, setSelected ] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const sendClick = (e) => {
+    clickTracker('Overview', e);
+  };
 
   const getProduct = (id) => {
     axios.get(`http://localhost:3000/overview/product/${id}`)
@@ -66,12 +70,12 @@ function Overview({ goToReviews }) {
     <Container>
       <Row className="overview-container">
         <Col xs={12} s={12} md={6} lg={8}>
-          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex}/> : null }
+          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick}/> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
-          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} generateStarImage={generateStarImage} goToReviews={goToReviews}/> : null }
-          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex}/> : null }
-          { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} generateStarImage={generateStarImage} sendClick={sendClick} goToReviews={goToReviews}/> : null }
+          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick}/> : null }
+          { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected} sendClick={sendClick}/> : null }
         </Col>
       </Row>
     </Container>
