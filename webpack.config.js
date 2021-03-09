@@ -20,7 +20,20 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      { test: /\.txt$/, use: 'raw-loader' },
+      {
+        test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
+
   },
   plugins: [
     htmlPlugin,
@@ -40,7 +53,8 @@ module.exports = {
   // potentially for react router
   devServer: {
     historyApiFallback: true,
-  }
+  },
 };
 
-//bundle all files to serve all static files.. sends off to see in browser. babel is a compiler that trtanslats jsx to javascript for the browser to read.
+// eslint-disable-next-line max-len
+// bundle all files to serve all static files.. sends off to see in browser. babel is a compiler that trtanslats jsx to javascript for the browser to read.

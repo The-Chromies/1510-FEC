@@ -13,6 +13,10 @@
 .transition-modal-title {
   text-align: left;
 }
-.card :hover {
-  background-color: aqua;
+
+.valueList {
+  text-align: right;
+}
+.featureList {
+  text-align: center;
 }

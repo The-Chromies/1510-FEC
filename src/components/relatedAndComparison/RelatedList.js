@@ -3,18 +3,41 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { Paper, Button } from '@material-ui/core';
 import ProductCard from './ProductCard';
-// import Carousel from 'react-multi-carousel';
-// import { Paper, Button } from '@material-ui/core';
 
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 function RelatedList(props) {
   console.log('test in relatedList', props.productInfo[0].features);
   return (
-    <div className="relatedCarousel">
+    <Carousel
+      className="relatedCarousel"
+      responsive={responsive}
+    >
       {props.productInfo.map((product, i) => (
         <ProductCard product={product} key={i} styles={props.styles[i].results[0].photos[0].thumbnail_url} productFeatures={product.features} rating={props.rating} stars={props.stars} />
       ))}
-    </div>
+    </Carousel>
 
   );
 }
