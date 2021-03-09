@@ -147,7 +147,7 @@ function RatingsAndReviews() {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} setRevCount={setRevCount} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>

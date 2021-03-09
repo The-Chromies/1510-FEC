@@ -7,7 +7,7 @@ import {
 import axios from 'axios';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
-  console.log(review);
+  // console.log(review);
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
 
   const dateVal = new Date(review.date);
@@ -21,7 +21,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
   const bodyRef = useRef();
 
   const handleHelp = (e, id) => {
-    console.log(id);
+    // console.log(id);
     // console.log(e);
     axios({
       method: 'put',
@@ -47,12 +47,12 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
     })
       .then((result) => {
         if (reportRef.current) {
-          console.log(reviewRef)
+          // console.log(reviewRef)
           reportRef.current.setAttribute('disabled', 'disabled');
           reportRef.current.setAttribute('class', 'disabled');
           reviewRef.current.setAttribute('hidden', 'true');
         }
-        console.log(result);
+        // console.log(result);
       })
       .catch((error) => {
         console.log(error);
