@@ -1,12 +1,17 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-use-before-define */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import RelatedList from './RelatedList';
 import '../localStyles/rc.css';
 import OutfitList from './OutfitList';
+import { ContactContext } from '../../Global-Context';
 
 function RelatedAndComparison() {
+  const {
+    productId, setProductId, revCount, ratingAvg,
+  } = useContext(ContactContext);
+
   const [relatedList, setRelatedList] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
   const [styles, setStyles] = useState(null);
@@ -78,7 +83,7 @@ function RelatedAndComparison() {
   };
 
   useEffect(() => {
-    getRelatedProducts('18112');
+    getRelatedProducts(productId);
   }, []);
 
   return (

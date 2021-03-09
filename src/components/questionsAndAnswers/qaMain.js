@@ -1,11 +1,13 @@
 import '../localStyles/qa.css';
-import React from 'react';
+import React, {useContext} from 'react';
 import Search from './Search.js';
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuestionsList from './QuestionsList.js';
+import { ContactContext } from '../../Global-Context';
 
 function QuestionsAndAnswers() {
+  var {productId, setProductId} = useContext(ContactContext);
   return (
     <div>
       <h5 class="header">Questions &amp; Answers</h5>

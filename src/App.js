@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable object-shorthand */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
@@ -9,10 +10,11 @@ import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
+import { ContactContextProvider } from './Global-Context';
 
 function App() {
   // given product id state
-  const [productId, setProductId] = useState(18078);
+  // const [productId, setProductId] = useState(18085);
 
   // set up var to link review section
   const reviews = useRef(null);
@@ -23,9 +25,9 @@ function App() {
   };
 
   // func to make selected product accessible to all components
-  const getSelectedProduct = (id) => {
-    setProductId(id);
-  };
+  // const getSelectedProduct = (id) => {
+  //   setProductId(id);
+  // };
 
   // click tracking function to pass down to components
   const clickTracker = (widget, e) => {
@@ -47,20 +49,22 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="overview">
-        <Overview goToReviews={goToReviews} productId={productId} />
+    <ContactContextProvider>
+      <div className="App">
+        <div className="overview">
+          <Overview goToReviews={goToReviews} />
+        </div>
+        <div className="related-comparison">
+          <RelatedAndComparison />
+        </div>
+        <div className="questions-answers">
+          <QuestionsAndAnswers />
+        </div>
+        <div className="ratings-reviews" ref={reviews}>
+          <RatingsAndReviews />
+        </div>
       </div>
-      <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
-        <RelatedAndComparison />
-      </div>
-      <div className="questions-answers">
-        <QuestionsAndAnswers />
-      </div>
-      <div className="ratings-reviews" ref={reviews}>
-        <RatingsAndReviews />
-      </div>
-    </div>
+    </ContactContextProvider>
   );
 }
 

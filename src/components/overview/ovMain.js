@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../localStyles/ov.css';
 import axios from 'axios';
 import { Navbar, Container, Row, Col, Carousel } from 'react-bootstrap';
@@ -7,9 +7,12 @@ import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
 import StyleSelector from './components/styleSelector';
 import AddToCart from './components/addToCart';
+import { ContactContext } from '../../Global-Context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Overview({ goToReviews, productId }) {
+function Overview({ goToReviews }) {
+  let {productId, setProductId, generateStarImage, revCount, ratingAvg} = useContext(ContactContext);
+
   const [ product, setProduct ] = useState(null);
   const [ styles, setStyles ] = useState(null);
   const [ selected, setSelected ] = useState(null);
@@ -66,7 +69,7 @@ function Overview({ goToReviews, productId }) {
           { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex}/> : null }
         </Col>
         <Col xs={12} s={12} md={6} lg={4}>
-          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} goToReviews={goToReviews}/> : null }
+          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} generateStarImage={generateStarImage} goToReviews={goToReviews}/> : null }
           { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex}/> : null }
           { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
         </Col>
@@ -74,6 +77,49 @@ function Overview({ goToReviews, productId }) {
     </Container>
   );
 }
+
+
+/*
+possible products:
+18201
+  related:
+  18407
+  18871
+  18112
+
+18078
+  related:
+  18079
+  18080
+  18085 - has > 7 thumbnail imgs
+  18084
+
+18445
+  related:
+  18331
+  18405
+  18632
+  19074
+  18191
+  18978
+  18416
+
+18079
+  related:
+  18080
+  18084
+  18083
+  18082
+
+18080
+  related:
+  18083
+  18086
+  18084
+  18079
+  18078
+
+*/
 
 
 export default Overview;
