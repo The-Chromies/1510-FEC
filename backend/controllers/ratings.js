@@ -22,7 +22,7 @@ module.exports = {
     const { id } = req.params;
     const { sortKey } = req.params;
     const { revCount } = req.params;
-    //console.log('revcount: ', revCount);
+    // console.log('revcount: ', revCount);
     query.getReviews(id, sortKey, revCount, (err, results) => {
       if (err) {
         // console.log('Error found');
@@ -46,6 +46,36 @@ module.exports = {
       } else {
         // console.log('Success found');
         console.log(results);
+        res.status(200).send(results);
+      }
+    });
+  },
+  putHelpful(req, res) {
+    console.log('Adding Helpful');
+    const { id } = req.params;
+    query.putHelpful(id, (err, results) => {
+      if (err) {
+        // console.log('Error found');
+        // console.log(err);
+        // res.status(404).send(err);
+      } else {
+        // console.log('Success found');
+        // console.log(results);
+        res.status(200).send(results);
+      }
+    });
+  },
+  putReport(req, res) {
+    console.log('Adding Report');
+    const { id } = req.params;
+    query.putReport(id, (err, results) => {
+      if (err) {
+        // console.log('Error found');
+        // console.log(err);
+        // res.status(404).send(err);
+      } else {
+        // console.log('Success found');
+        // console.log(results);
         res.status(200).send(results);
       }
     });

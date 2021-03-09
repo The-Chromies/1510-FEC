@@ -5,8 +5,7 @@ import {
 } from 'react-bootstrap';
 
 function SummaryStar({ tempKey, name, count }) {
-  console.log('Count: ', count);
-  console.log('Name: ', name);
+
 
   // console.log(tempKey)
   return (
