@@ -23,8 +23,6 @@ function App() {
     reviews.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-<<<<<<< HEAD
-=======
   // func to make selected product accessible to all components
   // const getSelectedProduct = (id) => {
   //   setProductId(id);
@@ -49,7 +47,6 @@ function App() {
       });
   };
 
->>>>>>> 1f0c4dd2de404c37a1b714a93528e4fe650db383
   return (
     <ContactContextProvider>
       <div className="App">
