@@ -25,7 +25,7 @@ function AddToCart({ selected, sendClick }) {
       setNoSize(true);
       $('.size').show().focus().click();
       // open(select);
-      // $('.size').slideToggle();
+      // $('.size').slideToggle(100);
     }
   };
 
