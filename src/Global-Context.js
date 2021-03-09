@@ -2,16 +2,37 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable prefer-const */
 import React, { useState, createContext } from 'react';
+import axios from 'axios';
 
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [productId, setProductId] = useState(18079);
+  let [productId, setProductId] = useState(18085);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
   // Look at 18078 summary container is strange
   // Look at at images for 18079 in overview
   // Ratings and review should not show up for 18080
+
+  // click tracking function to pass down to components
+  const clickTracker = (widgetName, e) => {
+  // post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
+    let date = new Date();
+    let clickData = {
+      element: e.target.className,
+      widget: widgetName,
+      time: date.toTimeString(),
+    };
+    axios.post('http://localhost:3000/interactions', clickData)
+      .then((res) => {
+        console.log('SUCCESSFUL POST TO INTERACTIONS');
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('FAILED TO POST TO INTERACTIONS');
+        console.log(err);
+      });
+  };
 
   const generateStarImage = (starCount, keyId) => {
     let remainder = 0;
@@ -56,6 +77,7 @@ export const ContactContextProvider = (props) => {
       setRevCount,
       avgRating,
       setAvgRating,
+      clickTracker,
     }}
     >
       {props.children}
