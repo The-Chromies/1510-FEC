@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect, useContext } from 'react';
@@ -9,7 +10,7 @@ import { ContactContext } from '../../Global-Context';
 
 function RelatedAndComparison() {
   const {
-    productId, setProductId, revCount, ratingAvg,
+    productId, setProductId, revCount, ratingAvg, generateStarImage,
   } = useContext(ContactContext);
 
   const [relatedList, setRelatedList] = useState([]);
@@ -90,7 +91,7 @@ function RelatedAndComparison() {
     <div className="related-comparison-container">
       Related And Comparison
       {relatedList && productInfo && styles
-        ? <RelatedList relatedProducts={relatedList} productInfo={productInfo} styles={styles} />
+        ? <RelatedList relatedProducts={relatedList} productInfo={productInfo} styles={styles} rating={ratingAvg} stars={generateStarImage} />
         : null}
       <OutfitList />
     </div>

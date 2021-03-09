@@ -8,11 +8,11 @@ import ProductCard from './ProductCard';
 // import { Paper, Button } from '@material-ui/core';
 
 function RelatedList(props) {
-  console.log('test in relatedList', props.productInfo);
+  console.log('test in relatedList', props.productInfo[0].features);
   return (
     <div className="relatedCarousel">
       {props.productInfo.map((product, i) => (
-        <ProductCard product={product} key={i} styles={props.styles[i].results[0].photos[0].thumbnail_url} />
+        <ProductCard product={product} key={i} styles={props.styles[i].results[0].photos[0].thumbnail_url} productFeatures={product.features} rating={props.rating} stars={props.stars} />
       ))}
     </div>
 
@@ -23,6 +23,9 @@ RelatedList.propTypes = {
   // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   productInfo: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(Array).isRequired,
+  rating: PropTypes.instanceOf(Array).isRequired,
+  stars: PropTypes.instanceOf(Function).isRequired,
+
 };
 
 export default RelatedList;

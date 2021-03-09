@@ -1,25 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-
-// const ProductCard = (props) => {
-//   return(
-//     <div>
-//       <h1>{props.product}</h1>
-//       {/* <h3>{props.productInfo.name}</h3> */}
-//       {/* <div>{props.productInfo.category}</div> */}
-//     </div>
-//   )
-// };
-
-// ProductCard.propTypes = {
-//   product: PropTypes.instanceOf(Object).isRequired,
-//   // productInfo: PropTypes.instanceOf(Array).isRequired,
-
-// };
-
-// export default ProductCard;
 
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -80,14 +60,14 @@ export default function ProductCardRelated(props) {
     //* ****must route to overview with id of selected product*****
     console.log('CLICKING CARD');
   };
+  console.log('jahdisagdaydg', props.productFeatures);
 
   return (
-
     <Card className={classes.root}>
       <CardHeader
         className="cardHeader"
         action={
-          <CompareModal />
+          <CompareModal productFeatures={props.productFeatures} />
         }
         // title={props.product.category}
         subheader={props.product.category}
@@ -103,6 +83,7 @@ export default function ProductCardRelated(props) {
           <h3>{props.product.name}</h3>
           {props.product.description.substring(0, 100).concat('...')}
           <h5>{props.product.default_price}</h5>
+          <div>{props.stars(props.rating)}</div>
         </div>
       </CardContent>
       <CardActions disableSpacing>
@@ -157,7 +138,10 @@ export default function ProductCardRelated(props) {
 ProductCardRelated.propTypes = {
   // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   product: PropTypes.instanceOf(Array).isRequired,
-  styles: PropTypes.instanceOf(Array).isRequired,
+  styles: PropTypes.instanceOf(String).isRequired,
+  productFeatures: PropTypes.instanceOf(Object).isRequired,
+  rating: PropTypes.instanceOf(Array).isRequired,
+  stars: PropTypes.instanceOf(Function).isRequired,
 };
 
 // action={
