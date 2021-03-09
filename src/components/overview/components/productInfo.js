@@ -18,13 +18,15 @@ function ProductInfo({
 }) {
   return (
     <div className="product-info">
-      <div>{generateStarImage(ratingAvg)}</div>
-      {/* replace w/ num of reviews for a given product passed down as props */}
-      <div onClick={(e) => { goToReviews(); sendClick(e); }} className="review-link">
-        Read all
-        {` ${revCount} `}
-        reviews
-      </div>
+      {revCount
+      && <>
+        <div>{generateStarImage(ratingAvg)}</div>
+        <div onClick={(e) => { goToReviews(); sendClick(e); }} className="review-link">
+          Read all
+          {` ${revCount} `}
+          reviews
+        </div>
+        </>}
       <div>{product.category}</div>
       <h3>{product.name}</h3>
       { selected && selected.sale_price === null ? <div>{`$${selected.original_price}`}</div>
