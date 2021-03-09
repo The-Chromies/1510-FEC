@@ -35,8 +35,7 @@ function QuestionsAndAnswers() {
           </Col>
           <Col>
             <Button variant="outline-secondary" onClick={() => setModalShow(true)}>
-              ADD A QUESTION
-              {plusIcon}
+              ADD A QUESTION {plusIcon}
             </Button>
             <AddQuestion show={modalShow} onHide={() => setModalShow(false)}/>
           </Col>
