@@ -8,6 +8,9 @@ import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import PropTypes from 'prop-types';
+import {
+  Navbar, Container, Row, Col, Grid,
+} from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -48,46 +51,59 @@ export default function TransitionsModal(props) {
   };
 
   return (
-    <div>
-      <IconButton aria-label="settings">
-        <StarBorderIcon onClick={handleOpen} />
-      </IconButton>
+    <>
+      <div>
+        <IconButton aria-label="settings">
+          <StarBorderIcon onClick={handleOpen} />
+        </IconButton>
 
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <h4 id="transition-modal-title">Comparing</h4>
-            <p id="transition-modal-description">current product/ related product</p>
-            <div className="compareTable">
-              {props.productFeatures.map((featureObj, i) => (
-                <div>
-                  <p>
-                    feature:
-                    {featureObj.feature}
-                  </p>
-                  <p>
-                    value:
-                    {featureObj.value}
-                  </p>
-                </div>
-              ))}
-              {/* <p>{props.productFeatures}</p> */}
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <div className={classes.paper}>
+              <h4 id="transition-modal-title">Comparing</h4>
+              <div className="compareTable">
+                <table className="table">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">Current Product</th>
+                      <th scope="col">Features</th>
+                      <th scope="col">Related Product</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {props.productFeatures.map((featureObj, i) => (
+                      <>
+                        <tr>
+                          <td>current</td>
+                          <td>
+                            {featureObj.feature}
+                          </td>
+                          <td className="justify-content-end align-content-end text-*-right">
+                            {featureObj.value}
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+                {/* <p>{props.productFeatures}</p> */}
+              </div>
             </div>
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+          </Fade>
+        </Modal>
+      </div>
+    </>
   );
 }
 
