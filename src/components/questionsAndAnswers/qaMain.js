@@ -15,8 +15,9 @@ import { ContactContext } from '../../Global-Context';
 const plusIcon = <FontAwesomeIcon icon={faPlus} />;
 
 function QuestionsAndAnswers() {
-  var {productId, setProductId} = useContext(ContactContext);
+  const { productId, setProductId } = useContext(ContactContext);
   const handleOpen = () => setShowNewRev(true);
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <div>
 
@@ -28,45 +29,16 @@ function QuestionsAndAnswers() {
       <QuestionsList />
 
       <Container>
-        {/* <div>
-          <span>
-          <Button variant="outline-secondary">MORE OUTLINED QUESTIONS</Button>
-          </span>
-          <span>
-          Button variant="outline-secondary">ADD A QUESTION {plusIcon}</Button>
-          </span>
-        </div> */}
         <Row>
           <Col>
             <Button variant="outline-secondary">MORE OUTLINED QUESTIONS</Button>
           </Col>
           <Col>
-            {/* <Button variant="outline-secondary" data-toggle="modal">ADD A QUESTION {plusIcon}</Button> */}
-            {/* <!-- Button trigger modal --> */}
-            <Button variant="outline-secondary" type="button" data-toggle="modal" data-target="#exampleModal3">
-            ADD A QUESTION {plusIcon}
-
+            <Button variant="outline-secondary" onClick={() => setModalShow(true)}>
+              ADD A QUESTION
+              {plusIcon}
             </Button>
-
-            {/* <!-- Modal --> */}
-            {/* <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModal3Label">Ask yo question about whatever you trna buy</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Submit</button>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            <AddQuestion show={modalShow} onHide={() => setModalShow(false)}/>
           </Col>
           <Col></Col>
           <Col></Col>
