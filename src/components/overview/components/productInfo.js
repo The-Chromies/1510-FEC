@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FacebookShareButton, PinterestShareButton, TwitterShareButton, FacebookIcon, PinterestIcon, TwitterIcon } from "react-share";
 
 // num of reviews for selected product & rating average of product passed down as props
-function ProductInfo({ product, selected, goToReviews, generateStarImage }) {
+function ProductInfo({ product, selected, goToReviews, generateStarImage, sendClick }) {
 
   // replace w/ dynamic rating average for each product selected
   var starImage = generateStarImage(4.25);
@@ -13,7 +13,7 @@ function ProductInfo({ product, selected, goToReviews, generateStarImage }) {
     <div className="product-info">
       <div>{starImage}</div>
       {/* replace w/ num of reviews for a given product passed down as props */}
-      <div onClick={goToReviews} className="review-link">Read all # reviews</div>
+      <div onClick={(e) => {goToReviews(); sendClick(e)}} className="review-link">Read all # reviews</div>
       <div>{product.category}</div>
       <h3>{product.name}</h3>
       { selected && selected.sale_price === null ? <div>{`$${selected.original_price}`}</div> :
@@ -26,7 +26,7 @@ function ProductInfo({ product, selected, goToReviews, generateStarImage }) {
       <div className="product-description">&#10;{product.description}</div>
       {/* facebook redirect error will go away after deployment/no longer using localhost
       currently will reciever error: Parameter 'href' should represent a valid URL */}
-      <FacebookShareButton  url="http://localhost:8080" quote="Check out this product!" >
+      <FacebookShareButton  url="http://localhost:8080" quote="Check out this product!">
         <FacebookIcon size={32} round />
       </FacebookShareButton>
       <PinterestShareButton  url="http://localhost:8080" media={selected} >

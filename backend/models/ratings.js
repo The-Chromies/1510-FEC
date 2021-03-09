@@ -45,7 +45,11 @@ const queries = {
   },
   getReviews: (id, sortKey, revCount, callback) => {
     // console.log('WE ARE HITTING THE GET REVIEWS');
+<<<<<<< HEAD
     // console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
+=======
+    console.log(`In Get Reviews with id: ${id} and sortKey: ${sortKey} and count=${revCount}`);
+>>>>>>> 8bba403807e6920c0531999db1b0297dab486b66
     const options = {
       method: 'get',
       url: `${apiUrl}reviews?product_id=${id}&page=1&count=${revCount}&sort=${sortKey}`,
@@ -69,6 +73,7 @@ const queries = {
   getReviewMeta: (id, callback) => {
     console.log('InFindMeta server');
     console.log(id);
+    console.log(`${apiUrl}reviews/meta?product_id=${id}`)
     // console.log('WE ARE HITTING THE GET REVIEWS');
     const options = {
       method: 'get',
@@ -94,9 +99,10 @@ const queries = {
         revCount += Number(ratingArray[keyArray[i]]);
         sumValue += Number(keyArray[i]) * Number(ratingArray[keyArray[i]]);
       }
-      //console.log('meta revcount: ', revCount);
+      console.log('meta revcount: ', revCount);
+      console.log('meta sumValue: ', sumValue);
       response.data.revCount = revCount;
-      response.data.ratingAvg = (Math.round((sumValue / revCount) * 4) / 4).toFixed(2);
+      response.data.ratingAvg = revCount > 0 ? (Math.round((sumValue / revCount) * 4) / 4).toFixed(2) : 0;
       callback(null, response.data);
     })
       .catch((error) => {

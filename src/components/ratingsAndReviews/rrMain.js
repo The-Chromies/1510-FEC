@@ -14,14 +14,18 @@ import ReviewFilter from './components/reviewFilter';
 import metaTestData from './testData/metadataTest';
 
 function RatingsAndReviews() {
-  let {generateStarImage, productId, setProductId} = useContext(ContactContext);
+  const {
+    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating,
+  } = useContext(ContactContext);
 
   const [reviewList, setReviewList] = useState(null);
   const [reviewListFull, setReviewListFull] = useState([]);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
   // const [productId, setProductId] = useState('18445');
-  const [revCount, setRevCount] = useState(0);
+  // const [revCount, setRevCount] = useState(0);
+
   const [starFilter, setStarFilter] = useState('');
+  const [revFlag, setRevflag] = useState(true);
 
   // eslint-disable-next-line prefer-const
   let [fetchNum, setFetchNum] = useState(1);
@@ -31,9 +35,11 @@ function RatingsAndReviews() {
   const handleFetchMore = () => {
     if (fetchNum < reviewListFull.length) {
       setFetchNum(fetchNum += 2);
-    } else {
+    }
+
+    if (fetchNum >= reviewListFull.length) {
       // eslint-disable-next-line no-alert
-      alert('There are no more reviews');
+      setRevflag(false);
     }
   };
 
@@ -56,22 +62,28 @@ function RatingsAndReviews() {
   };
 
   const findReviews = () => {
-    axios.get(`http://localhost:3000/ratings/review/${productId}/${sortKey}/${revCount}`)
-      .then((result) => {
-        setReviewListFull(result.data.results);
+    if (revCount > 0) {
+      axios.get(`http://localhost:3000/ratings/review/${productId}/${sortKey}/${revCount}`)
+        .then((result) => {
+          setRevflag(true);
+          setReviewListFull(result.data.results);
         // setReviewList(filterReviewList(fetchNum));
         // setReviewList(result.data.results)
-      })
-      .catch((error) => {
-        console.log('Error Fetching Reviews');
-        console.log(error);
-      });
+        })
+        .catch((error) => {
+          console.log('Error Fetching Reviews');
+          console.log(error);
+        });
+    } else {
+      setRevflag(false);
+    }
   };
 
   const findReviewMeta = () => {
     axios.get(`http://localhost:3000/ratings/reviewMeta/${productId}`)
       .then((result) => {
         setReviewMeta(result.data);
+        setAvgRating(Number(result.data.ratingAvg));
         setRevCount(result.data.revCount);
       })
       .catch((error) => {
@@ -131,11 +143,11 @@ function RatingsAndReviews() {
         </Row>
         <Row key="rating-review-container" className="rating-review-container">
           <Col xs={6} md={4} key="c1-review-container-generic">
-            <SummaryContainer key="sum-container" className="container" generateStarImage={generateStarImage} handleStarClick={handleStarClick} meta={reviewMeta} starFilter={starFilter} />
+            <SummaryContainer key="sum-container" className="container" generateStarImage={generateStarImage} avgRating={avgRating} handleStarClick={handleStarClick} meta={reviewMeta} starFilter={starFilter} />
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} setRevCount={setRevCount} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} setRevCount={setRevCount} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable object-shorthand */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
@@ -9,13 +10,9 @@ import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
-import { ContactContextProvider } from "./Global-Context";
-
+import { ContactContextProvider } from './Global-Context';
 
 function App() {
-  // given product id state
-  // const [productId, setProductId] = useState(18085);
-
   // set up var to link review section
   const reviews = useRef(null);
 
@@ -24,38 +21,13 @@ function App() {
     reviews.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // func to make selected product accessible to all components
-  // const getSelectedProduct = (id) => {
-  //   setProductId(id);
-  // };
-
-
-  // click tracking function to pass down to components
-  const clickTracker = (widget, e) => {
-    // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
-    let date = new Date();
-    let elementClicked = e.target.type.concat(`, ${e.target.className}`);
-    let clickData = {
-      element: e.target.type,
-      widget: widget,
-      time: date.toTimeString(),
-    };
-    axios.post('http://localhost:3000/interactions', JSON.stringify(clickData))
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <ContactContextProvider>
       <div className="App">
         <div className="overview">
           <Overview goToReviews={goToReviews} />
         </div>
-        <div className="related-comparison" >
+        <div className="related-comparison">
           <RelatedAndComparison />
         </div>
         <div className="questions-answers">
