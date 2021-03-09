@@ -14,7 +14,7 @@ const queries = {
         'Content-Type': 'application/json',
         Connection: 'keep-alive',
       },
-      data: clickData
+      data: clickData,
     };
 
     axios(options).then((response) => {
