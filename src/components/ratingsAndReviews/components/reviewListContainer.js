@@ -13,7 +13,6 @@ function ReviewListContainer({
   const [showNewRev, setShowNewRev] = useState(false);
   const handleClose = () => setShowNewRev(false);
   const handleOpen = () => setShowNewRev(true);
-  
 
   return (
     <>

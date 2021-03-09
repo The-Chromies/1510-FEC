@@ -5,12 +5,15 @@ import {
 } from 'react-bootstrap';
 
 function SummaryStar({ tempKey, name, count }) {
+  console.log('Count: ', count);
+  console.log('Name: ', name);
+
   // console.log(tempKey)
   return (
     <Row key={`s${tempKey}`}>
       <Col key={`c1${tempKey}`} xs={4} md={4} className="justify-content-end font-weight-bold">
         {' '}
-        { count }
+        { count || 0 }
         {' '}
       </Col>
       <Col key={`c2${tempKey}`} xs={8} md={8}>

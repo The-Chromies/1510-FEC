@@ -21,9 +21,16 @@ function SummaryContainer({
   // eslint-disable-next-line react/prop-types
   const { ratings } = meta;
   const keys = Object.keys(ratings);
-  for (let i = 0; i < 5; i += 1) {
+
+  let j = 0;
+  for (let i = 1; i <= 5; i += 1) {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i + 1); }}><SummaryStar tempKey={i} name={generateStarImage(Number(i + 1), `star-list${i}`)} count={ratings[keys[i]] ? ratings[keys[i]] : 0} /></div>);
+    let countVal = 0;
+    if (keys[j].toString() === i.toString()) {
+      countVal = ratings[keys[j]];
+      j++;
+    }
+    starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i); }}><SummaryStar tempKey={i} key={i} name={generateStarImage(Number(i), `star-list${i}`)} count={countVal} /></div>);
   }
 
   return (
