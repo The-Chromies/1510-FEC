@@ -13,17 +13,17 @@ import {
 import SummaryStar from './summaryStar';
 
 function SummaryContainer({
-  meta, generateStarImage, handleStarClick, starFilter,
+  meta, generateStarImage, handleStarClick, starFilter, avgRating,
 }) {
   // console.log(meta);
   const starList = [];
 
   // eslint-disable-next-line react/prop-types
-  const { ratings, ratingAvg } = meta;
+  const { ratings } = meta;
   const keys = Object.keys(ratings);
   for (let i = 0; i < 5; i += 1) {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i + 1); }}><SummaryStar tempKey={i} name={generateStarImage(Number(keys[i]), `star-list${i}`)} count={ratings[keys[i]] ? ratings[keys[i]] : 0} /></div>);
+    starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i + 1); }}><SummaryStar tempKey={i} name={generateStarImage(Number(i + 1), `star-list${i}`)} count={ratings[keys[i]] ? ratings[keys[i]] : 0} /></div>);
   }
 
   return (
@@ -34,12 +34,12 @@ function SummaryContainer({
           <Col xs={4} md={4} className="font-weight-bold">
             <span key="rating-avg" className="text-center">
               {' '}
-              {`${ratingAvg}`}
+              {`${avgRating}`}
               {' '}
             </span>
           </Col>
           <Col xs={8} md={8} className="align-content-start">
-            <span key="rating-avg-star" className="text-left">{generateStarImage(ratingAvg, 'summary-inside-star')}</span>
+            <span key="rating-avg-star" className="text-left">{generateStarImage(avgRating, 'summary-inside-star')}</span>
           </Col>
         </Row>
         <hr />
