@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable object-shorthand */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */

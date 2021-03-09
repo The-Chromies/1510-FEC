@@ -1,3 +1,15 @@
 .related-comparison-container {
   text-align: center;
 }
+
+.cardInfo {
+  text-align: left;
+}
+
+.cardHeader {
+  text-align: left;
+}
+
+.transition-modal-title {
+  text-align: left;
+}
