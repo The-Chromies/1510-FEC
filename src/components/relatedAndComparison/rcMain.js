@@ -1,14 +1,12 @@
-// import './rc.css';
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
-import RelatedList from './RelatedList';
 import axios from 'axios';
+import RelatedList from './RelatedList';
 import '../localStyles/rc.css';
-
-
-
+import OutfitList from './OutfitList';
 
 function RelatedAndComparison() {
-
   const [relatedList, setRelatedList] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
   const [styles, setStyles] = useState(null);
@@ -26,81 +24,70 @@ function RelatedAndComparison() {
   // }
 
   useEffect(() => {
-    console.log('relatedList useEffect', relatedList)
+    console.log('relatedList useEffect', relatedList);
     if (relatedList.length > 0) {
       getRelatedAndStyle();
     }
-  }, [relatedList])
-
-
+  }, [relatedList]);
 
   const getRelatedProducts = (id) => {
     axios.get(`http://localhost:3000/related/relatedp/${id}`)
-    .then((results) =>
+      .then((results) =>
       // results.data.forEach((id) => {
         //   // console.log('hahahaha', id);
         //   getProduct(id)
         // })
-        setRelatedList(results.data)
-      )
+        setRelatedList(results.data))
       .catch((err) => {
         console.log('err in getRelatedProducts:', err);
-      })
-      // .then(()=> {
-      //   // fufillPromise()
-      //   console.log('TESTESTES', relatedList);
-      // })
-    }
+      });
+    // .then(()=> {
+    //   // fufillPromise()
+    //   console.log('TESTESTES', relatedList);
+    // })
+  };
 
-
-    const getRelatedAndStyle = () => {
-      // console.log('running function fufillPromise', relatedList);
-      let productDataArr = relatedList.map((id) => {
-        // console.log('id from promise array', id);
-        return axios.get(`http://localhost:3000/related/product/${id}`)
-        .then((results) => {
-          return results.data;
-        })
+  const getRelatedAndStyle = () => {
+    // console.log('running function fufillPromise', relatedList);
+    const productDataArr = relatedList.map((id) =>
+    // console.log('id from promise array', id);
+      axios.get(`http://localhost:3000/related/product/${id}`)
+        .then((results) => results.data)
         .catch((err) => {
           console.log('promise array', err);
-        })
-      })
-      let styleDataArr = relatedList.map((id) => {
-        return axios.get(`http://localhost:3000/overview/styles/${id}`)
-        .then((results) => {
-          return results.data;
-        })
-        .catch((err) => {
-          console.log('STYLES ERROR', err);
-        })
-      })
-      Promise.all(productDataArr)
+        }));
+    const styleDataArr = relatedList.map((id) => axios.get(`http://localhost:3000/overview/styles/${id}`)
+      .then((results) => results.data)
+      .catch((err) => {
+        console.log('STYLES ERROR', err);
+      }));
+    Promise.all(productDataArr)
       .then((results) => {
         console.log('TESTING:', results);
-        setProductInfo(results)
+        setProductInfo(results);
       })
-      .catch(err => console.log('promiseAll err', err));
-      Promise.all(styleDataArr)
+      .catch((err) => console.log('promiseAll err', err));
+    Promise.all(styleDataArr)
       .then((results) => {
         console.log('TESTING STYLE', results);
-        setStyles(results)
+        setStyles(results);
       })
       .catch((err) => {
         console.log('STYLE POMISE ALL ERROR', err);
-      })
-    }
+      });
+  };
 
-
-    useEffect(() => {
-    getRelatedProducts('18112')
+  useEffect(() => {
+    getRelatedProducts('18112');
   }, []);
 
   return (
-    <div className="related-comparison-container" >
+    <div className="related-comparison-container">
       Related And Comparison
-      {relatedList && productInfo && styles ?
-      <RelatedList relatedProducts={relatedList}  productInfo={productInfo} styles={styles}/>
+      {relatedList && productInfo && styles
+        ? <RelatedList relatedProducts={relatedList} productInfo={productInfo} styles={styles} />
         : null}
+      <OutfitList />
     </div>
   );
 }

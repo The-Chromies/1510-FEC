@@ -27,7 +27,6 @@ function App() {
     setProductId(id);
   };
 
-
   // click tracking function to pass down to components
   const clickTracker = (widget, e) => {
     // send post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
@@ -50,7 +49,7 @@ function App() {
   return (
     <div className="App">
       <div className="overview">
-        <Overview goToReviews={goToReviews} productId={productId}/>
+        <Overview goToReviews={goToReviews} productId={productId} />
       </div>
       <div className="related-comparison" getSelectedProduct={getSelectedProduct}>
         <RelatedAndComparison />
