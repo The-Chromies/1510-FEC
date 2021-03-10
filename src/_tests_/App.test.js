@@ -6,9 +6,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import App from '../App';
 
 describe('App', () => {
-  it('should display Related And Comparison', () => {
+  test('should display Related And Comparison', () => {
     const wrapper = shallow(<App />);
     const text = wrapper.find('.related-comparison');
     expect(text.text()).toBe('<RelatedAndComparison />');
-  })
-})
+  });
+});

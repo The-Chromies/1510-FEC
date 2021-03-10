@@ -21,4 +21,13 @@ module.exports = {
       }
     });
   },
+  addToCart: (req, res) => {
+    query.addToCart(req.body, (err, message) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(201).send(message);
+      }
+    });
+  },
 };

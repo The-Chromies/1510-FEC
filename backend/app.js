@@ -13,7 +13,7 @@ const gitToken = require('./env/config.js');
 
 // Middleware Execution
 // app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json())
+app.use(express.json());
 // app.use(express.parse());
 // app.use(express.static(__dirname + '/../client'));
 

@@ -30,7 +30,7 @@ function ExpandedCarousel({
 
   const zoomIn = (e) => {
     sendClick(e);
-    $('.expanded-carousel-img').css('transform', 'scale(' + 2.5 + ')');
+    $('.inner-expanded-img').css('transform', 'scale(' + 2.5 + ')');
     $('.inner-expanded-img').css('cursor', 'zoom-out');
     $('.inner-expanded-img').mousemove((e) => {
       $('.inner-expanded-img').css('backgroundPositionX', -e.offsetX + 'px');
@@ -41,21 +41,28 @@ function ExpandedCarousel({
 
   const zoomOut = (e) => {
     sendClick(e);
-    $('.expanded-carousel-img').css('transform', 'scale(' + 1 + ')');
+    $('.inner-expanded-img').css('transform', 'scale(' + 1 + ')');
     $('.inner-expanded-img').css('cursor', 'zoom-in');
     $('.inner-expanded-img').unbind('mousemove');
     setZoomed(false);
   };
 
+  (() => {
+    $('.carousel-control-next').click((e) => sendClick(e));
+    $('.carousel-control-prev').click((e) => sendClick(e));
+    $('.carousel-indicators').click((e) => sendClick(e));
+  })();
+
   return (
     <>
       <Modal
         centered
-        size="xl"
+        dialogClassName="carousel-modal"
         className=" modal full-screen-popup d-block"
         animation="false"
         show={expanded}
         onHide={setCollapsed}
+        onExit={sendClick({ target: { className: 'close' } })}
       >
         <Modal.Header closeButton />
         <Modal.Body>
@@ -71,7 +78,12 @@ function ExpandedCarousel({
               && selected.photos.map((thumbnail, i) => (
                 <Carousel.Item key={i}>
                   <div className="expanded-carousel-img" onClick={(e) => { zoomed ? zoomOut(e) : zoomIn(e); }}>
-                    <div style={{ background: `url(${thumbnail.url}) no-repeat` }} className="inner-expanded-img" />
+                    <div
+                      style={{
+                        backgroundImage: `url(${thumbnail.url})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
+                      }}
+                      className="inner-expanded-img img-fluid"
+                    />
                   </div>
                 </Carousel.Item>
               ))}
