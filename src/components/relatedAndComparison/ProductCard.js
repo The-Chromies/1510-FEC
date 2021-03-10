@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import clsx from 'clsx';
@@ -20,6 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import PropTypes from 'prop-types';
 import CompareModal from './CompareModal.js';
+import { ContactContext } from '../../Global-Context';
 
 // import Carousel from 'react-multi-carousel';
 // import { Paper, Button } from '@material-ui/core';
@@ -35,20 +36,13 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  // expand: {
-  //   transform: 'rotate(0deg)',
-  //   marginLeft: 'auto',
-  //   transition: theme.transitions.create('transform', {
-  //     duration: theme.transitions.duration.shortest,
-  //   }),
-  // },
-  // expandOpen: {
-  //   transform: 'rotate(180deg)',
-  // },
 
 }));
 
 export default function ProductCardRelated(props) {
+  const {
+    productId, setProductId,
+  } = useContext(ContactContext);
   // console.log('CARDDDD', props.styles);
   // console.log('HEY', props.styles[0].results)
   const classes = useStyles();
@@ -58,11 +52,11 @@ export default function ProductCardRelated(props) {
   //   setExpanded(!expanded);
   // };
 
-  const handleCardClick = () => {
-    //* ****must route to overview with id of selected product*****
+  const handleCardClick = (id) => {
+    setProductId(id);
     console.log('CLICKING CARD');
   };
-  // console.log('jahdisagdaydg', props.productFeatures);
+  console.log('jahdisagdaydg', productId);
 
   return (
     <>
@@ -76,12 +70,12 @@ export default function ProductCardRelated(props) {
           subheader={props.product.category}
         />
         <CardMedia
-          onClick={handleCardClick}
+          onClick={() => { handleCardClick(props.product.id); }}
           className={classes.media}
           image={props.styles}
           title={props.product.name}
         />
-        <CardContent onClick={handleCardClick}>
+        <CardContent onClick={() => { handleCardClick(props.product.id); }}>
           <div className="cardInfo" variant="body2" color="textSecondary">
             <h4>{props.product.name}</h4>
             {props.product.description.substring(0, 100).concat('...')}
