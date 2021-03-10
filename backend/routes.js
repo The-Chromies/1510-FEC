@@ -13,7 +13,7 @@ const controller = require('./controllers');
 // Connect controller methods to their corresponding routes
 router.get('/overview/product/:id', controller.overview.getProduct);
 router.get('/overview/styles/:id', controller.overview.getStyles);
-// router.post('/overview', controller.overview.post);
+router.post('/overview', controller.overview.addToCart);
 // router.put('/overview', controller.overview.put);
 // router.delete('/overview', controller.overview.delete);
 

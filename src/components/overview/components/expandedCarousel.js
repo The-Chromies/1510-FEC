@@ -57,7 +57,7 @@ function ExpandedCarousel({
     <>
       <Modal
         centered
-        size="xl"
+        dialogClassName="carousel-modal"
         className=" modal full-screen-popup d-block"
         animation="false"
         show={expanded}

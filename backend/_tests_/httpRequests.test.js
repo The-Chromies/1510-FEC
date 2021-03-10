@@ -87,6 +87,8 @@ describe("Get a given product's style from overview endpoint", () => {
   });
 });
 
+// ADD TESTS FOR OVERVIEW POST ENDPOINT (i.e. add to cart)
+
 // test for interactions endpoint
 // interactions testing error: timeout err w/ no res const & reference error w/ res const
 // come back to check req.body to ensure correct data is sent to API
