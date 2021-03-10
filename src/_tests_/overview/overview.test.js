@@ -1,39 +1,85 @@
+/* eslint-disable max-len */
+/* eslint-disable no-undef */
 import React from 'react';
 import Enzyme, { shallow, mount, render } from 'enzyme';
-// import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import renderer from 'react-test-renderer';
 import axios from 'axios';
 import { ContactContextProvider } from '../../Global-Context';
+import { product, style } from '../testData';
 import Overview from '../../components/overview/ovMain';
 import ImageGallery from '../../components/overview/components/imageGallery';
 import ProductInfo from '../../components/overview/components/productInfo';
 import StyleSelector from '../../components/overview/components/styleSelector';
 import AddToCart from '../../components/overview/components/addToCart';
 
-// Enzyme.configure({ adapter: new Adapter() });
+it('matches the overview snapshot', () => {
+  const snapshot = renderer
+    .create(<ContactContextProvider><Overview /></ContactContextProvider>)
+    .toJSON();
+  expect(snapshot).toMatchSnapshot();
+});
+
+// npm test -- -u to update a snapshot
 
 jest.mock('axios');
+
+const getInfo = () => Promise.all([
+  (axios.get.mockResolvedValue({ data: product }))(),
+  (axios.get.mockResolvedValue({ data: style }))(),
+]);
 
 describe('Overview', () => {
   let wrapper;
 
-  it('should render', () => {
-    wrapper = shallow(<ContactContextProvider><Overview /></ContactContextProvider>);
-    expect(wrapper.exists()).toBe(true);
+  it('should render without props', () => {
+    wrapper = shallow(<ContactContextProvider><Overview getInfo={getInfo} /></ContactContextProvider>);
+    // expect(wrapper.exists()).toBe(true);
+    expect(wrapper).toMatchSnapshot();
   });
 
-  // it('should contain the Image Gallery component', () => {
-  //   expect(wrapper.find(ImageGallery).length).toBe(1);
-  // });
+  it('should have image gallery', () => {
+    wrapper = shallow(<ContactContextProvider><Overview getInfo={getInfo} /></ContactContextProvider>);
+    expect(wrapper.find(<ImageGallery />)).toBeTruthy();
+  });
 
-  // it('should contain the Product Info component', () => {
-  //   expect(wrapper.find(ProductInfo).length).toBe(1);
-  // });
+  it('should have product info', () => {
+    expect(wrapper.find(<ProductInfo styles={style} />)).toBeTruthy();
+  });
 
-  // it('should contain the Style Selector component', () => {
-  //   expect(wrapper.find(StyleSelector).length).toBe(1);
-  // });
+  it('should have style selector', () => {
+    expect(wrapper.find(<StyleSelector />)).toBeTruthy();
+  });
 
-  // it('should contain the Add to Cart component', () => {
-  //   expect(wrapper.find(AddToCart).length).toBe(1);
+  it('should have add to cart', () => {
+    expect(wrapper.find(<AddToCart selected={{}} />)).toBeTruthy();
+  });
+
+  // it('should conditionally render child components', () => {
+  //   wrapper = shallow(<ContactContextProvider><Overview /></ContactContextProvider>);
+  //   expect(wrapper.contains(<ImageGallery />)).toBeTruthy();
   // });
 });
+
+// it('should render a BookWrapper', () => {
+//   expect(
+//     wrapper.contains(
+//       <BookWrapper
+//         roomData={instance.state.roomData}
+//         isCalendarDisplayed={instance.state.isCalendarDisplayed}
+//         isCheckInDisplayed={instance.state.isCheckInDisplayed}
+//         isCheckOutDisplayed={instance.state.isCheckOutDisplayed}
+//         isPricingDisplayed={instance.state.isPricingDisplayed}
+//         renderHeader={instance.renderHeader}
+//         renderDays={instance.renderDays}
+//         renderCells={instance.renderCells}
+//         checkInTitle={instance.state.checkInTitle}
+//         checkOutTitle={instance.state.checkOutTitle}
+//         bookingDuration={instance.state.bookingDuration}
+//         checkInClass={instance.state.checkInClass}
+//         checkOutClass={instance.state.checkOutClass}
+//         checkInClassSelected={instance.state.checkInClassSelected}
+//         checkOutClassSelected={instance.state.checkOutClassSelected}
+//       />
+//     )
+//   ).toBe(true);
+// });
