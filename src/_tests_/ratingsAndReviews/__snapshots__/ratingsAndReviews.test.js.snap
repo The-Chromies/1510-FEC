@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Compare Snapshot for each component matches the ReviewBox snapshot 1`] = `
+<div
+  className="review-box border border-secondary p-2 mb-3 rounded shadow"
+>
+  <div
+    className="flex-row row"
+  >
+    <div
+      className="review-rating justify-content-start col-md-4 col-12"
+    >
+      <span />
+    </div>
+    <div
+      className="review-profile text-uppercase font-weight-bold col-sm col"
+    >
+      <span />
+    </div>
+    <div
+      className="review-profile text-muted font-weight-light justify-content-end col-sm col"
+    >
+      <time>
+        NaN-NaN-NaN
+      </time>
+    </div>
+  </div>
+  <div
+    className="review-content"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <h3
+          className="review-title  text-bolder text-truncate"
+        >
+          
+        </h3>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <span
+          className="review-body text-body border-info lead"
+        >
+          <div>
+            
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="secondary-meters"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <button
+          className="btn-sm btn-success"
+          id="rev-help"
+          onClick={[Function]}
+          type="button"
+        >
+          Helpfulness - 1
+        </button>
+      </div>
+      <div
+        className="col"
+      >
+        <button
+          className="btn-sm btn-outline-info"
+          id="rev-report"
+          onClick={[Function]}
+          type="button"
+        >
+          Report
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Compare Snapshot for each component matches the ReviewFilter snapshot 1`] = `
+<div
+  className="review-filter flex-fill d-flex align-content-center align-items-center justify-content-center"
+>
+  <div
+    className="row"
+  >
+    <p
+      className="text-center font-italic pt-3 pr-2"
+    >
+      undefined reviews, sorted by  
+    </p>
+    <select
+      className="select-review-filter"
+      onClick={[Function]}
+    >
+      <option
+        value="relevant"
+      >
+        Relevance
+      </option>
+      <option
+        value="helpful"
+      >
+        Helpful
+      </option>
+      <option
+        value="newest"
+      >
+        Newest
+      </option>
+    </select>
+  </div>
+</div>
+`;
+
+exports[`Compare Snapshot for each component matches the ReviewListContainer snapshot 1`] = `
+<div
+  className="container review-container"
+>
+  <button
+    className="btn-outline-light btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Add Review
+  </button>
+  <button
+    className="btn-outline-light btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Load More
+  </button>
+</div>
+`;
+
+exports[`Compare Snapshot for each component matches the SubmitReview snapshot 1`] = `null`;
+
+exports[`Compare Snapshot for each component matches the SummaryStar snapshot 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="justify-content-end font-weight-bold col-md-4 col-4"
+  >
+     
+    0
+     
+  </div>
+  <div
+    className="col-md-8 col-8"
+  >
+     
+     
+  </div>
+</div>
+`;
+
+exports[`Compare Snapshot for each component matches the rrMain snapshot 1`] = `null`;
