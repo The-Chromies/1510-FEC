@@ -54,6 +54,13 @@ function Overview({ goToReviews }) {
     getStyles(productId);
   }, []);
 
+  useEffect(() => {
+    if (productId) {
+      getProduct(productId);
+      getStyles(productId);
+    }
+  }, [productId]);
+
   const setSelectedStyle = (style) => {
     setSelected(style);
   };
