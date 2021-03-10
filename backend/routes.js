@@ -13,7 +13,7 @@ const controller = require('./controllers');
 // Connect controller methods to their corresponding routes
 router.get('/overview/product/:id', controller.overview.getProduct);
 router.get('/overview/styles/:id', controller.overview.getStyles);
-// router.post('/overview', controller.overview.post);
+router.post('/overview', controller.overview.addToCart);
 // router.put('/overview', controller.overview.put);
 // router.delete('/overview', controller.overview.delete);
 
@@ -26,6 +26,9 @@ router.get('/ratings/product', controller.ratings.getProducts);
 router.get('/ratings/review/:id/:sortKey/:revCount', controller.ratings.getReviews);
 router.get('/ratings/reviewMeta/:id', controller.ratings.getReviewMeta);
 router.post('/ratings/createReview', controller.ratings.createReview);
+router.put('/ratings/helpful/:id', controller.ratings.putHelpful);
+router.put('/ratings/report/:id', controller.ratings.putReport);
+
 // // router.post('/ratings', controller.ratings.post);
 // // router.put('/ratings', controller.ratings.put);
 // // router.delete('/ratings', controller.ratings.delete);

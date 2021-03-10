@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const axios = require('axios');
 const config = require('../env/config.js');
 
@@ -15,6 +16,44 @@ const queries = {
         Connection: 'keep-alive',
       },
       data: dataBody,
+    };
+
+    axios(options).then((response) => {
+      callback(null, response.data);
+    })
+      .catch((error) => {
+        console.log(error, null);
+      });
+  },
+  putHelpful: (id, callback) => {
+    const options = {
+      method: 'put',
+      url: `${apiUrl}reviews/${id}/helpful`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+    };
+
+    axios(options).then((response) => {
+      callback(null, response.data);
+    })
+      .catch((error) => {
+        console.log(error, null);
+      });
+  },
+  putReport: (id, callback) => {
+    const options = {
+      method: 'put',
+      url: `${apiUrl}reviews/${id}/report`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
     };
 
     axios(options).then((response) => {
@@ -83,7 +122,7 @@ const queries = {
     };
 
     axios(options).then((response) => {
-      //console.log('InFindMeta success')
+      // console.log('InFindMeta success')
     //   console.log('inCatch success models');
       console.log('InFindMeta success');
       //   console.log('inCatch success models');

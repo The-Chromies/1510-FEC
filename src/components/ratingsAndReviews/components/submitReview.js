@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 
 function ReviewListContainer({
-  productId, showNewRev, handleClose, setRevCount, revCount,
+  productId, showNewRev, handleClose, findReviewMeta,
 }) {
   const formValues = Object.freeze({
     product_id: Number(productId),
@@ -43,7 +43,7 @@ function ReviewListContainer({
     })
       .then((result) => {
         console.log(result);
-        setRevCount(revCount + 1); // this should adjust the revCount and re-kick-off a fetch
+        findReviewMeta(); // this should adjust the revCount and re-kick-off a fetch
         // add local storage option here
       })
       .catch((error) => {
@@ -107,8 +107,7 @@ ReviewListContainer.propTypes = {
   showNewRev: PropTypes.bool.isRequired,
   handleClose: PropTypes.instanceOf(Function).isRequired,
   productId: PropTypes.number.isRequired,
-  setRevCount: PropTypes.instanceOf(Function).isRequired,
-  revCount: PropTypes.number.isRequired,
+  findReviewMeta: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default ReviewListContainer;
