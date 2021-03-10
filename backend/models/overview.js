@@ -45,6 +45,25 @@ const queries = {
       console.log(error, null);
     });
   },
+  addToCart: (productData, callback) => {
+    const options = {
+      method: 'post',
+      url: `${apiUrl}cart`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+      data: productData,
+    };
+
+    axios(options).then((response) => {
+      callback(null, response.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  },
 };
 
 module.exports.queries = queries;
