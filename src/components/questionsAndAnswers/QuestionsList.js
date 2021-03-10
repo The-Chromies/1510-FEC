@@ -6,9 +6,8 @@ import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function QuestionList(){
-  useEffect(() => {
-    axios.get('http://localhost3000/qa/questions')
-    console.log('IN THE USE EFFECT')
+  const findQuestions = () => {
+    axios.get('http://localhost:3000/qa/questions')
     .then((results) => {
       console.log('USE EFFECT SUCCESS')
       console.log('THESE ARE RESULTS',results);
@@ -17,6 +16,10 @@ function QuestionList(){
       console.log('USE EFFECT FAILS');
       console.log(err);
     });
+  }
+
+  useEffect(() => {
+    findQuestions()
   }, []);
       // <div>
       //   {console.log(props.question)}
@@ -25,6 +28,7 @@ function QuestionList(){
       return(<Container key="summary-inside" className="container border-primary question-container">
       <div className="border border-secondary shadow">
         <h5>fill with questions here</h5>
+        <Question findQuestions={this.findQuestions}/>
       </div>
     </Container>)
 
