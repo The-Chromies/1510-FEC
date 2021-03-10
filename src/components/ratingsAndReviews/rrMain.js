@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable vars-on-top */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
@@ -13,13 +14,20 @@ import SummaryContainer from './components/summaryContainer';
 import ReviewFilter from './components/reviewFilter';
 import metaTestData from './testData/metadataTest';
 
-function RatingsAndReviews() {
-  const {
+function RatingsAndReviews(props) {
+  let {
     generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating,
   } = useContext(ContactContext);
 
+  // Adjustments for Testing
+  let testReviewList = [];
+  if (props.testOn) {
+    productId = props.productId;
+    testReviewList = props.reviewList;
+  }
+
   const [reviewList, setReviewList] = useState(null);
-  const [reviewListFull, setReviewListFull] = useState([]);
+  const [reviewListFull, setReviewListFull] = useState(testReviewList);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
   // const [productId, setProductId] = useState('18445');
   // const [revCount, setRevCount] = useState(0);
@@ -135,7 +143,7 @@ function RatingsAndReviews() {
   if (reviewList) {
     // console.log('reviewList is not null');
     retContainer = (
-      <Container key="review-container-generic">
+      <Container className="review-key-container" key="review-container-generic">
         <Row>
           <Col className="border border-secondary rounded shadow m-3">
             <h1 className="text-center"> Ratings and Reviews </h1>
@@ -147,7 +155,7 @@ function RatingsAndReviews() {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} setRevCount={setRevCount} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>
