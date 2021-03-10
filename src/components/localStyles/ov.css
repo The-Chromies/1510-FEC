@@ -10,15 +10,12 @@
   left: 0;
 }
 
-.modal-content {
-  height: 1200px;
-  width: 1200px;
+.carousel-modal {
+  width: 90vw;
+  max-width: 90vw;
+  height: 90vw;
+  max-height: 90vw;
 }
-
-/* .expanded-carousel-img {
-  height: 830px;
-  width: 1200px;
-} */
 
 .inner-expanded-img {
   /* display: block;
