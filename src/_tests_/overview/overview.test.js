@@ -19,6 +19,26 @@ it('matches the overview snapshot', () => {
   expect(snapshot).toMatchSnapshot();
 });
 
+// let testReviewList = [];
+// if (props.testOn) {
+//   productId = props.productId;
+//   testReviewList = props.reviewList;
+// }
+const imgProps = {
+  selected: style,
+  currentIndex: 1,
+  generateStarImage: () => {},
+  resetIndex: () => {},
+  sendClick: () => {},
+};
+
+it('matches the image gallery snapshot', () => {
+  const snapshot = renderer
+    .create(<ContactContextProvider><ImageGallery {...imgProps} /></ContactContextProvider>)
+    .toJSON();
+  expect(snapshot).toMatchSnapshot();
+});
+
 // npm test -- -u to update a snapshot
 
 jest.mock('axios');
