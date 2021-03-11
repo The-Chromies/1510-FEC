@@ -50,90 +50,74 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-block',
 
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
 
 }));
 
 export default function OutfitList(props) {
-  // console.log('CARDDDD', props.styles);
+  console.log('CARDDDD', props.stylesPhoto);
   // console.log('HEY', props.styles[0].results)
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   const handleCardClick = () => {
     //* ****must route to overview with id of selected product*****
     console.log('CLICKING CARD');
   };
 
-  const handelAddOutfit = () => {
-    alert('You added to your outfit!');
-  };
-
   const handleDelete = (card) => {
     const element = document.getElementById('card');
     element.parentNode.removeChild(element);
+    // props.setOutfitProduct(null);
   };
 
   return (
     <>
-      <div className="outfitContainer">
-        <IconButton className={classes.largeIcon}>
+      {/* <IconButton className={classes.largeIcon}>
           Add Outfit!
           <AddBoxIcon className={classes.bIcon} onClick={handelAddOutfit} />
-        </IconButton>
+        </IconButton> */}
 
-        <Card id="card" className={classes.root}>
-          <CardHeader
-            className="cardHeader"
-            action={(
-              <IconButton>
-                <DeleteForeverIcon onClick={handleDelete} />
-              </IconButton>
+      <Card id="card" className={classes.root}>
+        <CardHeader
+          className="cardHeader"
+          action={(
+            <IconButton>
+              <DeleteForeverIcon onClick={handleDelete} />
+            </IconButton>
             )}
         // title={props.product.category}
-        // subheader={props.product.category}
-            subheader="Product Category"
-          />
-          <CardMedia
-            onClick={handleCardClick}
-            className={classes.media}
-            image={props.styles}
-        // title={props.product.name}
-            title="Product Name"
-          />
-          <CardContent onClick={handleCardClick}>
-            <div className="cardInfo" variant="body2" color="textSecondary">
-              <h4>Product Name</h4>
-              {'Product Description'.substring(0, 100).concat('...')}
-              <h5>default Price</h5>
-            </div>
-          </CardContent>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-        </Card>
-      </div>
+          subheader={props.product.category}
+        />
+        <CardMedia
+          onClick={handleCardClick}
+          className={classes.media}
+          image={props.styles}
+          title={props.product.name}
+        />
+        <CardContent onClick={handleCardClick}>
+          <div className="cardInfo" variant="body2" color="textSecondary">
+            <h4>{props.product.name}</h4>
+            {props.product.description.substring(0, 100).concat('...')}
+            <h5>{props.product.default_price}</h5>
+            <div>{props.stars(props.rating)}</div>
+          </div>
+        </CardContent>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+      </Card>
     </>
   );
 }
 
 OutfitList.propTypes = {
   // relatedProducts: PropTypes.instanceOf(Array).isRequired,
-  styles: PropTypes.instanceOf(Array).isRequired,
+  stylesPhoto: PropTypes.instanceOf(Array).isRequired,
+  rating: PropTypes.instanceOf(Array).isRequired,
+  stars: PropTypes.instanceOf(Function).isRequired,
+  product: PropTypes.instanceOf(Array).isRequired,
+  // setOutfitProduct: PropTypes.instanceOf(Function).isRequired,
+
 };

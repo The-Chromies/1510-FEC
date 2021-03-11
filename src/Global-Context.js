@@ -10,6 +10,8 @@ export const ContactContextProvider = (props) => {
   let [productId, setProductId] = useState(18085);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
+  const [outfitProduct, setOutfitProduct] = useState([]);
+  const [outfitStyle, setOutfitStyle] = useState([]);
   // Look at 18078 summary container is strange
   // Look at at images for 18079 in overview
   // Ratings and review should not show up for 18080
@@ -68,6 +70,36 @@ export const ContactContextProvider = (props) => {
     return starArr;
   };
 
+  const getProduct = (id) => {
+    axios.get(`http://localhost:3000/related/product/${id}`)
+      .then((results) => {
+        console.log('OUTFITPRODUCT!!', results.data);
+        // setRelatedList([results.data, ...relatedList]);
+        let outfitProductList = [...outfitProduct];
+        outfitProductList.push(results.data);
+        setOutfitProduct(outfitProductList);
+      })
+      .catch((err) => {
+        console.log('err getting outfit product info:', err);
+      });
+  };
+
+  const getStyle = (id) => {
+    axios.get(`http://localhost:3000/overview/styles/${id}`)
+      .then((results) => {
+        let outfitStyleList = [...outfitStyle];
+        outfitStyleList.push(results.data);
+        setOutfitStyle(outfitStyleList);
+      });
+  };
+
+  const handelAddOutfit = (id) => {
+    // alert('You added to your outfit!');
+    setProductId(id);
+    getProduct(id);
+    getStyle(id);
+  };
+
   return (
     <ContactContext.Provider value={{
       productId,
@@ -78,6 +110,13 @@ export const ContactContextProvider = (props) => {
       avgRating,
       setAvgRating,
       clickTracker,
+      outfitProduct,
+      setOutfitProduct,
+      outfitStyle,
+      setOutfitStyle,
+      getProduct,
+      getStyle,
+      handelAddOutfit,
     }}
     >
       {props.children}
