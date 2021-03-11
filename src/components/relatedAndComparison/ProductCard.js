@@ -44,7 +44,7 @@ export default function ProductCardRelated(props) {
     productId, setProductId,
   } = useContext(ContactContext);
   // console.log('CARDDDD', props.styles);
-  // console.log('HEY', props.styles[0].results)
+  // console.log('HEY', props.product);
   const classes = useStyles();
   // const [expanded, setExpanded] = React.useState(false);
 
@@ -54,9 +54,9 @@ export default function ProductCardRelated(props) {
 
   const handleCardClick = (id) => {
     setProductId(id);
-    console.log('CLICKING CARD');
+    // console.log('CLICKING CARD');
   };
-  console.log('jahdisagdaydg', productId);
+  // console.log('jahdisagdaydg', productId);
 
   return (
     <>
