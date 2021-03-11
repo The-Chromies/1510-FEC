@@ -109,7 +109,7 @@ function AddToCart({ selected, sendClick }) {
 }
 
 AddToCart.propTypes = {
-  selected: PropTypes.instanceOf(Object).isRequired,
+  sendClick: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default AddToCart;
