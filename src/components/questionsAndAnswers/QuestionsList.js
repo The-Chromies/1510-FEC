@@ -29,7 +29,7 @@ const QuestionList = ({questions}) => {
   // }, []);
 
   return(
-    <Container key="summary-inside" className="question-container">
+    <Container variant="outline-secondary" className="question-container">
       <div className="border border-secondary shadow">
          {questions.map((question, i) => (
             <Question question={question} key={i}/>
