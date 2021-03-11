@@ -11,16 +11,25 @@ import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
 import SummaryStar from './summaryStar';
+import CharChart from './charChart';
 
 function SummaryContainer({
   meta, generateStarImage, handleStarClick, starFilter, avgRating,
 }) {
   // console.log(meta);
   const starList = [];
+  let charList = [];
+  if (meta.characteristics) {
+    charList = Object.keys(meta.characteristics);
+  }
 
+  // console.log('meta');
+  // console.log(meta);
   // eslint-disable-next-line react/prop-types
   const { ratings } = meta;
   const keys = Object.keys(ratings);
+  const countReviews = Number(meta.recommended.false) + Number(meta.recommended.true);
+  // console.log('countRev', countReviews)
 
   let j = 0;
   for (let i = 1; i <= 5; i += 1) {
@@ -31,7 +40,7 @@ function SummaryContainer({
         countVal = ratings[keys[j]];
         j++;
       }
-      starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i); }}><SummaryStar tempKey={i} key={i} name={generateStarImage(Number(i), `star-list${i}`)} count={countVal} /></div>);
+      starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i); }}><SummaryStar tempKey={i} key={i} revCount={countReviews} name={Number(i)} count={countVal} /></div>);
     }
   }
 
@@ -54,6 +63,11 @@ function SummaryContainer({
         <hr />
         {starFilter ? <span className="hoverStar text-center text-bolder" onClick={() => { handleStarClick(''); }}>Remove Filter</span> : null}
         {starList}
+      </div>
+      <hr />
+      <div className="border border-secondary shadow">
+        <h3>Product Characteristics</h3>
+        {charList.map((char) => <CharChart value={Number(meta.characteristics[char].value)} name={char} />)}
       </div>
     </Container>
   );
