@@ -39,7 +39,7 @@ function QuestionsAndAnswers() {
   }
 
   useEffect(() => {
-    findQuestions();
+    findQuestions(productId);
   }, []);
 
 
