@@ -31,7 +31,7 @@ function SummaryStar({
 
 SummaryStar.propTypes = {
   name: PropTypes.number.isRequired,
-  count: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
   tempKey: PropTypes.number.isRequired,
   revCount: PropTypes.number.isRequired,
 };
