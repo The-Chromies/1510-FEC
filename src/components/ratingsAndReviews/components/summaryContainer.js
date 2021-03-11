@@ -26,15 +26,17 @@ function SummaryContainer({
   for (let i = 1; i <= 5; i += 1) {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     let countVal = 0;
-    if (keys[j].toString() === i.toString()) {
-      countVal = ratings[keys[j]];
-      j++;
+    if (keys[j]) {
+      if (keys[j].toString() === i.toString()) {
+        countVal = ratings[keys[j]];
+        j++;
+      }
+      starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i); }}><SummaryStar tempKey={i} key={i} name={generateStarImage(Number(i), `star-list${i}`)} count={countVal} /></div>);
     }
-    starList.push(<div className="hoverStar" key={i} onClick={() => { handleStarClick(i); }}><SummaryStar tempKey={i} key={i} name={generateStarImage(Number(i), `star-list${i}`)} count={countVal} /></div>);
   }
 
   return (
-    <Container key="summary-inside" className="container border-primary">
+    <Container key="summary-inside" className="summary-container container border-primary">
       <div className="border border-secondary shadow">
         <h3>Summary Container</h3>
         <Row>

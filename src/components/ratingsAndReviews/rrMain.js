@@ -107,9 +107,15 @@ function RatingsAndReviews(props) {
 
   // When the page renders or the product id changes, execute a metadata search to update metadata
   // and set the revCount so we know how many reviews to fetch
+
   useEffect(() => {
     findReviewMeta();
   }, []);
+
+  // Re-render whenever the productId changes across the board
+  useEffect(() => {
+    findReviewMeta();
+  }, [productId]);
 
   // Anytime the sort key updates, fetch the full review list with the new sorted value
   useEffect(() => {

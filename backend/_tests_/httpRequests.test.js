@@ -95,9 +95,9 @@ describe("Get a given product's style from overview endpoint", () => {
 describe('Interactions endpoint', () => {
   it('Should return a 201 status code given a good POST request', async () => {
     await request(app)
-      .post('/interactions')
+      .post('/interactions', { element: 'review-link', widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
       .type('form')
-      .send({ element: 'review-link', widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
+      // .send({ element: 'review-link', widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
       .expect(201);
     // .expect(res.statusCode).toEqual(201);
   });

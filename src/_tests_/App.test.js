@@ -1,14 +1,15 @@
+/* eslint-disable no-undef */
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import Adapter from 'enzyme-adapter-react-16';
+import axios from 'axios';
 import App from '../App';
+import { ContactContextProvider } from '../Global-Context';
 
 describe('App', () => {
-  test('should display Related And Comparison', () => {
-    const wrapper = shallow(<App />);
-    const text = wrapper.find('.related-comparison');
-    expect(text.text()).toBe('<RelatedAndComparison />');
+  it('should render', () => {
+    const wrapper = shallow(<ContactContextProvider><App /></ContactContextProvider>);
+    expect(wrapper.exists()).toBe(true);
   });
 });
