@@ -8,7 +8,7 @@ import uuid from 'node-uuid';
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [productId, setProductId] = useState(18085);
+  let [productId, setProductId] = useState(18078);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
   const [product, setProduct] = useState(null);
