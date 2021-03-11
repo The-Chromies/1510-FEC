@@ -24,7 +24,7 @@ function App() {
   return (
     <ContactContextProvider>
       <div className="App">
-        {/* <div className="overview">
+        <div className="overview">
           <Overview goToReviews={goToReviews} />
         </div>
         <div className="related-comparison">
@@ -32,7 +32,7 @@ function App() {
         </div>
         <div className="questions-answers">
           <QuestionsAndAnswers />
-        </div> */}
+        </div>
         <div className="ratings-reviews" ref={reviews}>
           <RatingsAndReviews />
         </div>
