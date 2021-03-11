@@ -2,7 +2,7 @@
 
 exports[`Overview should render without props 1`] = `ShallowWrapper {}`;
 
-exports[`matches the overview snapshot 1`] = `
+exports[`Should match snapshot for each component matches the overview snapshot 1`] = `
 <div
   className="container"
 >
