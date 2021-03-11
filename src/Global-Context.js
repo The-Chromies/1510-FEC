@@ -10,6 +10,9 @@ export const ContactContextProvider = (props) => {
   let [productId, setProductId] = useState(18085);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
+  const [product, setProduct] = useState(null);
+  const [styles, setStyles] = useState(null);
+  const [selected, setSelected] = useState(null);
   // Look at 18078 summary container is strange
   // Look at at images for 18079 in overview
   // Ratings and review should not show up for 18080
@@ -30,6 +33,27 @@ export const ContactContextProvider = (props) => {
       })
       .catch((err) => {
         console.log('FAILED TO POST TO INTERACTIONS');
+        console.log(err);
+      });
+  };
+
+  const getProduct = (id) => {
+    axios.get(`http://localhost:3000/overview/product/${id}`)
+      .then((res) => {
+        setProduct(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getStyles = (id) => {
+    axios.get(`http://localhost:3000/overview/styles/${id}`)
+      .then((res) => {
+        setStyles(res.data);
+        setSelected(res.data.results[0]);
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -76,8 +100,14 @@ export const ContactContextProvider = (props) => {
       revCount,
       setRevCount,
       avgRating,
+      product,
+      styles,
+      selected,
+      setSelected,
       setAvgRating,
       clickTracker,
+      getProduct,
+      getStyles,
     }}
     >
       {props.children}
