@@ -23,14 +23,13 @@ function SummaryContainer({
     charList = Object.keys(meta.characteristics);
   }
 
-
-  console.log('meta');
-  console.log(meta);
+  // console.log('meta');
+  // console.log(meta);
   // eslint-disable-next-line react/prop-types
   const { ratings } = meta;
   const keys = Object.keys(ratings);
-  const countReviews = Number(meta.recommended.false) + Number(meta.recommended.true)
-  console.log('countRev', countReviews)
+  const countReviews = Number(meta.recommended.false) + Number(meta.recommended.true);
+  // console.log('countRev', countReviews)
 
   let j = 0;
   for (let i = 1; i <= 5; i += 1) {
@@ -68,8 +67,6 @@ function SummaryContainer({
       <hr />
       <div className="border border-secondary shadow">
         <h3>Product Characteristics</h3>
-        {console.log(typeof meta.characteristics)}
-        {console.log(charList)}
         {charList.map((char) => <CharChart value={Number(meta.characteristics[char].value)} name={char} />)}
       </div>
     </Container>

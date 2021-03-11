@@ -4,11 +4,13 @@ import {
   Navbar, Container, Row, Col, ProgressBar,
 } from 'react-bootstrap';
 
-function SummaryStar({ tempKey, name, count, revCount }) {
+function SummaryStar({
+  tempKey, name, count, revCount,
+}) {
   // console.log(tempKey)
 
-  let per = (revCount > 0) ? count / revCount : 0;
-  console.log('per: ', per)
+  const per = (revCount > 0) ? count / revCount : 0;
+  // console.log('per: ', per)
   return (
     <>
       <Row key={`s${tempKey}`}>
