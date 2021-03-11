@@ -7,10 +7,10 @@ const Question = (props) => {
 
   return (
     <div>
-      hi
+      hello there
     </div>
-  )
-}
+  );
+};
 
 // export default function Question(props) {
 //   console.log(props.questions)

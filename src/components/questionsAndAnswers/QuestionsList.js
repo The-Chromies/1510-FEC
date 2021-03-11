@@ -34,16 +34,9 @@ function QuestionList(){
       return(<Container key="summary-inside" className="question-container">
       <div className="border border-secondary shadow">
         <h5>fill with questions here</h5>
-        {/* <Question findQuestions={this.findQuestions}/> */}
-        {/* {questions.question_body.map((question, i) => )} */}
         {console.log('THESE ARE "QUESTIONS": ', questions)}
-        {/* {questions[0].question_body} */}
-        {/* {questions.map((question, i) => {
-          <Question question={question} i={question + i}/>
-        })} */}
-        {/* <Question questions={questions}/> */}
         {questions.map((question, i) => {
-          return (<Question question={question} key={i}/>)
+          return (<Question question={question} key={i} />)
         })}
 
       </div>
