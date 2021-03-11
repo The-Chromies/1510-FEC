@@ -1,0 +1,32 @@
+.related-comparison-container {
+  text-align: center;
+}
+
+.cardInfo {
+  text-align: left;
+}
+
+.cardHeader {
+  text-align: left;
+}
+
+.transition-modal-title {
+  text-align: left;
+}
+
+.valueList {
+  text-align: right;
+}
+.featureList {
+  text-align: center;
+}
+
+.addOutfit {
+  height: 50px;
+  width: 100px;
+}
+
+.outfitContainer {
+  max-height: 400px;
+}
+

@@ -1,30 +1,28 @@
+const axios = require('axios');
 const config = require('../env/config.js');
-const axios = require('axios')
 
-const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/'
+const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/';
 
-let queries = {
-    addInteraction: function (callback) {
-        let options = {
-            method:'post',
-            url: apiUrl+'products',
-            headers: {
-            'User-Agent': 'request',
-            'Authorization': `${config.TOKEN}`,
-            'Content-Type': `application/json`,
-            'Connection': 'keep-alive'
-            }
-        };
+const queries = {
+  addInteraction: (clickData, callback) => {
+    const options = {
+      method: 'post',
+      url: `${apiUrl}interactions`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+      data: clickData,
+    };
 
-        axios(options).then((response) => {
-            callback(response)
-
-        }).catch( (error) => {
-            console.log(error)
-        }
-        )
-    }
-}
-
+    axios(options).then((response) => {
+      callback(null, response.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  },
+};
 
 module.exports.queries = queries;

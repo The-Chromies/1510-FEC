@@ -3,16 +3,19 @@ jobs:
   test:
     docker:
       - image: circleci/node:14.15.4
+    working_directory: ~/1510-FEC
     steps:
       - checkout
       - run:
           name: 'install dependencies'
           command: npm install
       - run:
-          name: 'run tests'
+          name: 'run frontend tests'
           command: npm run test
 
 workflows:
   build_and_test:
     jobs:
       - test
+
+

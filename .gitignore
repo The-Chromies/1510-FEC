@@ -8,8 +8,13 @@ client/node_modules
 .pnp.js
 backend/env/config.js
 
+# security
+1510-FEC.pem
+config.js
+
 # testing
 /coverage
+/backend/coverage
 
 # production
 /build
