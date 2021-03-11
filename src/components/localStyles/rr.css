@@ -37,3 +37,21 @@
 .modal {
   opacity: 100;
 }
+
+.progress-bar {
+  background-color: slategray;
+}
+
+.progress-label {
+  height:10px;
+  margin-top:-18px;
+  margin-bottom:18px;
+}
+.progress {
+  height:10px;
+  padding:0px;
+}
+label > input[type=radio] {
+  vertical-align: middle;
+  margin-top: -2px;
+}

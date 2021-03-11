@@ -5,6 +5,7 @@ import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
 import axios from 'axios';
+import uuid from 'node-uuid';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
   // console.log(review);
@@ -72,7 +73,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
 
     if (bodyRef.current) {
       bodyRef.current.innerHTML = `${longBody}`;
-      bodyRef.current.revBody.push(<div>{longBody}</div>);
+      bodyRef.current.revBody.push(<div key={uuid()}>{longBody}</div>);
     }
   };
 
@@ -91,7 +92,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
     revBody.push();
     // <p className='font-italic'><u>Read More</u></p>
   } else {
-    revBody.push(<div>{longBody}</div>);
+    revBody.push(<div key={uuid()}>{longBody}</div>);
   }
 
   return (

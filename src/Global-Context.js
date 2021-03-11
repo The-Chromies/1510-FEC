@@ -3,13 +3,16 @@
 /* eslint-disable prefer-const */
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
+import uuid from 'node-uuid';
 
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [productId, setProductId] = useState(18085);
+  let [productId, setProductId] = useState(18078);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
+  const [outfitProduct, setOutfitProduct] = useState([]);
+  const [outfitStyle, setOutfitStyle] = useState([]);
   const [product, setProduct] = useState(null);
   const [styles, setStyles] = useState(null);
   const [selected, setSelected] = useState(null);
@@ -37,26 +40,26 @@ export const ContactContextProvider = (props) => {
       });
   };
 
-  const getProduct = (id) => {
-    axios.get(`http://localhost:3000/overview/product/${id}`)
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getProduct = (id) => {
+  //   axios.get(`http://localhost:3000/overview/product/${id}`)
+  //     .then((res) => {
+  //       setProduct(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const getStyles = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
-      .then((res) => {
-        setStyles(res.data);
-        setSelected(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getStyles = (id) => {
+  //   axios.get(`http://localhost:3000/overview/styles/${id}`)
+  //     .then((res) => {
+  //       setStyles(res.data);
+  //       setSelected(res.data.results[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const generateStarImage = (starCount, keyId) => {
     let remainder = 0;
@@ -65,31 +68,61 @@ export const ContactContextProvider = (props) => {
     for (let j = 0; j < 5; j += 1) {
       switch (remainder) { // 4.25
         case 0.25:
-          starArr.push(<img src="public/icons/star/quarterStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/quarterStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.25;
           break;
         case 0.50:
-          starArr.push(<img src="public/icons/star/halfStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/halfStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.50;
           break;
         case 0.75:
-          starArr.push(<img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.75;
           break;
         case 1:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/fullStar.png" alt="" className="star-image" /></div>);
           remainder -= 1;
           break;
         case 0:
-          starArr.push(<img src="public/icons/star/emptyStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/emptyStar.png" alt="" className="star-image" /></div>);
           break;
         default:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/fullStar.png" alt="" className="star-image" /></div>);
           remainder -= 1;
           break;
       }
     }
-    return starArr;
+    return (<div className="inline-star" style={{ display: 'inline-flex' }} key={uuid()}>{starArr}</div>);
+  };
+
+  const getProduct = (id) => {
+    axios.get(`http://localhost:3000/related/product/${id}`)
+      .then((results) => {
+        console.log('OUTFITPRODUCT!!', results.data);
+        // setRelatedList([results.data, ...relatedList]);
+        let outfitProductList = [...outfitProduct];
+        outfitProductList.push(results.data);
+        setOutfitProduct(outfitProductList);
+      })
+      .catch((err) => {
+        console.log('err getting outfit product info:', err);
+      });
+  };
+
+  const getStyle = (id) => {
+    axios.get(`http://localhost:3000/overview/styles/${id}`)
+      .then((results) => {
+        let outfitStyleList = [...outfitStyle];
+        outfitStyleList.push(results.data);
+        setOutfitStyle(outfitStyleList);
+      });
+  };
+
+  const handelAddOutfit = (id) => {
+    // alert('You added to your outfit!');
+    setProductId(id);
+    getProduct(id);
+    getStyle(id);
   };
 
   return (
@@ -106,8 +139,13 @@ export const ContactContextProvider = (props) => {
       setSelected,
       setAvgRating,
       clickTracker,
+      outfitProduct,
+      setOutfitProduct,
+      outfitStyle,
+      setOutfitStyle,
       getProduct,
-      getStyles,
+      getStyle,
+      handelAddOutfit,
     }}
     >
       {props.children}
