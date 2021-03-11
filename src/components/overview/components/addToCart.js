@@ -63,7 +63,7 @@ function AddToCart({ selected, sendClick }) {
   return (
     <div className="add-to-cart">
       {noSize
-      && <h4>Please select size</h4>}
+      && <div className="select-size-message">Please select a size</div>}
       <div className="dropdowns">
         { selected && Object.keys(selected.skus)[0] !== 'null' ?
           // eslint-disable-next-line react/jsx-wrap-multilines

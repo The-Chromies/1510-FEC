@@ -5,28 +5,33 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   FacebookShareButton, PinterestShareButton, TwitterShareButton, FacebookIcon, PinterestIcon, TwitterIcon,
 } from 'react-share';
+import { ContactContext } from '../../../Global-Context';
 
 // num of reviews for selected product & rating average of product passed down as props
 function ProductInfo({
-  product, selected, goToReviews, generateStarImage, sendClick, revCount, ratingAvg,
+  product, selected, goToReviews, sendClick,
 }) {
+  const {
+    productId, setProductId, generateStarImage, revCount, avgRating, clickTracker,
+  } = useContext(ContactContext);
+
   return (
     <div className="product-info">
-      {revCount
-      && <>
-        <div>{generateStarImage(ratingAvg)}</div>
-        <div onClick={(e) => { goToReviews(); sendClick(e); }} className="review-link">
-          Read all
-          {` ${revCount} `}
-          reviews
-        </div>
-        </>}
+      {revCount !== 0
+        ? <>
+          <div>{generateStarImage(avgRating)}</div>
+          <div onClick={(e) => { goToReviews(); sendClick(e); }} className="review-link">
+            Read all
+            {` ${revCount} `}
+            reviews
+          </div>
+        </>
+        : null}
       <div>{product.category}</div>
       <h3>{product.name}</h3>
       { selected && selected.sale_price === null ? <div>{`$${selected.original_price}`}</div>

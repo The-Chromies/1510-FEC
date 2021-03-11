@@ -67,7 +67,7 @@ function OutfitCarousel(props) {
       </IconButton>
 
       {outfitStyle && outfitProduct ? outfitProduct.map((product, i) => (
-        <OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} styles={outfitStyle[i].results[0].photos[0].thumbnail_url} />
+        <OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} />
       )) : null}
     </Carousel>
   );
