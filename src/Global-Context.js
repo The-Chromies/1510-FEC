@@ -3,6 +3,7 @@
 /* eslint-disable prefer-const */
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
+import uuid from 'node-uuid';
 
 export const ContactContext = createContext();
 
@@ -65,31 +66,31 @@ export const ContactContextProvider = (props) => {
     for (let j = 0; j < 5; j += 1) {
       switch (remainder) { // 4.25
         case 0.25:
-          starArr.push(<img src="public/icons/star/quarterStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/quarterStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.25;
           break;
         case 0.50:
-          starArr.push(<img src="public/icons/star/halfStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/halfStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.50;
           break;
         case 0.75:
-          starArr.push(<img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.75;
           break;
         case 1:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/fullStar.png" alt="" className="star-image" /></div>);
           remainder -= 1;
           break;
         case 0:
-          starArr.push(<img src="public/icons/star/emptyStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/emptyStar.png" alt="" className="star-image" /></div>);
           break;
         default:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/fullStar.png" alt="" className="star-image" /></div>);
           remainder -= 1;
           break;
       }
     }
-    return starArr;
+    return (<div className="inline-star" style={{ display: 'inline-flex' }} key={uuid()}>{starArr}</div>);
   };
 
   return (

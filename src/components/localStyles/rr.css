@@ -37,3 +37,7 @@
 .modal {
   opacity: 100;
 }
+
+.inline-star {
+  display: inline-block;
+}

@@ -23,8 +23,8 @@ function SummaryStar({ tempKey, name, count }) {
 }
 
 SummaryStar.propTypes = {
-  name: PropTypes.instanceOf(Array).isRequired,
-  count: PropTypes.number.isRequired,
+  name: PropTypes.instanceOf(Object).isRequired,
+  count: PropTypes.string.isRequired,
   tempKey: PropTypes.number.isRequired,
 };
 
