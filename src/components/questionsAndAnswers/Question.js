@@ -12,6 +12,11 @@ const Question = (props) => {
       <h5>Q: {props.question?.question_body}</h5>
       <span>A:</span>
       <span> some random answer</span>
+      <div>
+        <span>by someone random</span>
+        <span>at some random time</span>
+
+      </div>
     </Container>
 
   )
