@@ -35,7 +35,7 @@ describe('Get all reviews', () => {
 });
 
 // test for retrieving a given product
-describe('Get a given product from overview endpoint', () => {
+describe('overview endpoint', () => {
   it('Should get all the reviews given a good GET request', async () => {
     await request(app)
       .get('/overview/product/18078')
@@ -85,31 +85,51 @@ describe("Get a given product's style from overview endpoint", () => {
     expect(body.results[0].skus['565825']).toHaveProperty('quantity');
     expect(body.results[0].skus['565825']).toHaveProperty('size');
   });
-});
 
-// ADD TESTS FOR OVERVIEW POST ENDPOINT (i.e. add to cart)
+  // overview post endpoint test for add to cart
+  // it('Should return a 201 status code given a good POST request', async () => {
+  //   await request(app)
+  //     .post('/overview', { sku_id: 18201 })
+  //     .type('form')
+  //     // .send({ sku_id: 18201 })
+  //     .expect(201);
+  //   // .expect(res.statusCode).toEqual(201)
+  // });
+  // it('Should return a 400 status code given a bad POST request', async () => {
+  //   await request(app)
+  //     .post('/overviasdf')
+  //     .send({ sku_id: 18201 })
+  //     .expect(400);
+  // });
+  // it('Should return a created message for a good POST request', async () => {
+  //   const { body } = await request(app)
+  //     .post('/overview');
+  //     .send({ sku_id: 18201 });
+  //   expect(body).toHaveProperty('category');
+  // });
+});
 
 // test for interactions endpoint
 // interactions testing error: timeout err w/ no res const & reference error w/ res const
 // come back to check req.body to ensure correct data is sent to API
-describe('Interactions endpoint', () => {
-  it('Should return a 201 status code given a good POST request', async () => {
-    await request(app)
-      .post('/interactions')
-      .type('form')
-      .send({ element: 'review-link', widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
-      .expect(201);
-    // .expect(res.statusCode).toEqual(201);
-  });
-//   it('Should return a 400 status code given a bad POST request', async () => {
+// describe('Interactions endpoint', () => {
+//   it('Should return a 201 status code given a good POST request', async () => {
 //     await request(app)
-//       .post('/interactions')
-//       .send({ element: 12345, widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
-//       .expect(400);
+//       .post('/interactions', { element: 'review-link', widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
+//       .type('form')
+//       // .send({ element: 'review-link', widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
+//       .expect(201);
+//     // .expect(res.statusCode).toEqual(201);
 //   });
-//   it('Should return a created message for a good POST request', async () => {
-//     const { body } = await request(app)
-//       .post('/interactions');
-//     expect(body).toHaveProperty('category');
-//   });
-});
+// //   it('Should return a 400 status code given a bad POST request', async () => {
+// //     await request(app)
+// //       .post('/interactions')
+// //       .send({ element: 12345, widget: 'Overview', time: '15:19:50 GMT-0700 (Mountain Standard Time)' })
+// //       .expect(400);
+// //   });
+// //   it('Should return a created message for a good POST request', async () => {
+// //     const { body } = await request(app)
+// //       .post('/interactions');
+// //     expect(body).toHaveProperty('category');
+// //   });
+// });

@@ -2,7 +2,11 @@
 
 exports[`Overview should render without props 1`] = `ShallowWrapper {}`;
 
+<<<<<<< HEAD
 exports[`matches the overview snapshot 1`] = `
+=======
+exports[`Should match snapshot for each component matches the overview snapshot 1`] = `
+>>>>>>> 68718a9d2921176e7ef1f738afcc748ae6da41d6
 <div
   className="container"
 >
