@@ -14,36 +14,36 @@ function CharRadio({ name, charList }) {
       <h4 className="d-flex justify-content-center text-center align-self-center align-items-center">{name}</h4>
       <Row className="d-flex justify-content-center text-center align-self-center align-items-center">
         <Col>
-          <input type="radio" name={name} id="inlineRadio1" value="option1" />
+          <input type="radio" name={name} id={`${name}1`} value="option1" />
         </Col>
         <Col>
-          <input type="radio" name={name} id="inlineRadio2" value="option2" />
+          <input type="radio" name={name} id={`${name}2`} value="option2" />
         </Col>
         <Col>
-          <input type="radio" name={name} id="inlineRadio3" value="option3" />
+          <input type="radio" name={name} id={`${name}3`} value="option3" />
         </Col>
         <Col>
-          <input type="radio" name={name} id="inlineRadio4" value="option4" />
+          <input type="radio" name={name} id={`${name}4`} value="option4" />
         </Col>
         <Col>
-          <input type="radio" name={name} id="inlineRadio5" value="option5" />
+          <input type="radio" name={name} id={`${name}5`} value="option5" />
         </Col>
       </Row>
       <Row className="d-flex justify-content-center text-center align-self-center align-items-center">
         <Col>
-          <label htmlFor="inlineRadio1">{charList.labelLow}</label>
+          <label htmlFor={`${name}1`}>{charList.labelLow}</label>
         </Col>
         <Col>
-          <label htmlFor="inlineRadio2">{charList.labelLowMid}</label>
+          <label htmlFor={`${name}2`}>{charList.labelLowMid}</label>
         </Col>
         <Col>
-          <label htmlFor="inlineRadio3">{charList.labelMid}</label>
+          <label htmlFor={`${name}3`}>{charList.labelMid}</label>
         </Col>
         <Col>
-          <label htmlFor="inlineRadio4">{charList.labelMidHigh}</label>
+          <label htmlFor={`${name}4`}>{charList.labelMidHigh}</label>
         </Col>
         <Col>
-          <label htmlFor="inlineRadio5">{charList.labelHigh}</label>
+          <label htmlFor={`${name}5`}>{charList.labelHigh}</label>
         </Col>
       </Row>
       <hr />
