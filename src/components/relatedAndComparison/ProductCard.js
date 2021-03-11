@@ -99,7 +99,7 @@ ProductCardRelated.propTypes = {
   product: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(String).isRequired,
   productFeatures: PropTypes.instanceOf(Object).isRequired,
-  rating: PropTypes.instanceOf(Array).isRequired,
+  rating: PropTypes.instanceOf(Number).isRequired,
   stars: PropTypes.instanceOf(Function).isRequired,
 };
 

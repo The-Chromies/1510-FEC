@@ -49,16 +49,16 @@ export const ContactContextProvider = (props) => {
   //     });
   // };
 
-  const getStyles = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
-      .then((res) => {
-        setStyles(res.data);
-        setSelected(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getStyles = (id) => {
+  //   axios.get(`http://localhost:3000/overview/styles/${id}`)
+  //     .then((res) => {
+  //       setStyles(res.data);
+  //       setSelected(res.data.results[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const generateStarImage = (starCount, keyId) => {
     let remainder = 0;
@@ -145,7 +145,6 @@ export const ContactContextProvider = (props) => {
       getProduct,
       getStyle,
       handelAddOutfit,
-      getStyles,
     }}
     >
       {props.children}

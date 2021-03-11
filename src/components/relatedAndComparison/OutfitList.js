@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import clsx from 'clsx';
@@ -22,6 +22,8 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import { ContactContext } from '../../Global-Context';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,8 +56,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function OutfitList(props) {
-  console.log('CARDDDD', props.stylesPhoto);
+  console.log('CARDDDD', props.styles);
   // console.log('HEY', props.styles[0].results)
+
+  const {
+    productId, setProductId, outfitStyle, getProduct, getStyle, handelAddOutfit, outfitProduct, setOutfitProduct, setOutfitStyle,
+  } = useContext(ContactContext);
   const classes = useStyles();
 
   const handleCardClick = () => {
@@ -63,10 +69,16 @@ export default function OutfitList(props) {
     console.log('CLICKING CARD');
   };
 
-  const handleDelete = (card) => {
-    const element = document.getElementById('card');
-    element.parentNode.removeChild(element);
+  const handleDelete = (index) => {
+    // const element = document.getElementById('card');
+    // element.parentNode.removeChild(element);
     // props.setOutfitProduct(null);
+    let outfitProductCopy = [...outfitProduct];
+    outfitProductCopy.splice(index, 1);
+    setOutfitProduct(outfitProductCopy);
+    let outfitStyleCopy = [...outfitStyle];
+    outfitStyleCopy.splice(index, 1);
+    setOutfitStyle(outfitStyleCopy);
   };
 
   return (
@@ -76,12 +88,12 @@ export default function OutfitList(props) {
           <AddBoxIcon className={classes.bIcon} onClick={handelAddOutfit} />
         </IconButton> */}
 
-      <Card id="card" className={classes.root}>
+      <Card className={classes.root}>
         <CardHeader
           className="cardHeader"
           action={(
             <IconButton>
-              <DeleteForeverIcon onClick={handleDelete} />
+              <DeleteForeverIcon onClick={() => { handleDelete(props.key);}} />
             </IconButton>
             )}
         // title={props.product.category}
@@ -114,7 +126,7 @@ export default function OutfitList(props) {
 
 OutfitList.propTypes = {
   // relatedProducts: PropTypes.instanceOf(Array).isRequired,
-  stylesPhoto: PropTypes.instanceOf(Array).isRequired,
+  styles: PropTypes.instanceOf(Array).isRequired,
   rating: PropTypes.instanceOf(Array).isRequired,
   stars: PropTypes.instanceOf(Function).isRequired,
   product: PropTypes.instanceOf(Array).isRequired,
