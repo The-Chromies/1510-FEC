@@ -51,3 +51,7 @@
   height:10px;
   padding:0px;
 }
+label > input[type=radio] {
+  vertical-align: middle;
+  margin-top: -2px;
+}
