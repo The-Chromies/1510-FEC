@@ -79,27 +79,3 @@ describe('Overview', () => {
   //   expect(wrapper.contains(<ImageGallery />)).toBeTruthy();
   // });
 });
-
-// it('should render a BookWrapper', () => {
-//   expect(
-//     wrapper.contains(
-//       <BookWrapper
-//         roomData={instance.state.roomData}
-//         isCalendarDisplayed={instance.state.isCalendarDisplayed}
-//         isCheckInDisplayed={instance.state.isCheckInDisplayed}
-//         isCheckOutDisplayed={instance.state.isCheckOutDisplayed}
-//         isPricingDisplayed={instance.state.isPricingDisplayed}
-//         renderHeader={instance.renderHeader}
-//         renderDays={instance.renderDays}
-//         renderCells={instance.renderCells}
-//         checkInTitle={instance.state.checkInTitle}
-//         checkOutTitle={instance.state.checkOutTitle}
-//         bookingDuration={instance.state.bookingDuration}
-//         checkInClass={instance.state.checkInClass}
-//         checkOutClass={instance.state.checkOutClass}
-//         checkInClassSelected={instance.state.checkInClassSelected}
-//         checkOutClassSelected={instance.state.checkOutClassSelected}
-//       />
-//     )
-//   ).toBe(true);
-// });

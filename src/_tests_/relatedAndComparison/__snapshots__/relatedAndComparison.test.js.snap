@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the overview snapshot 1`] = `
+exports[`matches the RelatedAndComparison snapshot 1`] = `
 <div
   className="related-comparison-container"
 >

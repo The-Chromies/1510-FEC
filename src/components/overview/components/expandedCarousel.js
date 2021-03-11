@@ -30,11 +30,11 @@ function ExpandedCarousel({
 
   const zoomIn = (e) => {
     sendClick(e);
-    $('.inner-expanded-img').css('transform', 'scale(' + 2.5 + ')');
+    $('.inner-expanded-img').css('transform', 'scale(' + 2 + ')');
     $('.inner-expanded-img').css('cursor', 'zoom-out');
     $('.inner-expanded-img').mousemove((e) => {
-      $('.inner-expanded-img').css('backgroundPositionX', -e.offsetX + 'px');
-      $('.inner-expanded-img').css('backgroundPositionY', -e.offsetY + 'px');
+      $('.inner-expanded-img').css('backgroundPositionX', -e.offsetX + 600 + 'px');
+      $('.inner-expanded-img').css('backgroundPositionY', -e.offsetY + 600 + 'px');
     });
     setZoomed(true);
   };
@@ -82,7 +82,7 @@ function ExpandedCarousel({
                       style={{
                         backgroundImage: `url(${thumbnail.url})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
                       }}
-                      className="inner-expanded-img img-fluid"
+                      className="inner-expanded-img"
                     />
                   </div>
                 </Carousel.Item>
