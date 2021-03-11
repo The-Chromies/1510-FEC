@@ -50,8 +50,8 @@ function QuestionsAndAnswers() {
         <h5 className="header">Questions &amp; Answers</h5>
       </Container>
 
-      <Search questions={questions}/>
-      <QuestionsList questions={questions}/>
+      <Search questions={questions} />
+      <QuestionsList questions={questions} />
 
       <Container>
         <Row>
