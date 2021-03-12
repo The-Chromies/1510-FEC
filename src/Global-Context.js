@@ -50,16 +50,16 @@ export const ContactContextProvider = (props) => {
   //     });
   // };
 
-  const getStyles = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
-      .then((res) => {
-        setStyles(res.data);
-        setSelected(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getStyles = (id) => {
+  //   axios.get(`http://localhost:3000/overview/styles/${id}`)
+  //     .then((res) => {
+  //       setStyles(res.data);
+  //       setSelected(res.data.results[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const generateStarImage = (starCount, keyId) => {
     let remainder = 0;
@@ -96,11 +96,24 @@ export const ContactContextProvider = (props) => {
   };
 
   const getProduct = (id) => {
-    axios.get(`http://localhost:3000/related/product/${id}`)
+    axios.get(`/related/product/${id}`)
       .then((results) => {
         console.log('OUTFITPRODUCT!!', results.data);
         // setRelatedList([results.data, ...relatedList]);
         let outfitProductList = [...outfitProduct];
+        // if (outfitProductList.length > 0) {
+        //   outfitProductList.forEach((outfit) => {
+        //     if (outfit.id !== id) {
+        //       outfitProductList.push(results.data);
+        //       setOutfitProduct(outfitProductList);
+        //     } else {
+        //       console.log('same prod');
+        //     }
+        //   });
+        // } else {
+        //   outfitProductList.push(results.data);
+        //   setOutfitProduct(outfitProductList);
+        // }
         outfitProductList.push(results.data);
         setOutfitProduct(outfitProductList);
       })
@@ -113,6 +126,20 @@ export const ContactContextProvider = (props) => {
     axios.get(`http://localhost:3000/overview/styles/${id}`)
       .then((results) => {
         let outfitStyleList = [...outfitStyle];
+        // if (outfitStyleList.length > 0) {
+        //   outfitStyleList.forEach((style) => {
+        //     console.log('this is the style: ', style);
+        //     // if (style.id !== id) {
+        //     //   outfitStyleList.push(results.data);
+        //     //   setOutfitStyle(outfitStyleList);
+        //     // } else {
+        //     //   console.log('same style');
+        //     // }
+        //   });
+        // } else {
+        //   outfitStyleList.push(results.data);
+        //   setOutfitStyle(outfitStyleList);
+        // }
         outfitStyleList.push(results.data);
         setOutfitStyle(outfitStyleList);
       });
@@ -146,7 +173,6 @@ export const ContactContextProvider = (props) => {
       getProduct,
       getStyle,
       handelAddOutfit,
-      getStyles,
     }}
     >
       {props.children}

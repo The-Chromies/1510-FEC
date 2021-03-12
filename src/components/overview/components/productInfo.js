@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-wrap-multilines */
@@ -12,7 +13,6 @@ import {
 } from 'react-share';
 import { ContactContext } from '../../../Global-Context';
 
-// num of reviews for selected product & rating average of product passed down as props
 function ProductInfo({
   product, selected, goToReviews, sendClick,
 }) {
@@ -47,8 +47,6 @@ function ProductInfo({
       </div>
       {/* facebook redirect error will go away after deployment/no longer using localhost
       currently will reciever error: Parameter 'href' should represent a valid URL */}
-      {/* <div className="facebook-share" onClick={(e) => { console.log(e.target.className); }}>
-      </div> */}
       <FacebookShareButton url="http://localhost:8080" quote="Check out this product!">
         <FacebookIcon size={32} round onClick={() => { sendClick({ target: { className: 'facebook-share' } }); }} />
       </FacebookShareButton>
@@ -62,8 +60,11 @@ function ProductInfo({
   );
 }
 
-ProductInfo.propTypes = {
-  product: PropTypes.instanceOf(Object).isRequired,
-};
+// ProductInfo.propTypes = {
+//   product: PropTypes.instanceOf(Object).isRequired,
+//   selected: PropTypes.instanceOf(Object).isRequired,
+//   sendClick: PropTypes.instanceOf(Function).isRequired,
+//   goToReviews: PropTypes.instanceOf(Function).isRequired,
+// };
 
 export default ProductInfo;
