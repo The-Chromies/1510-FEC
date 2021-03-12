@@ -12,6 +12,7 @@ function CharRadio({ name, charList }) {
     <div className="char-radio">
       <hr />
       <h4 className="d-flex justify-content-center text-center align-self-center align-items-center">{name}</h4>
+      <fieldset >
       <Row className="d-flex justify-content-center text-center align-self-center align-items-center">
         <Col>
           <input type="radio" name={name} id={`${name}1`} value="option1" />
@@ -46,6 +47,7 @@ function CharRadio({ name, charList }) {
           <label htmlFor={`${name}5`}>{charList.labelHigh}</label>
         </Col>
       </Row>
+      </fieldset>
       <hr />
     </div>
   );
