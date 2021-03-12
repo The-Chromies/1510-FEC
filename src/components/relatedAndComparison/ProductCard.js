@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 380,
     minHeight: 380,
     display: 'inline-block',
+
   },
   media: {
     height: 0,
@@ -60,6 +61,7 @@ export default function ProductCardRelated(props) {
 
   return (
     <>
+      <div className="press">
       <Card className={classes.root}>
         <CardHeader
           className="cardHeader"
@@ -90,6 +92,7 @@ export default function ProductCardRelated(props) {
           <ShareIcon />
         </IconButton>
       </Card>
+      </div>
     </>
   );
 }

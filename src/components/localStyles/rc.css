@@ -1,6 +1,6 @@
-.related-comparison-container {
+/* .related-comparison-container {
   text-align: center;
-}
+} */
 
 .cardInfo {
   text-align: left;
@@ -28,5 +28,17 @@
 
 .outfitContainer {
   max-height: 400px;
+}
+
+.relatedCarousel {
+  /* width: auto !important;
+  height: 15vh !important;
+  bottom: 0; */
+  text-align: center;
+}
+
+.press:active {
+  transform: translateY(4px);
+
 }
 
