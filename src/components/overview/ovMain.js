@@ -1,12 +1,13 @@
+/* eslint-disable import/named */
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 import '../localStyles/ov.css';
 import axios from 'axios';
 import {
-  Navbar, Container, Row, Col, Carousel,
+  Navbar, Nav, Container, Row, Col, Carousel,
 } from 'react-bootstrap';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ImageGallery from './components/imageGallery';
 import ProductInfo from './components/productInfo';
 import StyleSelector from './components/styleSelector';
@@ -70,70 +71,29 @@ function Overview({ goToReviews }) {
   };
 
   return (
-  // pure css formatting
-  // <React.Fragment>
-  //   { styles ? <ImageGallery className="image-gallery" selected={selected}/> : null }
-  //   { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected}/> : null }
-  //   { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle}/> : null }
-  //   { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected}/> : null }
-  // </React.Fragment>
-
-    // react bootstrap formatting
-    <Container>
-      <Row className="overview-container">
-        <Col xs={12} s={12} md={6} lg={8}>
-          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick} /> : null }
-        </Col>
-        <Col xs={12} s={12} md={6} lg={4}>
-          { product && styles ? <ProductInfo className="product-info" product={product} styles={styles} selected={selected} sendClick={sendClick} goToReviews={goToReviews} /> : null }
-          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick} /> : null }
-          { styles ? <AddToCart className="add-to-cart" styles={styles} selected={selected} sendClick={sendClick} /> : null }
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Borgin and Burkes</Navbar.Brand>
+        <Nav className="mr-auto" />
+      </Navbar>
+      <Container>
+        <Row className="overview-container">
+          <Col xs={12} s={12} md={6} lg={8}>
+            { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick} /> : null }
+          </Col>
+          <Col xs={12} s={12} md={6} lg={4}>
+            { styles && product ? <ProductInfo className="product-info" product={product} selected={selected} sendClick={sendClick} goToReviews={goToReviews} /> : null }
+            { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick} /> : null }
+            { styles ? <AddToCart className="add-to-cart" selected={selected} sendClick={sendClick} /> : null }
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
-/*
-possible products:
-18201
-  related:
-  18407
-  18871
-  18112
-
-18078
-  related:
-  18079
-  18080
-  18085 - has > 7 thumbnail imgs
-  18084
-
-18445
-  related:
-  18331
-  18405
-  18632
-  19074
-  18191
-  18978
-  18416
-
-18079
-  related:
-  18080
-  18084
-  18083
-  18082
-
-18080
-  related:
-  18083
-  18086
-  18084
-  18079
-  18078
-
-*/
+Overview.propTypes = {
+  goToReviews: PropTypes.instanceOf(Function).isRequired,
+};
 
 export default Overview;

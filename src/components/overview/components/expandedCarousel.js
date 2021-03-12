@@ -33,7 +33,7 @@ function ExpandedCarousel({
     $('.inner-expanded-img').css('transform', 'scale(' + 2 + ')');
     $('.inner-expanded-img').css('cursor', 'zoom-out');
     $('.inner-expanded-img').mousemove((e) => {
-      $('.inner-expanded-img').css('backgroundPositionX', -e.offsetX + 600 + 'px');
+      $('.inner-expanded-img').css('backgroundPositionX', -e.offsetX + 400 + 'px');
       $('.inner-expanded-img').css('backgroundPositionY', -e.offsetY + 600 + 'px');
     });
     setZoomed(true);
@@ -94,5 +94,12 @@ function ExpandedCarousel({
     </>
   );
 }
+
+ExpandedCarousel.propTypes = {
+  selected: PropTypes.instanceOf(Object).isRequired,
+  sendClick: PropTypes.instanceOf(Function).isRequired,
+  setCollapsed: PropTypes.instanceOf(Function).isRequired,
+  setExpandedState: PropTypes.instanceOf(Function).isRequired,
+};
 
 export default ExpandedCarousel;
