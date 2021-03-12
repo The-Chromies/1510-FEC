@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import QuestionsList from './QuestionsList.js';
 import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,20 +8,47 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 const searchIcon = <FontAwesomeIcon icon={faSearch} />
 
-class Search extends React.Component {
+const Search = ({questions}) => {
+  const [input, setInput] = useState('');
+  console.log('THIS IS IN SEARCH', questions);
 
-  render() {
+  //input filters the questions as it is typed
+
+  // const editSearchTerm = (e) => {
+  //   setInput(e.target.value);
+  // };
+
+  //  const dynamicSearch = () => {
+  //   return questions?.filter(question => question.toLowerCase().includes(input.toLowerCase()));
+  //  }
+
+   // render() {
+  //   return (
+  //     <div>
+  //       <form>
+  //         <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} placeholder='Have a question? Search for answers'/>
+  //       </form>
+  //       <br></br>
+  //       <h6>questions list from dummy data</h6>
+  //       <QuestionsList question={this.dynamicSearch()}/>
+  //     </div>
+  //   );
+  //}
+
     return(
       <Container>
-         <div class="input-group mb-5">
-        <input type="text" class="form-control py-2 border-right-0 border" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary border-left-0 border" type="button">{searchIcon}</button>
-         </div>
+        <div className="input-group mb-5">
+          <input type="text" class="form-control py-2 border-right-0 border" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." aria-label="Recipient's username" aria-describedby="basic-addon2"
+          // value={input}
+          // onChange={editSearchTerm}
+          />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary border-left-0 border" type="button">{searchIcon}</button>
+        </div>
+        {/* <QuestionsList question={this.dynamicSearch} /> */}
         </div>
       </Container>
     )
-  }
 }
 
 export default Search;
@@ -60,4 +87,4 @@ export default Search;
   //       <QuestionsList question={this.dynamicSearch()}/>
   //     </div>
   //   );
-  // }
+  //}
