@@ -31,7 +31,7 @@ const Question = (props) => (
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form className="need-to-validate">
+        <Form className="need-to-validate1">
           <Row>
           <Col lg={12}>
               <Form.Group controlId="formBasicEmail">

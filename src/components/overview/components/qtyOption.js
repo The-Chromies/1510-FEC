@@ -15,4 +15,8 @@ function QtyOption({ qty, sendClick }) {
   );
 }
 
+QtyOption.påropTypes = {
+  sendClick: PropTypes.instanceOf(Function).isRequired,
+};
+
 export default QtyOption;

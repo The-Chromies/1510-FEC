@@ -1,15 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Modal, Col, Row,
 } from 'react-bootstrap';
 import axios from 'axios';
+import uuid from 'node-uuid';
+import CharRadio from './charRadio';
+import { ContactContext } from '../../../Global-Context';
 
 function ReviewListContainer({
   productId, showNewRev, handleClose, findReviewMeta,
 }) {
+  const {
+    localServer,
+  } = useContext(ContactContext);
   const formValues = Object.freeze({
     product_id: Number(productId),
     rating: 1,
@@ -25,6 +31,52 @@ function ReviewListContainer({
 
   //   const htmlEncode = (str) => String(str).replace(/[^\w. ]/gi, (c) => `&#${c.charCodeAt(0)};`);
 
+  const charLabels = {
+    Size: {
+      labelLow: 'A size too small',
+      labelLowMid: '½ a size too small',
+      labelMid: 'Perfect',
+      labelMidHigh: '½ a size too big',
+      labelHigh: 'A size too wide',
+    },
+    Width: {
+      labelLow: 'Too narrow',
+      labelLowMid: 'Slightly narrow',
+      labelMid: 'Perfect',
+      labelMidHigh: 'Slightly wide',
+      labelHigh: 'Too wide',
+    },
+    Comfort: {
+      labelLow: 'Uncomfortable',
+      labelLowMid: 'Slightly uncomfortable',
+      labelMid: 'Ok',
+      labelMidHigh: 'Comfortable',
+      labelHigh: 'Perfect',
+    },
+    Quality: {
+      labelLow: 'Poor',
+      labelLowMid: 'Below average',
+      labelMid: 'What I expected',
+      labelMidHigh: 'Pretty great',
+      labelHigh: 'Perfect',
+    },
+    Length: {
+      labelLow: 'Runs Short',
+      labelLowMid: 'Runs slightly short',
+      labelMid: 'Perfect',
+      labelMidHigh: 'Runs slightly long',
+      labelHigh: 'Runs long',
+    },
+    Fit: {
+      labelLow: 'Runs tight',
+      labelLowMid: 'Runs slightly tight',
+      labelMid: 'Perfect',
+      labelMidHigh: 'Runs slightly long',
+      labelHigh: 'Runs long',
+    },
+  };
+  const charKeys = Object.keys(charLabels);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -38,7 +90,7 @@ function ReviewListContainer({
     console.log(formData);
     axios({
       method: 'post',
-      url: 'http://localhost:3000/ratings/createReview',
+      url: `http://${localServer}:3000/ratings/createReview`,
       data: formData,
     })
       .then((result) => {
@@ -72,6 +124,11 @@ function ReviewListContainer({
                   Enter your email:
                   <input name="email" onChange={handleChange} type="email" className="form-control has-validation" id="recipient-email" placeholder="name@example.com" required />
                 </label>
+              </Col>
+            </Row>
+            <Row sm={12} md={12}>
+              <Col>
+                {charKeys.map((char) => <CharRadio key={uuid()} name={char} charList={charLabels[char]} />)}
               </Col>
             </Row>
             <Row>

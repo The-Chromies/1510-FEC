@@ -14,26 +14,6 @@ import RelatedList from './RelatedList';
 import OutfitCarousel from './OutfitCarousel';
 import { ContactContext } from '../../Global-Context';
 
-// const responsive = {
-//   superLargeDesktop: {
-//     // the naming can be any, depends on you.
-//     breakpoint: { max: 4000, min: 3000 },
-//     items: 5,
-//   },
-//   desktop: {
-//     breakpoint: { max: 3000, min: 1024 },
-//     items: 5,
-//   },
-//   tablet: {
-//     breakpoint: { max: 1024, min: 464 },
-//     items: 3,
-//   },
-//   mobile: {
-//     breakpoint: { max: 464, min: 0 },
-//     items: 1,
-//   },
-// };
-
 const useStyles = makeStyles((theme) => ({
   largeIcon: {
     width: 100,
@@ -56,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RelatedAndComparison() {
   const {
-    productId, setProductId, revCount, avgRating, generateStarImage, outfitProduct, setOutfitProduct, outfitStyle, setOutfitStyle, getProduct, getStyle, handelAddOutfit,
+    localServer, productId, setProductId, revCount, avgRating, generateStarImage, outfitProduct, setOutfitProduct, outfitStyle, setOutfitStyle, getProduct, getStyle, handelAddOutfit,
   } = useContext(ContactContext);
 
   const classes = useStyles();
@@ -75,7 +55,7 @@ function RelatedAndComparison() {
   }, [relatedList]);
 
   const getRelatedProducts = (id) => {
-    axios.get(`http://localhost:3000/related/relatedp/${id}`)
+    axios.get(`http://${localServer}:3000/related/relatedp/${id}`)
       .then((results) =>
       // results.data.forEach((id) => {
         //   // console.log('hahahaha', id);
@@ -95,12 +75,12 @@ function RelatedAndComparison() {
     // console.log('running function fufillPromise', relatedList);
     const productDataArr = relatedList.map((id) =>
     // console.log('id from promise array', id);
-      axios.get(`http://localhost:3000/related/product/${id}`)
+      axios.get(`http://${localServer}:3000/related/product/${id}`)
         .then((results) => results.data)
         .catch((err) => {
           console.log('promise array', err);
         }));
-    const styleDataArr = relatedList.map((id) => axios.get(`http://localhost:3000/overview/styles/${id}`)
+    const styleDataArr = relatedList.map((id) => axios.get(`http://${localServer}:3000/overview/styles/${id}`)
       .then((results) => results.data)
       .catch((err) => {
         console.log('STYLES ERROR', err);
@@ -156,7 +136,7 @@ function RelatedAndComparison() {
     <div className="related-comparison-container">
       Related And Comparison
       {relatedList && productInfo && styles
-        ? <RelatedList relatedProducts={relatedList} productInfo={productInfo} styles={styles} rating={avgRating} stars={generateStarImage} />
+        ? <RelatedList className="centerList" relatedProducts={relatedList} productInfo={productInfo} styles={styles} rating={avgRating} stars={generateStarImage} />
         : null}
 
       {/* <IconButton className={classes.largeIcon}>

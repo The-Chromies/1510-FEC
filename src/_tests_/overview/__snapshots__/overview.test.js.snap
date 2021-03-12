@@ -3,20 +3,36 @@
 exports[`Overview should render without props 1`] = `ShallowWrapper {}`;
 
 exports[`Should match snapshot for each component matches the overview snapshot 1`] = `
-<div
-  className="container"
->
+Array [
+  <nav
+    className="navbar navbar-expand navbar-dark bg-dark"
+  >
+    <a
+      className="navbar-brand"
+      href="#home"
+    >
+      Borgin and Burkes
+    </a>
+    <div
+      className="mr-auto navbar-nav"
+      onKeyDown={[Function]}
+    />
+  </nav>,
   <div
-    className="overview-container row"
+    className="container"
   >
     <div
-      className="col-lg-8 col-md-6 col-12"
-      s={12}
-    />
-    <div
-      className="col-lg-4 col-md-6 col-12"
-      s={12}
-    />
-  </div>
-</div>
+      className="overview-container row"
+    >
+      <div
+        className="col-lg-8 col-md-6 col-12"
+        s={12}
+      />
+      <div
+        className="col-lg-4 col-md-6 col-12"
+        s={12}
+      />
+    </div>
+  </div>,
+]
 `;

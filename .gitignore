@@ -9,8 +9,9 @@ client/node_modules
 backend/env/config.js
 
 # security
-1510-FEC.pem
+*.pem
 config.js
+localServ.js
 
 # testing
 /coverage

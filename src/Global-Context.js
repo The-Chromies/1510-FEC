@@ -3,11 +3,13 @@
 /* eslint-disable prefer-const */
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
+import uuid from 'node-uuid';
+import LocalServer from './env/localServ';
 
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [productId, setProductId] = useState(18085);
+  let [productId, setProductId] = useState(18078);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
   const [outfitProduct, setOutfitProduct] = useState([]);
@@ -15,6 +17,7 @@ export const ContactContextProvider = (props) => {
   const [product, setProduct] = useState(null);
   const [styles, setStyles] = useState(null);
   const [selected, setSelected] = useState(null);
+  const localServer = LocalServer;
   // Look at 18078 summary container is strange
   // Look at at images for 18079 in overview
   // Ratings and review should not show up for 18080
@@ -28,7 +31,7 @@ export const ContactContextProvider = (props) => {
       widget: widgetName,
       time: date.toTimeString(),
     };
-    axios.post('http://localhost:3000/interactions', clickData)
+    axios.post(`http://${localServer}:3000/interactions`, clickData)
       .then((res) => {
         console.log('SUCCESSFUL POST TO INTERACTIONS');
         console.log(res);
@@ -49,16 +52,16 @@ export const ContactContextProvider = (props) => {
   //     });
   // };
 
-  const getStyles = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
-      .then((res) => {
-        setStyles(res.data);
-        setSelected(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getStyles = (id) => {
+  //   axios.get(`http://localhost:3000/overview/styles/${id}`)
+  //     .then((res) => {
+  //       setStyles(res.data);
+  //       setSelected(res.data.results[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const generateStarImage = (starCount, keyId) => {
     let remainder = 0;
@@ -67,39 +70,52 @@ export const ContactContextProvider = (props) => {
     for (let j = 0; j < 5; j += 1) {
       switch (remainder) { // 4.25
         case 0.25:
-          starArr.push(<img src="public/icons/star/quarterStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/quarterStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.25;
           break;
         case 0.50:
-          starArr.push(<img src="public/icons/star/halfStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/halfStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.50;
           break;
         case 0.75:
-          starArr.push(<img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/threeQuarterStar.png" alt="" className="star-image" /></div>);
           remainder -= 0.75;
           break;
         case 1:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/fullStar.png" alt="" className="star-image" /></div>);
           remainder -= 1;
           break;
         case 0:
-          starArr.push(<img src="public/icons/star/emptyStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/emptyStar.png" alt="" className="star-image" /></div>);
           break;
         default:
-          starArr.push(<img src="public/icons/star/fullStar.png" alt="" className="star-image" />);
+          starArr.push(<div key={uuid()}><img src="public/icons/star/fullStar.png" alt="" className="star-image" /></div>);
           remainder -= 1;
           break;
       }
     }
-    return starArr;
+    return (<div className="inline-star" style={{ display: 'inline-flex' }} key={uuid()}>{starArr}</div>);
   };
 
   const getProduct = (id) => {
-    axios.get(`http://localhost:3000/related/product/${id}`)
+    axios.get(`http://${localServer}:3000/related/product/${id}`)
       .then((results) => {
         console.log('OUTFITPRODUCT!!', results.data);
         // setRelatedList([results.data, ...relatedList]);
         let outfitProductList = [...outfitProduct];
+        // if (outfitProductList.length > 0) {
+        //   outfitProductList.forEach((outfit) => {
+        //     if (outfit.id !== id) {
+        //       outfitProductList.push(results.data);
+        //       setOutfitProduct(outfitProductList);
+        //     } else {
+        //       console.log('same prod');
+        //     }
+        //   });
+        // } else {
+        //   outfitProductList.push(results.data);
+        //   setOutfitProduct(outfitProductList);
+        // }
         outfitProductList.push(results.data);
         setOutfitProduct(outfitProductList);
       })
@@ -109,9 +125,23 @@ export const ContactContextProvider = (props) => {
   };
 
   const getStyle = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
+    axios.get(`http://${localServer}:3000/overview/styles/${id}`)
       .then((results) => {
         let outfitStyleList = [...outfitStyle];
+        // if (outfitStyleList.length > 0) {
+        //   outfitStyleList.forEach((style) => {
+        //     console.log('this is the style: ', style);
+        //     // if (style.id !== id) {
+        //     //   outfitStyleList.push(results.data);
+        //     //   setOutfitStyle(outfitStyleList);
+        //     // } else {
+        //     //   console.log('same style');
+        //     // }
+        //   });
+        // } else {
+        //   outfitStyleList.push(results.data);
+        //   setOutfitStyle(outfitStyleList);
+        // }
         outfitStyleList.push(results.data);
         setOutfitStyle(outfitStyleList);
       });
@@ -145,7 +175,7 @@ export const ContactContextProvider = (props) => {
       getProduct,
       getStyle,
       handelAddOutfit,
-      getStyles,
+      localServer,
     }}
     >
       {props.children}

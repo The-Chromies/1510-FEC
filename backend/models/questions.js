@@ -25,6 +25,7 @@ const queries = {
   },
   getQuestions: (id, callback) => {
     console.log('IN THE MODELS');
+    console.log('THE ID', id);
     const options = {
       method: 'get',
       url: `${apiUrl}qa/questions?product_id=18201&page=1&count=5`,
