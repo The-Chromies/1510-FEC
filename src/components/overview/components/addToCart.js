@@ -7,16 +7,20 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
 import QtyOption from './qtyOption';
+import { ContactContext } from '../../../Global-Context';
 
 function AddToCart({ selected, sendClick }) {
   const [size, setSize] = useState(0);
   const [sku, setSku] = useState(0);
   const [noSize, setNoSize] = useState(false);
+  const {
+    handelAddOutfit, productId,
+  } = useContext(ContactContext);
 
   const addSize = (e) => {
     setSize(e.target.value);
@@ -50,6 +54,10 @@ function AddToCart({ selected, sendClick }) {
           console.log(err);
         });
     }
+  };
+
+  const addToRelated = () => {
+    handelAddOutfit(productId);
   };
 
   useEffect(() => {
@@ -100,7 +108,7 @@ function AddToCart({ selected, sendClick }) {
         { selected && Object.keys(selected.skus)[0] !== 'null'
           ? <button type="submit" className="add-to-cart-button" onClick={(e) => { openSize(); addToCart(); sendClick(e); }}>Add to Cart</button>
           : null }
-        <div onClick={(e) => { sendClick(e); }} className="add-to-related">
+        <div onClick={(e) => { sendClick(e); addToRelated(); }} className="add-to-related">
           <img src="../public/imgs/star.png" alt="" id="related-star" />
         </div>
       </div>

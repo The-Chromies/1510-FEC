@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
@@ -71,23 +72,22 @@ function Overview({ goToReviews }) {
 
   return (
     <>
-    <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="#home">Borgin and Burkes</Navbar.Brand>
-    <Nav className="mr-auto">
-    </Nav>
-    </Navbar>
-    <Container>
-      <Row className="overview-container">
-        <Col xs={12} s={12} md={6} lg={8}>
-          { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick} /> : null }
-        </Col>
-        <Col xs={12} s={12} md={6} lg={4}>
-          { styles && product ? <ProductInfo className="product-info" product={product} selected={selected} sendClick={sendClick} goToReviews={goToReviews} /> : null }
-          { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick} /> : null }
-          { styles ? <AddToCart className="add-to-cart" selected={selected} sendClick={sendClick} /> : null }
-        </Col>
-      </Row>
-    </Container>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Borgin and Burkes</Navbar.Brand>
+        <Nav className="mr-auto" />
+      </Navbar>
+      <Container>
+        <Row className="overview-container">
+          <Col xs={12} s={12} md={6} lg={8}>
+            { selected ? <ImageGallery className="image-gallery" selected={selected} currentIndex={currentIndex} resetIndex={resetIndex} sendClick={sendClick} /> : null }
+          </Col>
+          <Col xs={12} s={12} md={6} lg={4}>
+            { styles && product ? <ProductInfo className="product-info" product={product} selected={selected} sendClick={sendClick} goToReviews={goToReviews} /> : null }
+            { styles ? <StyleSelector className="style-selector" styles={styles} setSelectedStyle={setSelectedStyle} resetIndex={resetIndex} sendClick={sendClick} /> : null }
+            { styles ? <AddToCart className="add-to-cart" selected={selected} sendClick={sendClick} /> : null }
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }
