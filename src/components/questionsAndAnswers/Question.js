@@ -6,8 +6,6 @@ const Question = (props) => {
   // console.log('props from question child component', props.question[0]?.question_body);
   const { question } = props;
   console.log('PROPS', props);
-<<<<<<< HEAD
-=======
 
   return (
     <Container>
@@ -38,7 +36,6 @@ const Question = (props) => {
 //     </>
 //   )
 // }
->>>>>>> tmp
 
   return (
     <div>
