@@ -24,7 +24,6 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { ContactContext } from '../../Global-Context';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
@@ -69,31 +68,34 @@ export default function OutfitList(props) {
     console.log('CLICKING CARD');
   };
 
-  const handleDelete = (index) => {
-    // const element = document.getElementById('card');
-    // element.parentNode.removeChild(element);
-    // props.setOutfitProduct(null);
-    let outfitProductCopy = [...outfitProduct];
+  const handleDelete = () => {
+    const outfitProductCopy = [...outfitProduct];
+    let index;
+    if (outfitProductCopy.indexOf(props.product) > -1) {
+      index = outfitProductCopy.indexOf(props.product);
+    }
     outfitProductCopy.splice(index, 1);
+    // console.log('INDEX PRODUCT', index);
     setOutfitProduct(outfitProductCopy);
-    let outfitStyleCopy = [...outfitStyle];
+    const outfitStyleCopy = [...outfitStyle];
     outfitStyleCopy.splice(index, 1);
     setOutfitStyle(outfitStyleCopy);
   };
 
+  console.log('KEYKEYKEY', props.product);
   return (
     <>
       {/* <IconButton className={classes.largeIcon}>
-          Add Outfit!
-          <AddBoxIcon className={classes.bIcon} onClick={handelAddOutfit} />
-        </IconButton> */}
+        Add Outfit!
+        <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
+      </IconButton> */}
 
       <Card className={classes.root}>
         <CardHeader
           className="cardHeader"
           action={(
             <IconButton>
-              <DeleteForeverIcon onClick={() => { handleDelete(props.key);}} />
+              <DeleteForeverIcon onClick={() => { handleDelete(); }} />
             </IconButton>
             )}
         // title={props.product.category}

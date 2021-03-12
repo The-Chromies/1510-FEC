@@ -7,6 +7,8 @@ import 'react-multi-carousel/lib/styles.css';
 import { Paper, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import OutfitList from './OutfitList';
 import { ContactContext } from '../../Global-Context';
 
@@ -14,11 +16,11 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 4,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -39,13 +41,34 @@ const useStyles = makeStyles((theme) => ({
     // justifyContent: 'center',
     marginTop: 100,
     // paddingLeft: 200,
+    // position: 'absolute',
+    // top: 50,
 
   },
   bIcon: {
     width: 100,
     height: 100,
-    // display: 'inline-block',
+    position: 'absolute',
+    // top: 50,
+    // alignItems: 'center',
 
+  },
+  boxing: {
+    // display: 'flex',
+    // flexWrap: 'nowrap',
+    // padding: 0,
+    // justifyContent: 'flex-start',
+    // overflow: 'hidden',
+    // flexDirection: 'row',
+    // alignContent: 'flex-start',
+    position: 'relative',
+    left: 10,
+    maxHeight: 400,
+  },
+  carousel: {
+    position: 'relative',
+    left: 150,
+    bottom: 200,
   },
 
 }));
@@ -57,28 +80,35 @@ function OutfitCarousel(props) {
   const classes = useStyles();
   // console.log('hhhhhhhhhhhh', outfitStyle[0]);
 
-  let thumb = '';
+  // let thumb = '';
 
-  const outfitListMap = [];
-  outfitProduct.map((product, i) => {
-    if (outfitStyle[i]) {
-      thumb = outfitStyle[i].results[0].photos[0].thumbnail_url;
-    }
-    outfitListMap.push(<OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} styles={thumb} />);
-    return outfitListMap;
-  });
+  // const outfitListMap = [];
+  // outfitProduct.map((product, i) => {
+  //   if (outfitStyle[i]) {
+  //     thumb = outfitStyle[i].results[0].photos[0].thumbnail_url;
+  //   }
+  //   outfitListMap.push(<OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} styles={thumb} />);
+  //   return outfitListMap;
+  // });
 
   return (
-    <Carousel
-      className="relatedCarousel"
-      responsive={responsive}
-    >
+    <Container className={classes.boxing}>
       <IconButton className={classes.largeIcon}>
         Add Outfit!
         <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
       </IconButton>
-      {outfitStyle && outfitProduct ? outfitListMap : null}
-    </Carousel>
+      <Carousel
+        // className="relatedCarousel"
+        responsive={responsive}
+        className={classes.carousel}
+      >
+
+        {/* {outfitStyle && outfitProduct ? outfitListMap : null} */}
+        {outfitStyle && outfitProduct ? outfitProduct.map((product, i) => (
+          <OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} styles={outfitStyle[i] && outfitStyle[i].results[0].photos[0].thumbnail_url} />
+        )) : null}
+      </Carousel>
+    </Container>
   );
 }
 
