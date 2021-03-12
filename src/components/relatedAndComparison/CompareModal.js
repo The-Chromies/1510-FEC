@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
+import { ContactContext } from '../../Global-Context';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TransitionsModal(props) {
+  const {
+    localServer,
+  } = useContext(ContactContext);
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -39,7 +44,7 @@ export default function TransitionsModal(props) {
   };
 
   const getProduct = (id) => {
-    axios.get(`http://localhost:3000/related/product/${id}`)
+    axios.get(`http://${localServer}:3000/related/product/${id}`)
       .then((results) => {
       // console.log('jajajaj', results.data);
       // setRelatedList([results.data, ...relatedList]);

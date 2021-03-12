@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-const */
 /* eslint-disable vars-on-top */
 import React, { useState, useEffect, useContext } from 'react';
@@ -16,7 +17,7 @@ import metaTestData from './testData/metadataTest';
 
 function RatingsAndReviews(props) {
   let {
-    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating,
+    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating, localServer,
   } = useContext(ContactContext);
 
   // Adjustments for Testing
@@ -71,7 +72,7 @@ function RatingsAndReviews(props) {
 
   const findReviews = () => {
     if (revCount > 0) {
-      axios.get(`http://localhost:3000/ratings/review/${productId}/${sortKey}/${revCount}`)
+      axios.get(`http://${localServer}:3000/ratings/review/${productId}/${sortKey}/${revCount}`)
         .then((result) => {
           setRevflag(true);
           setReviewListFull(result.data.results);
@@ -88,7 +89,7 @@ function RatingsAndReviews(props) {
   };
 
   const findReviewMeta = () => {
-    axios.get(`http://localhost:3000/ratings/reviewMeta/${productId}`)
+    axios.get(`http://${localServer}:3000/ratings/reviewMeta/${productId}`)
       .then((result) => {
         setReviewMeta(result.data);
         setAvgRating(Number(result.data.ratingAvg));

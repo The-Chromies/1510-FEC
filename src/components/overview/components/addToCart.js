@@ -19,7 +19,7 @@ function AddToCart({ selected, sendClick }) {
   const [sku, setSku] = useState(0);
   const [noSize, setNoSize] = useState(false);
   const {
-    handelAddOutfit, productId,
+    handelAddOutfit, productId, localServer,
   } = useContext(ContactContext);
 
   const addSize = (e) => {
@@ -44,7 +44,7 @@ function AddToCart({ selected, sendClick }) {
       sku_id: sku,
     };
     if (sku !== 0) {
-      axios.post('http://localhost:3000/overview', skuData)
+      axios.post(`http://${localServer}:3000/overview`, skuData)
         .then((res) => {
           console.log('SUCCESSFUL POST TO CART');
           console.log(res);

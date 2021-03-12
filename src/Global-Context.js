@@ -4,6 +4,7 @@
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
 import uuid from 'node-uuid';
+import LocalServer from './env/localServ';
 
 export const ContactContext = createContext();
 
@@ -16,6 +17,7 @@ export const ContactContextProvider = (props) => {
   const [product, setProduct] = useState(null);
   const [styles, setStyles] = useState(null);
   const [selected, setSelected] = useState(null);
+  const localServer = LocalServer;
   // Look at 18078 summary container is strange
   // Look at at images for 18079 in overview
   // Ratings and review should not show up for 18080
@@ -29,7 +31,7 @@ export const ContactContextProvider = (props) => {
       widget: widgetName,
       time: date.toTimeString(),
     };
-    axios.post('http://localhost:3000/interactions', clickData)
+    axios.post(`http://${localServer}:3000/interactions`, clickData)
       .then((res) => {
         console.log('SUCCESSFUL POST TO INTERACTIONS');
         console.log(res);
@@ -96,7 +98,7 @@ export const ContactContextProvider = (props) => {
   };
 
   const getProduct = (id) => {
-    axios.get(`/related/product/${id}`)
+    axios.get(`http://${localServer}/related/product/${id}`)
       .then((results) => {
         console.log('OUTFITPRODUCT!!', results.data);
         // setRelatedList([results.data, ...relatedList]);
@@ -123,7 +125,7 @@ export const ContactContextProvider = (props) => {
   };
 
   const getStyle = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
+    axios.get(`http://${localServer}:3000/overview/styles/${id}`)
       .then((results) => {
         let outfitStyleList = [...outfitStyle];
         // if (outfitStyleList.length > 0) {
@@ -173,6 +175,7 @@ export const ContactContextProvider = (props) => {
       getProduct,
       getStyle,
       handelAddOutfit,
+      localServer,
     }}
     >
       {props.children}

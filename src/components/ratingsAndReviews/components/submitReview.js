@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Modal, Col, Row,
@@ -8,10 +8,14 @@ import {
 import axios from 'axios';
 import uuid from 'node-uuid';
 import CharRadio from './charRadio';
+import { ContactContext } from '../../../Global-Context';
 
 function ReviewListContainer({
   productId, showNewRev, handleClose, findReviewMeta,
 }) {
+  const {
+    localServer,
+  } = useContext(ContactContext);
   const formValues = Object.freeze({
     product_id: Number(productId),
     rating: 1,
@@ -86,7 +90,7 @@ function ReviewListContainer({
     console.log(formData);
     axios({
       method: 'post',
-      url: 'http://localhost:3000/ratings/createReview',
+      url: `http://${localServer}:3000/ratings/createReview`,
       data: formData,
     })
       .then((result) => {

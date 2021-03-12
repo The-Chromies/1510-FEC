@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RelatedAndComparison() {
   const {
-    productId, setProductId, revCount, avgRating, generateStarImage, outfitProduct, setOutfitProduct, outfitStyle, setOutfitStyle, getProduct, getStyle, handelAddOutfit,
+    localServer, productId, setProductId, revCount, avgRating, generateStarImage, outfitProduct, setOutfitProduct, outfitStyle, setOutfitStyle, getProduct, getStyle, handelAddOutfit,
   } = useContext(ContactContext);
 
   const classes = useStyles();
@@ -55,7 +55,7 @@ function RelatedAndComparison() {
   }, [relatedList]);
 
   const getRelatedProducts = (id) => {
-    axios.get(`http://localhost:3000/related/relatedp/${id}`)
+    axios.get(`http://${localServer}:3000/related/relatedp/${id}`)
       .then((results) =>
       // results.data.forEach((id) => {
         //   // console.log('hahahaha', id);
@@ -75,12 +75,12 @@ function RelatedAndComparison() {
     // console.log('running function fufillPromise', relatedList);
     const productDataArr = relatedList.map((id) =>
     // console.log('id from promise array', id);
-      axios.get(`http://localhost:3000/related/product/${id}`)
+      axios.get(`http://${localServer}:3000/related/product/${id}`)
         .then((results) => results.data)
         .catch((err) => {
           console.log('promise array', err);
         }));
-    const styleDataArr = relatedList.map((id) => axios.get(`http://localhost:3000/overview/styles/${id}`)
+    const styleDataArr = relatedList.map((id) => axios.get(`http://${localServer}:3000/overview/styles/${id}`)
       .then((results) => results.data)
       .catch((err) => {
         console.log('STYLES ERROR', err);

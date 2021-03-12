@@ -16,7 +16,7 @@ import axios from 'axios';
 const plusIcon = <FontAwesomeIcon icon={faPlus} />;
 
 function QuestionsAndAnswers() {
-  const { productId, setProductId } = useContext(ContactContext);
+  const { productId, setProductId, localServer } = useContext(ContactContext);
   const handleOpen = () => setShowNewRev(true);
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -24,7 +24,7 @@ function QuestionsAndAnswers() {
 
   const findQuestions = (id) => {
     console.log('THIS IS ID', id)
-    axios.get('http://localhost:3000/qa/questions')
+    axios.get(`http://${localServer}:3000/qa/questions`)
       .then((res) => {
         console.log('USE EFFECT SUCCESS')
         console.log('THESE ARE RESULTS', res.data.results);

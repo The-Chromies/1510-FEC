@@ -43,7 +43,7 @@ export default function OutfitList(props) {
   // console.log('HEY', props.styles[0].results)
 
   const {
-    productId, setProductId, outfitStyle, getProduct, getStyle, handelAddOutfit, outfitProduct, setOutfitProduct, setOutfitStyle,
+    productId, setProductId, outfitStyle, getProduct, getStyle, handelAddOutfit, outfitProduct, setOutfitProduct, setOutfitStyle, localServer,
   } = useContext(ContactContext);
   const classes = useStyles();
 
