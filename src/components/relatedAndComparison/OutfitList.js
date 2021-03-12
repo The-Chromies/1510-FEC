@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import clsx from 'clsx';
@@ -22,6 +22,8 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import { ContactContext } from '../../Global-Context';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,117 +52,74 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-block',
 
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
 
 }));
 
 export default function OutfitList(props) {
-  // console.log('CARDDDD', props.styles);
+  console.log('CARDDDD', props.styles);
   // console.log('HEY', props.styles[0].results)
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const {
+    productId, setProductId, outfitStyle, getProduct, getStyle, handelAddOutfit, outfitProduct, setOutfitProduct, setOutfitStyle,
+  } = useContext(ContactContext);
+  const classes = useStyles();
 
   const handleCardClick = () => {
     //* ****must route to overview with id of selected product*****
     console.log('CLICKING CARD');
   };
 
-  const handelAddOutfit = () => {
-    alert('You added to your outfit!');
+  const handleDelete = (index) => {
+    // const element = document.getElementById('card');
+    // element.parentNode.removeChild(element);
+    // props.setOutfitProduct(null);
+    let outfitProductCopy = [...outfitProduct];
+    outfitProductCopy.splice(index, 1);
+    setOutfitProduct(outfitProductCopy);
+    let outfitStyleCopy = [...outfitStyle];
+    outfitStyleCopy.splice(index, 1);
+    setOutfitStyle(outfitStyleCopy);
   };
 
   return (
     <>
-      <div className="outfitContainer">
-        <IconButton className={classes.largeIcon}>
+      {/* <IconButton className={classes.largeIcon}>
           Add Outfit!
           <AddBoxIcon className={classes.bIcon} onClick={handelAddOutfit} />
-        </IconButton>
+        </IconButton> */}
 
-        <Card className={classes.root}>
-          <CardHeader
-            className="cardHeader"
-            action={
-              <DeleteForeverIcon />
-        }
+      <Card className={classes.root}>
+        <CardHeader
+          className="cardHeader"
+          action={(
+            <IconButton>
+              <DeleteForeverIcon onClick={() => { handleDelete(props.key);}} />
+            </IconButton>
+            )}
         // title={props.product.category}
-        // subheader={props.product.category}
-            subheader="Product Category"
-          />
-          <CardMedia
-            onClick={handleCardClick}
-            className={classes.media}
-            image={props.styles}
-        // title={props.product.name}
-            title="Product Name"
-          />
-          <CardContent onClick={handleCardClick}>
-            <div className="cardInfo" variant="body2" color="textSecondary">
-              <h4>Product Name</h4>
-              {'Product Description'.substring(0, 100).concat('...')}
-              <h5>default Price</h5>
-            </div>
-          </CardContent>
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded,
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>Method:</Typography>
-              <Typography paragraph>
-                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                minutes.
-              </Typography>
-              <Typography paragraph>
-                Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-              </Typography>
-              <Typography paragraph>
-                Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                minutes more. (Discard any mussels that don’t open.)
-              </Typography>
-              <Typography>
-                Set aside off of the heat to let rest for 10 minutes, and then serve.
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
-      </div>
+          subheader={props.product.category}
+        />
+        <CardMedia
+          onClick={handleCardClick}
+          className={classes.media}
+          image={props.styles}
+          title={props.product.name}
+        />
+        <CardContent onClick={handleCardClick}>
+          <div className="cardInfo" variant="body2" color="textSecondary">
+            <h4>{props.product.name}</h4>
+            {props.product.description.substring(0, 100).concat('...')}
+            <h5>{props.product.default_price}</h5>
+            <div>{props.stars(props.rating)}</div>
+          </div>
+        </CardContent>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+      </Card>
     </>
   );
 }
@@ -168,4 +127,9 @@ export default function OutfitList(props) {
 OutfitList.propTypes = {
   // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(Array).isRequired,
+  rating: PropTypes.instanceOf(Array).isRequired,
+  stars: PropTypes.instanceOf(Function).isRequired,
+  product: PropTypes.instanceOf(Array).isRequired,
+  // setOutfitProduct: PropTypes.instanceOf(Function).isRequired,
+
 };

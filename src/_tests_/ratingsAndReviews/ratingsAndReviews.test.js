@@ -60,17 +60,17 @@ describe('rrMain Tests', () => {
     expect(wrapper.find('.review-box')).toBeTruthy();
   });
 
-  // it('SummaryContainer React Component Present', () => {
-  //   expect(wrapper.shallow(<SummaryContainer {...dummyprops} />).toBe(true));
-  // });
+  it('SummaryContainer React Component Present', () => {
+    expect(wrapper.shallow(<SummaryContainer {...dummyprops} />).toBe(true));
+  });
 
-  // it('ReviewFilter React Component Present', () => {
-  //   expect(wrapper.shallow(<ReviewFilter {...dummyprops} />).toBe(true));
-  // });
+  it('ReviewFilter React Component Present', () => {
+    expect(wrapper.shallow(<ReviewFilter {...dummyprops} />).toBe(true));
+  });
 
-  // it('ReviewListContainer React Component Present', () => {
-  //   expect(wrapper.shallow(<ReviewListContainer {...dummyprops} />).toBe(true));
-  // });
+  it('ReviewListContainer React Component Present', () => {
+    expect(wrapper.shallow(<ReviewListContainer {...dummyprops} />).toBe(true));
+  });
 });
 
 describe('Compare Snapshot for each component', () => {
@@ -155,11 +155,11 @@ describe('Filter Container Check', () => {
   });
 });
 
-// it('renders list-items', () => {
-//   const items = ['one', 'two', 'three'];
-//   const wrapper = shallow(<List items={items} />);
+it('renders list-items', () => {
+  const items = ['one', 'two', 'three'];
+  const wrapper = shallow(<List items={items} />);
 
-//   // Expect the wrapper object to be defined
-//   expect(wrapper.find('.list-items')).toBeDefined();
-//   expect(wrapper.find('.item')).toHaveLength(items.length);
-// });
+  // Expect the wrapper object to be defined
+  expect(wrapper.find('.list-items')).toBeDefined();
+  expect(wrapper.find('.item')).toHaveLength(items.length);
+});

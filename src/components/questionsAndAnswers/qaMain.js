@@ -1,5 +1,5 @@
 import '../localStyles/qa.css';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   Navbar, Container, Row, Col, Button, Modal,
 } from 'react-bootstrap';
@@ -11,6 +11,7 @@ import AddQuestion from './AddQuestion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuestionsList from './QuestionsList';
 import { ContactContext } from '../../Global-Context';
+import axios from 'axios';
 
 const plusIcon = <FontAwesomeIcon icon={faPlus} />;
 
@@ -18,6 +19,30 @@ function QuestionsAndAnswers() {
   const { productId, setProductId } = useContext(ContactContext);
   const handleOpen = () => setShowNewRev(true);
   const [modalShow, setModalShow] = React.useState(false);
+
+  const [questions, setQuestions] = useState([]);
+
+  const findQuestions = (id) => {
+    console.log('THIS IS ID',id)
+    axios.get('http://localhost:3000/qa/questions')
+    .then((res) => {
+      console.log('USE EFFECT SUCCESS')
+      console.log('THESE ARE RESULTS', res.data.results);
+
+      const allQuestions = res.data.results;
+      setQuestions(allQuestions);
+    })
+    .catch((err) => {
+      console.log('USE EFFECT FAILS');
+      console.log(err);
+    });
+  }
+
+  useEffect(() => {
+    findQuestions(productId);
+  }, []);
+
+
   return (
     <div>
 
@@ -25,8 +50,8 @@ function QuestionsAndAnswers() {
         <h5 className="header">Questions &amp; Answers</h5>
       </Container>
 
-      <Search />
-      <QuestionsList />
+      <Search questions={questions} />
+      <QuestionsList questions={questions} />
 
       <Container>
         <Row>

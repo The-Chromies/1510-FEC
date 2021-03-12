@@ -7,6 +7,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Paper, Button } from '@material-ui/core';
 import ProductCard from './ProductCard';
+import OutfitList from './OutfitList';
 
 const responsive = {
   superLargeDesktop: {
@@ -38,7 +39,6 @@ function RelatedList(props) {
         <ProductCard product={product} key={i} styles={props.styles[i].results[0].photos[0].thumbnail_url} productFeatures={product.features} rating={props.rating} stars={props.stars} />
       ))}
     </Carousel>
-
   );
 }
 
