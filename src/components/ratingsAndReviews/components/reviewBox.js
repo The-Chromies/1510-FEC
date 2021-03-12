@@ -1,15 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
 import axios from 'axios';
 import uuid from 'node-uuid';
+import { ContactContext } from '../../../Global-Context';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
   // console.log(review);
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
+  const {
+    localServer,
+  } = useContext(ContactContext);
 
   const dateVal = new Date(review.date);
   const month = dateVal.getMonth() + 1;
@@ -26,7 +30,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
     // console.log(e);
     axios({
       method: 'put',
-      url: `http://localhost:3000/ratings/helpful/${id}`,
+      url: `http://${localServer}:3000/ratings/helpful/${id}`,
     })
       .then((result) => {
         console.log(result);
@@ -44,7 +48,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
   const handleReport = (e, id) => {
     axios({
       method: 'put',
-      url: `http://localhost:3000/ratings/report/${id}`,
+      url: `http://${localServer}:3000/ratings/report/${id}`,
     })
       .then((result) => {
         if (reportRef.current) {

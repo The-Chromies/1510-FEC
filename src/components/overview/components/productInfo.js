@@ -17,7 +17,7 @@ function ProductInfo({
   product, selected, goToReviews, sendClick,
 }) {
   const {
-    productId, setProductId, generateStarImage, revCount, avgRating, clickTracker,
+    productId, setProductId, generateStarImage, revCount, avgRating, clickTracker, localServer,
   } = useContext(ContactContext);
 
   return (
@@ -47,13 +47,13 @@ function ProductInfo({
       </div>
       {/* facebook redirect error will go away after deployment/no longer using localhost
       currently will reciever error: Parameter 'href' should represent a valid URL */}
-      <FacebookShareButton url="http://localhost:8080" quote="Check out this product!">
+      <FacebookShareButton url="http://3.19.64.77:3000" quote="Check out this product!">
         <FacebookIcon size={32} round onClick={() => { sendClick({ target: { className: 'facebook-share' } }); }} />
       </FacebookShareButton>
-      <PinterestShareButton url="http://localhost:8080" media={selected}>
+      <PinterestShareButton url="http://3.19.64.77:3000" media={selected}>
         <PinterestIcon size={32} round onClick={() => { sendClick({ target: { className: 'pinterest-share' } }); }} />
       </PinterestShareButton>
-      <TwitterShareButton url="http://localhost:8080" title="Check out this product!">
+      <TwitterShareButton url="http://3.19.64.77:3000" title="Check out this product!">
         <TwitterIcon size={32} round onClick={() => { sendClick({ target: { className: 'twitter-share' } }); }} />
       </TwitterShareButton>
     </div>

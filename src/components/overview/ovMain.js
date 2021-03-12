@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Overview({ goToReviews }) {
   const {
-    productId, setProductId, generateStarImage, revCount, avgRating, clickTracker,
+    productId, setProductId, generateStarImage, revCount, avgRating, clickTracker, localServer,
   } = useContext(ContactContext);
 
   const [product, setProduct] = useState(null);
@@ -30,7 +30,7 @@ function Overview({ goToReviews }) {
   };
 
   const getProduct = (id) => {
-    axios.get(`http://localhost:3000/overview/product/${id}`)
+    axios.get(`http://${localServer}:3000/overview/product/${id}`)
       .then((res) => {
         setProduct(res.data);
       })
@@ -40,7 +40,7 @@ function Overview({ goToReviews }) {
   };
 
   const getStyles = (id) => {
-    axios.get(`http://localhost:3000/overview/styles/${id}`)
+    axios.get(`http://${localServer}:3000/overview/styles/${id}`)
       .then((res) => {
         setStyles(res.data);
         setSelected(res.data.results[0]);
