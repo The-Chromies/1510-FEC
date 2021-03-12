@@ -23,19 +23,19 @@ function QuestionsAndAnswers() {
   const [questions, setQuestions] = useState([]);
 
   const findQuestions = (id) => {
-    console.log('THIS IS ID',id)
+    console.log('THIS IS ID', id)
     axios.get('http://localhost:3000/qa/questions')
-    .then((res) => {
-      console.log('USE EFFECT SUCCESS')
-      console.log('THESE ARE RESULTS', res.data.results);
+      .then((res) => {
+        console.log('USE EFFECT SUCCESS')
+        console.log('THESE ARE RESULTS', res.data.results);
 
-      const allQuestions = res.data.results;
-      setQuestions(allQuestions);
-    })
-    .catch((err) => {
-      console.log('USE EFFECT FAILS');
-      console.log(err);
-    });
+        const allQuestions = res.data.results;
+        setQuestions(allQuestions);
+      })
+      .catch((err) => {
+        console.log('USE EFFECT FAILS');
+        console.log(err);
+      });
   }
 
   useEffect(() => {
@@ -64,8 +64,8 @@ function QuestionsAndAnswers() {
             </Button>
             <AddQuestion show={modalShow} onHide={() => setModalShow(false)} />
           </Col>
-          <Col/>
-          <Col/>
+          <Col />
+          <Col />
         </Row>
       </Container>
     </div>

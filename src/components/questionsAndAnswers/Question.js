@@ -26,31 +26,6 @@ const Question = (props) => {
     </Container>
 
   )
-}
-
-// export default function Question(props) {
-//   console.log(props.questions)
-
-//   return (
-//     <>
-//     </>
-//   )
-// }
-
-  return (
-    <div>
-      hello there
-    </div>
-  );
 };
-
-// export default function Question(props) {
-//   console.log(props.questions)
-
-//   return (
-//     <>
-//     </>
-//   )
-// }
 
 export default Question;
