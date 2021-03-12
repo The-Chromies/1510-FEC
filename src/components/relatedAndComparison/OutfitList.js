@@ -24,7 +24,6 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { ContactContext } from '../../Global-Context';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
@@ -35,22 +34,6 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-  },
-  largeIcon: {
-    width: 100,
-    height: 100,
-    display: 'inline-block',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 350,
-    paddingRight: 50,
-
-  },
-  bIcon: {
-    width: 100,
-    height: 100,
-    display: 'inline-block',
-
   },
 
 }));
@@ -69,57 +52,57 @@ export default function OutfitList(props) {
     console.log('CLICKING CARD');
   };
 
-  const handleDelete = (index) => {
-    // const element = document.getElementById('card');
-    // element.parentNode.removeChild(element);
-    // props.setOutfitProduct(null);
-    let outfitProductCopy = [...outfitProduct];
+  const handleDelete = () => {
+    const outfitProductCopy = [...outfitProduct];
+    let index;
+    if (outfitProductCopy.indexOf(props.product) > -1) {
+      index = outfitProductCopy.indexOf(props.product);
+    }
     outfitProductCopy.splice(index, 1);
+    // console.log('INDEX PRODUCT', index);
     setOutfitProduct(outfitProductCopy);
-    let outfitStyleCopy = [...outfitStyle];
+    const outfitStyleCopy = [...outfitStyle];
     outfitStyleCopy.splice(index, 1);
     setOutfitStyle(outfitStyleCopy);
   };
 
+  console.log('KEYKEYKEY', props.product);
   return (
     <>
-      {/* <IconButton className={classes.largeIcon}>
-          Add Outfit!
-          <AddBoxIcon className={classes.bIcon} onClick={handelAddOutfit} />
-        </IconButton> */}
-
-      <Card className={classes.root}>
-        <CardHeader
-          className="cardHeader"
-          action={(
-            <IconButton>
-              <DeleteForeverIcon onClick={() => { handleDelete(props.key);}} />
-            </IconButton>
+      <div className="press">
+        <Card className={classes.root}>
+          <CardHeader
+            className="cardHeader"
+            action={(
+              <IconButton>
+                <DeleteForeverIcon onClick={() => { handleDelete(); }} />
+              </IconButton>
             )}
         // title={props.product.category}
-          subheader={props.product.category}
-        />
-        <CardMedia
-          onClick={handleCardClick}
-          className={classes.media}
-          image={props.styles}
-          title={props.product.name}
-        />
-        <CardContent onClick={handleCardClick}>
-          <div className="cardInfo" variant="body2" color="textSecondary">
-            <h4>{props.product.name}</h4>
-            {props.product.description.substring(0, 100).concat('...')}
-            <h5>{props.product.default_price}</h5>
-            <div>{props.stars(props.rating)}</div>
-          </div>
-        </CardContent>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </Card>
+            subheader={props.product.category}
+          />
+          <CardMedia
+            onClick={handleCardClick}
+            className={classes.media}
+            image={props.styles}
+            title={props.product.name}
+          />
+          <CardContent onClick={handleCardClick}>
+            <div className="cardInfo" variant="body2" color="textSecondary">
+              <h4>{props.product.name}</h4>
+              {props.product.description.substring(0, 100).concat('...')}
+              <h5>{props.product.default_price}</h5>
+              <div>{props.stars(props.rating)}</div>
+            </div>
+          </CardContent>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </Card>
+      </div>
     </>
   );
 }
