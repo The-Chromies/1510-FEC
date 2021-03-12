@@ -93,8 +93,10 @@ function ImageGallery({
   );
 }
 
-// ImageGallery.propTypes = {
-//   styles: PropTypes.instanceOf(Object).isRequired,
-// }
+ImageGallery.propTypes = {
+  selected: PropTypes.instanceOf(Object).isRequired,
+  resetIndex: PropTypes.instanceOf(Function).isRequired,
+  sendClick: PropTypes.instanceOf(Function).isRequired,
+};
 
 export default ImageGallery;

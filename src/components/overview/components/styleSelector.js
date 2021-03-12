@@ -41,6 +41,9 @@ function StyleSelector({styles, setSelectedStyle, resetIndex, sendClick}) {
 
 ProductInfo.propTypes = {
   styles: PropTypes.instanceOf(Object).isRequired,
+  setSelectedStyle: PropTypes.instanceOf(Function).isRequired,
+  resetIndex: PropTypes.instanceOf(Function).isRequired,
+  sendClick: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default StyleSelector;
