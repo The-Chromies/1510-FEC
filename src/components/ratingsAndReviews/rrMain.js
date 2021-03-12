@@ -114,9 +114,9 @@ function RatingsAndReviews(props) {
   }, []);
 
   // Re-render whenever the productId changes across the board
-  useEffect(() => {
-    findReviewMeta();
-  }, [productId]);
+  // useEffect(() => {
+  //   findReviewMeta();
+  // }, [productId]);
 
   // Anytime the sort key updates, fetch the full review list with the new sorted value
   useEffect(() => {

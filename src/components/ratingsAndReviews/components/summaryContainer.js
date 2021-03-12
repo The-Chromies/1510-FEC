@@ -16,6 +16,7 @@ import CharChart from './charChart';
 function SummaryContainer({
   meta, generateStarImage, handleStarClick, starFilter, avgRating,
 }) {
+  console.log('meta', meta)
   // console.log(meta);
   const starList = [];
   let charList = [];
@@ -30,6 +31,7 @@ function SummaryContainer({
   const keys = Object.keys(ratings);
   const countReviews = Number(meta.recommended.false) + Number(meta.recommended.true);
   // console.log('countRev', countReviews)
+  const recPerc = Math.floor(100 * (Number(meta.recommended.true) / (Number(meta.recommended.false) + Number(meta.recommended.true))));
 
   let j = 0;
   for (let i = 1; i <= 5; i += 1) {
@@ -60,6 +62,11 @@ function SummaryContainer({
             <span key="rating-avg-star" className="text-left">{generateStarImage(avgRating, 'summary-inside-star')}</span>
           </Col>
         </Row>
+        <div className="mt-2 mp-20">
+          <span>
+            {`${recPerc}% of users recommend this product`}
+          </span>
+        </div>
         <hr />
         {starFilter ? <span className="hoverStar text-center text-bolder" onClick={() => { handleStarClick(''); }}>Remove Filter</span> : null}
         {starList}

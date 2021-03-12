@@ -122,7 +122,7 @@ function RelatedAndComparison() {
 
   useEffect(() => {
     getRelatedProducts(productId);
-  }, []);
+  }, [productId]);
 
   // const handelAddOutfit = (id) => {
   //   // alert('You added to your outfit!');

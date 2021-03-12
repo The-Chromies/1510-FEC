@@ -63,7 +63,9 @@ export const ContactContextProvider = (props) => {
   //     });
   // };
 
-  const generateStarImage = (starCount, keyId) => {
+  const generateStarImage = (ratingValue, keyId) => {
+    const starCount = ratingValue > 0 ? (Math.round((ratingValue) * 4) / 4).toFixed(2) : 0;
+
     let remainder = 0;
     remainder = starCount - remainder;
     const starArr = [];

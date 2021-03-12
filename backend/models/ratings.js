@@ -137,7 +137,7 @@ const queries = {
       console.log('meta revcount: ', revCount);
       console.log('meta sumValue: ', sumValue);
       response.data.revCount = revCount;
-      response.data.ratingAvg = revCount > 0 ? (Math.round((sumValue / revCount) * 4) / 4).toFixed(2) : 0;
+      response.data.ratingAvg = revCount > 0 ? ((Math.round((sumValue / revCount)*10)/10).toFixed(2)) : 0;
       callback(null, response.data);
     })
       .catch((error) => {
