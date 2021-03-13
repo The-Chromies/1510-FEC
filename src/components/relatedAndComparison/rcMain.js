@@ -67,7 +67,7 @@ function RelatedAndComparison() {
 
   useEffect(() => {
     getRelatedProducts(productId);
-  }, []);
+  }, [productId]);
 
   useEffect(() => {
     console.log('relatedList useEffect', relatedList);

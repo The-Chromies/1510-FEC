@@ -9,6 +9,7 @@ import uuid from 'node-uuid';
 function CharChart({ name, value }) {
   const per = (value / 5) * 100;
 
+  // Set Character Labels
   const charLabels = {
     Size: {
       labelLow: 'Small',

@@ -5,12 +5,10 @@ import {
 } from 'react-bootstrap';
 
 function SummaryStar({
+  // eslint-disable-next-line react/prop-types
   tempKey, name, count, revCount,
 }) {
-  // console.log(tempKey)
-
   const per = (revCount > 0) ? count / revCount : 0;
-  // console.log('per: ', per)
   return (
     <>
       <Row key={`s${tempKey}`}>
@@ -31,7 +29,6 @@ function SummaryStar({
 
 SummaryStar.propTypes = {
   name: PropTypes.number.isRequired,
-  count: PropTypes.number.isRequired,
   tempKey: PropTypes.number.isRequired,
   revCount: PropTypes.number.isRequired,
 };

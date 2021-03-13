@@ -7,12 +7,13 @@ import {
 import axios from 'axios';
 import uuid from 'node-uuid';
 import { ContactContext } from '../../../Global-Context';
+import RenderPhoto from './renderPhoto';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
   // console.log(review);
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
   const {
-    localServer,
+    localServer, clickTracker,
   } = useContext(ContactContext);
 
   const dateVal = new Date(review.date);
@@ -25,6 +26,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
   const reviewRef = useRef();
   const bodyRef = useRef();
 
+  // Submit help post to API
   const handleHelp = (e, id) => {
     // console.log(id);
     // console.log(e);
@@ -45,6 +47,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       });
   };
 
+  // Submit report post to API
   const handleReport = (e, id) => {
     axios({
       method: 'put',
@@ -105,7 +108,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
         <Col className="review-rating justify-content-start" xs={12} md={4} key={`c1${tempKey}`}>
           <span>{generateStarImage(review.rating, `star${tempKey}`)}</span>
         </Col>
-        <Col className="review-profile text-uppercase font-weight-bold col-sm" key={`c2${tempKey}`}>
+        <Col className="review-profile font-weight-bold col-sm" key={`c2${tempKey}`}>
           <span>{review.reviewer_name}</span>
         </Col>
         <Col className="review-profile text-muted font-weight-light justify-content-end col-sm" key={`c3${tempKey}`}>
@@ -115,22 +118,25 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       <div className="review-content" key={`d1${tempKey}`}>
         <Row key={`r2${tempKey}`}>
           <Col key={`c4${tempKey}`}>
-            <h3 className="review-title  text-bolder text-truncate">{review.summary}</h3>
+            <h5 className="review-title  font-weight-bold text-truncate text-break">{review.summary}</h5>
           </Col>
         </Row>
         <Row key={`r3${tempKey}`}>
           <Col key={`c5${tempKey}`}>
-            <span className="review-body text-body border-info lead">{revBody}</span>
+            <span className="review-body text-break text-body border-info">{revBody}</span>
           </Col>
         </Row>
+      </div>
+      <div className="photo-array" key={uuid()}>
+        {review.photos.map((photo) => <RenderPhoto key={uuid()} photo={photo} />)}
       </div>
       <div className="secondary-meters" key={`d2${tempKey}`}>
         <Row key={`r4${tempKey}`}>
           <Col key={`c6${tempKey}`}>
-            <button id="rev-help" ref={helpRef} type="button" className="btn-sm btn-success" onClick={(e) => { handleHelp(e, review.review_id); }}>{`Helpfulness - ${helpfulness}`}</button>
+            <button id="rev-help" ref={helpRef} type="button" className="btn-sm btn-success" onClick={(e) => { handleHelp(e, review.review_id); clickTracker('Ratings', e); }}>{`Helpfulness - ${helpfulness}`}</button>
           </Col>
           <Col key={`c7${tempKey}`}>
-            <button id="rev-report" ref={reportRef} type="button" className="btn-sm btn-outline-info" onClick={(e) => { handleReport(e, review.review_id); }}>Report</button>
+            <button id="rev-report" ref={reportRef} type="button" className="btn-sm btn-outline-info" onClick={(e) => { handleReport(e, review.review_id); clickTracker('Ratings', e); }}>Report</button>
           </Col>
         </Row>
       </div>

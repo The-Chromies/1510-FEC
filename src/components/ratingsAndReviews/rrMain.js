@@ -17,7 +17,7 @@ import metaTestData from './testData/metadataTest';
 
 function RatingsAndReviews(props) {
   let {
-    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating, localServer,
+    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating, localServer, clickTracker,
   } = useContext(ContactContext);
 
   // Adjustments for Testing
@@ -30,9 +30,7 @@ function RatingsAndReviews(props) {
   const [reviewList, setReviewList] = useState(null);
   const [reviewListFull, setReviewListFull] = useState(testReviewList);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
-  // const [productId, setProductId] = useState('18445');
-  // const [revCount, setRevCount] = useState(0);
-
+  const [search, setSearch] = useState('');
   const [starFilter, setStarFilter] = useState('');
   const [revFlag, setRevflag] = useState(true);
 
@@ -41,6 +39,7 @@ function RatingsAndReviews(props) {
   // eslint-disable-next-line prefer-const
   let [sortKey, setSortKey] = useState('relevant');
 
+  // handle fetching additional review button
   const handleFetchMore = () => {
     if (fetchNum < reviewListFull.length) {
       setFetchNum(fetchNum += 2);
@@ -52,25 +51,32 @@ function RatingsAndReviews(props) {
     }
   };
 
+  // filter the review list according to the star count and the search term
+  // This will filter the reviews according to the star output and
+  // according to the number which should be fetched
   const filterReviewList = () => {
-    // This will filter the reviews according to the star output and
-    // according to the number which should be fetched
-    // console.log('fetchnum', fetchNum);
-    // console.log(reviewListFull);
     // eslint-disable-next-line no-var
     var subsetRevList = [];
     // console.log(reviewListFull);
-    if (starFilter) {
-      subsetRevList = reviewListFull.filter((rev) => rev.rating === starFilter).slice(0, fetchNum);
+    if (search) {
+      // console.log(search);
+      subsetRevList = reviewListFull.filter((rev) => (rev.body.search(search) > -1) || (rev.summary.search(search) > -1) || (rev.reviewer_name.search(search) > -1)).slice(0, fetchNum);
     } else {
       subsetRevList = reviewListFull.slice(0, fetchNum);
     }
-    // console.log(subsetRevList);
+
+    if (starFilter) {
+      subsetRevList = subsetRevList.filter((rev) => rev.rating === starFilter).slice(0, fetchNum);
+    } else {
+      subsetRevList = subsetRevList.slice(0, fetchNum);
+    }
 
     setReviewList(subsetRevList);
   };
 
+  // Fetch request to find new reviews
   const findReviews = () => {
+    console.log('Finding Reviews');
     if (revCount > 0) {
       axios.get(`http://${localServer}:3000/ratings/review/${productId}/${sortKey}/${revCount}`)
         .then((result) => {
@@ -88,6 +94,7 @@ function RatingsAndReviews(props) {
     }
   };
 
+  // Fetch Metadata information - this is used prior to the review fetch to find out how many review exist to fetch
   const findReviewMeta = () => {
     axios.get(`http://${localServer}:3000/ratings/reviewMeta/${productId}`)
       .then((result) => {
@@ -114,9 +121,9 @@ function RatingsAndReviews(props) {
   }, []);
 
   // Re-render whenever the productId changes across the board
-  useEffect(() => {
-    findReviewMeta();
-  }, [productId]);
+  // useEffect(() => {
+  //   findReviewMeta();
+  // }, [productId]);
 
   // Anytime the sort key updates, fetch the full review list with the new sorted value
   useEffect(() => {
@@ -148,12 +155,11 @@ function RatingsAndReviews(props) {
 
   let retContainer = null;
   if (reviewList) {
-    // console.log('reviewList is not null');
     retContainer = (
       <Container className="review-key-container" key="review-container-generic">
         <Row>
-          <Col className="border border-secondary rounded shadow m-3">
-            <h1 className="text-center"> Ratings and Reviews </h1>
+          <Col className="mt-10 m-3">
+            <h3 className="text-left"> Ratings and Reviews </h3>
           </Col>
         </Row>
         <Row key="rating-review-container" className="rating-review-container">
@@ -162,7 +168,7 @@ function RatingsAndReviews(props) {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" filterReviewList={filterReviewList} findReviews={findReviews} search={search} setSearch={setSearch} reviewMeta={reviewMeta} clickTracker={clickTracker} generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>

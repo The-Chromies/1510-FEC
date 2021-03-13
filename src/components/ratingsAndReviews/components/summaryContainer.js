@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -10,11 +11,12 @@ import PropTypes from 'prop-types';
 import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
+import uuid from 'node-uuid';
 import SummaryStar from './summaryStar';
 import CharChart from './charChart';
 
 function SummaryContainer({
-  meta, generateStarImage, handleStarClick, starFilter, avgRating,
+  meta, generateStarImage, handleStarClick, starFilter, avgRating, clickTracker,
 }) {
   // console.log(meta);
   const starList = [];
@@ -23,14 +25,14 @@ function SummaryContainer({
     charList = Object.keys(meta.characteristics);
   }
 
-  // console.log('meta');
-  // console.log(meta);
   // eslint-disable-next-line react/prop-types
   const { ratings } = meta;
   const keys = Object.keys(ratings);
   const countReviews = Number(meta.recommended.false) + Number(meta.recommended.true);
   // console.log('countRev', countReviews)
+  const recPerc = Math.floor(100 * (Number(meta.recommended.true) / (Number(meta.recommended.false) + Number(meta.recommended.true))));
 
+  // Generate the stars for the summary component dynamically
   let j = 0;
   for (let i = 1; i <= 5; i += 1) {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -46,8 +48,8 @@ function SummaryContainer({
 
   return (
     <Container key="summary-inside" className="summary-container container border-primary">
-      <div className="border border-secondary shadow">
-        <h3>Summary Container</h3>
+      <div className="border border-secondary shadow ">
+        <h5 className="font-weight-bold">Summary Container</h5>
         <Row>
           <Col xs={4} md={4} className="font-weight-bold">
             <span key="rating-avg" className="text-center">
@@ -60,14 +62,19 @@ function SummaryContainer({
             <span key="rating-avg-star" className="text-left">{generateStarImage(avgRating, 'summary-inside-star')}</span>
           </Col>
         </Row>
+        <div className="mt-2 mp-20">
+          <span>
+            {`${recPerc}% of users recommend this product`}
+          </span>
+        </div>
         <hr />
-        {starFilter ? <span className="hoverStar text-center text-bolder" onClick={() => { handleStarClick(''); }}>Remove Filter</span> : null}
+        {starFilter ? <span className="hoverStar text-center text-bolder" onClick={(e) => { handleStarClick(''); clickTracker('Ratings', e); }}>Remove Filter</span> : null}
         {starList}
       </div>
       <hr />
       <div className="border border-secondary shadow">
-        <h3>Product Characteristics</h3>
-        {charList.map((char) => <CharChart value={Number(meta.characteristics[char].value)} name={char} />)}
+        <h5 className="font-weight-bold">Product Characteristics</h5>
+        {charList.map((char) => <CharChart key={uuid()} value={Number(meta.characteristics[char].value)} name={char} />)}
       </div>
     </Container>
   );
