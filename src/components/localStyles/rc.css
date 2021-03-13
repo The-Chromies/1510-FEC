@@ -42,3 +42,13 @@
 
 }
 
+.bname {
+  margin-left: 10px;
+  position: absolute;
+  margin-top: 95px;
+  font-size:small;
+  font-family: "Monaco", "Courier New", monospace;
+  font-weight:bolder;
+
+}
+
