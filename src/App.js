@@ -31,7 +31,7 @@ function App() {
       <Col xs={10} md={10}>
         <ContactContextProvider>
           <div className="App bg-light">
-            <div className="overview">
+            {/* <div className="overview">
               <Overview goToReviews={goToReviews} />
             </div>
             <hr />
@@ -42,7 +42,7 @@ function App() {
             <div className="questions-answers">
               <QuestionsAndAnswers />
             </div>
-            <hr />
+            <hr /> */}
             <div className="ratings-reviews" ref={reviews}>
               <RatingsAndReviews />
             </div>

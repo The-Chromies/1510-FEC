@@ -7,6 +7,7 @@ import {
 import axios from 'axios';
 import uuid from 'node-uuid';
 import { ContactContext } from '../../../Global-Context';
+import RenderPhoto from './renderPhoto';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
   console.log(review);
@@ -123,6 +124,9 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
             <span className="review-body text-break text-body border-info">{revBody}</span>
           </Col>
         </Row>
+      </div>
+      <div className="photo-array" key={uuid()}>
+        {review.photos.map((photo) => <RenderPhoto photo={photo} />)}
       </div>
       <div className="secondary-meters" key={`d2${tempKey}`}>
         <Row key={`r4${tempKey}`}>
