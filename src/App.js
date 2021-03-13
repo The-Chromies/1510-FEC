@@ -2,16 +2,14 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
-import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React, { useRef } from 'react';
 import RatingsAndReviews from './components/ratingsAndReviews/rrMain';
 import RelatedAndComparison from './components/relatedAndComparison/rcMain';
 import QuestionsAndAnswers from './components/questionsAndAnswers/qaMain';
 import Overview from './components/overview/ovMain';
 import { ContactContextProvider } from './Global-Context';
 import {
-  Container, Row, Col
+  Col,
 } from 'react-bootstrap';
 
 function App() {
