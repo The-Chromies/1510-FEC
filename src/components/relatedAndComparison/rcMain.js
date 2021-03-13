@@ -47,24 +47,23 @@ function RelatedAndComparison() {
   // const [outfitProduct, setOutfitProduct] = useState(null);
   // const [outfitStyle, setOutfitStyle] = useState(null);
 
-  useEffect(() => {
-    console.log('relatedList useEffect', relatedList);
-    if (relatedList.length > 0) {
-      getRelatedAndStyle();
-    }
-  }, [relatedList]);
+  // useEffect(() => {
+  //   console.log('relatedList useEffect', relatedList);
+  // }, [relatedList]);
 
   const getRelatedProducts = (id) => {
     axios.get(`http://${localServer}:3000/related/relatedp/${id}`)
-      .then((results) =>
+      .then((results) => {
       // results.data.forEach((id) => {
         //   // console.log('hahahaha', id);
         //   getProduct(id)
         // })
-        setRelatedList(results.data))
+        setRelatedList(results.data);
+      })
       .catch((err) => {
         console.log('err in getRelatedProducts:', err);
       });
+
     // .then(()=> {
     //   // fufillPromise()
     //   console.log('TESTESTES', relatedList);
@@ -124,6 +123,13 @@ function RelatedAndComparison() {
     getRelatedProducts(productId);
   }, []);
 
+  useEffect(() => {
+    console.log('relatedList useEffect', relatedList);
+    if (relatedList.length > 0) {
+      getRelatedAndStyle();
+    }
+  }, [relatedList]);
+
   // const handelAddOutfit = (id) => {
   //   // alert('You added to your outfit!');
   //   setProductId(id);
@@ -131,6 +137,13 @@ function RelatedAndComparison() {
   //   getStyle(id);
   // };
   // console.log('jahdisagdaydg', productId);
+
+  // useEffect(() => {
+  //   getRelatedProducts(productId);
+  //   // if (relatedList.length > 0) {
+  //   //   getRelatedAndStyle();
+  //   // }
+  // }, []);
 
   return (
     <div className="related-comparison-container">

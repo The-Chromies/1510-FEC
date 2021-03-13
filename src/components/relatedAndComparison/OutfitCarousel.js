@@ -92,11 +92,14 @@ function OutfitCarousel(props) {
   // });
 
   return (
+    <>
     <Container className={classes.boxing}>
-      <IconButton className={classes.largeIcon}>
-        Add Outfit!
-        <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
-      </IconButton>
+          <div className="bname"> Add Outfit!</div>
+      <div className="press">
+        <IconButton className={classes.largeIcon}>
+          <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
+        </IconButton>
+      </div>
       <Carousel
         // className="relatedCarousel"
         responsive={responsive}
@@ -109,6 +112,7 @@ function OutfitCarousel(props) {
         )) : null}
       </Carousel>
     </Container>
+    </>
   );
 }
 

@@ -62,36 +62,36 @@ export default function ProductCardRelated(props) {
   return (
     <>
       <div className="press">
-      <Card className={classes.root}>
-        <CardHeader
-          className="cardHeader"
-          action={
-            <CompareModal productFeatures={props.productFeatures} />
+        <Card className={classes.root}>
+          <CardHeader
+            className="cardHeader"
+            action={
+              <CompareModal productFeatures={props.productFeatures} />
         }
         // title={props.product.category}
-          subheader={props.product.category}
-        />
-        <CardMedia
-          onClick={() => { handleCardClick(props.product.id); }}
-          className={classes.media}
-          image={props.styles}
-          title={props.product.name}
-        />
-        <CardContent onClick={() => { handleCardClick(props.product.id); }}>
-          <div className="cardInfo" variant="body2" color="textSecondary">
-            <h4>{props.product.name}</h4>
-            {props.product.description.substring(0, 100).concat('...')}
-            <h5>{props.product.default_price}</h5>
-            <div>{props.stars(props.rating)}</div>
-          </div>
-        </CardContent>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </Card>
+            subheader={props.product.category}
+          />
+          <CardMedia
+            onClick={() => { handleCardClick(props.product.id); }}
+            className={classes.media}
+            image={props.styles}
+            title={props.product.name}
+          />
+          <CardContent onClick={() => { handleCardClick(props.product.id); }}>
+            <div className="cardInfo" variant="body2" color="textSecondary">
+              <h4>{props.product.name}</h4>
+              {props.product.description.substring(0, 100).concat('...')}
+              <h5>{props.product.default_price}</h5>
+              <div>{props.stars(props.rating)}</div>
+            </div>
+          </CardContent>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </Card>
       </div>
     </>
   );
