@@ -100,7 +100,7 @@ export const ContactContextProvider = (props) => {
   };
 
   const getProduct = (id) => {
-    axios.get(`http://${localServer}/related/product/${id}`)
+    axios.get(`http://${localServer}:3000/related/product/${id}`)
       .then((results) => {
         console.log('OUTFITPRODUCT!!', results.data);
         // setRelatedList([results.data, ...relatedList]);
