@@ -32,7 +32,6 @@ const Search = ({questions}) => {
     }
   };
 
-
     return(
       <Container>
         <div className="input-group mb-5">
