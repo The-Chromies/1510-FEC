@@ -49,7 +49,3 @@
 body {
   background-color: #343a40;
 }
-
-<style type="text/css">
-   body { background: #343a40 !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style>
