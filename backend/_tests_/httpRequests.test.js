@@ -27,11 +27,6 @@ describe('Get all reviews', () => {
       .get('/ratings/874khf9')
       .expect(404);
   });
-//   it('Should return correct review data', async () => {
-//     const { body } = await request(app)
-//       .get('/ratings/reviews');
-//     expect(body).toEqual();
-//   });
 });
 
 // test for retrieving a given product
