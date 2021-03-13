@@ -24,11 +24,9 @@ const queries = {
       });
   },
   getQuestions: (id, callback) => {
-    console.log('IN THE MODELS');
-    console.log('THE ID', id);
     const options = {
       method: 'get',
-      url: `${apiUrl}qa/questions?product_id=18201&page=1&count=5`,
+      url: `${apiUrl}qa/questions?product_id=${id}&page=1&count=5`,
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
@@ -37,6 +35,24 @@ const queries = {
       },
     };
     axios(options).then((response) => {
+      callback(null, response.data);
+    })
+      .catch((error) => {
+        console.log(error, null);
+      });
+  },
+  getAnswers: (id, callback) => {
+    const options = {
+      method: 'get',
+      url: `${apiUrl}qa/questions?product_id=${id}/answers&page=1&count=5`,
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+        'Content-Type': 'application/json',
+        Connection: 'keep-alive',
+      },
+    };
+    axios(option).then((response) => {
       callback(null, response.data);
     })
       .catch((error) => {

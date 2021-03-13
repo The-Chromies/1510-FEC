@@ -1,3 +1,7 @@
+/*
+      IMPORTANT: there is a lot on this widget that is incomplete due to time. There is also a lot of aspects that were added the "fill in" for those areas that were unable to be completed (i.e an extra modal to let user know their question is 'pending approval' in place of non functioning POST request). i also left comments in to help exemplify my thought process in code
+*/
+
 import '../localStyles/qa.css';
 import React, { useContext, useState, useEffect } from 'react';
 import {
@@ -18,30 +22,46 @@ const plusIcon = <FontAwesomeIcon icon={faPlus} />;
 function QuestionsAndAnswers() {
   const { productId, setProductId, localServer } = useContext(ContactContext);
   const handleOpen = () => setShowNewRev(true);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
 
   const findQuestions = (id) => {
-    console.log('THIS IS ID', id)
-    axios.get(`http://${localServer}:3000/qa/questions`)
+    axios.get(`http://${localServer}:3000/qa/questions/${id}`)
       .then((res) => {
-        console.log('USE EFFECT SUCCESS')
-        console.log('THESE ARE RESULTS', res.data.results);
-
         const allQuestions = res.data.results;
         setQuestions(allQuestions);
       })
       .catch((err) => {
-        console.log('USE EFFECT FAILS');
         console.log(err);
       });
-  }
+  };
+
+  const findAnswers = (id) => {
+    axios.get(`http://${localServer}:3000/qa/questions/${id}/answers`)
+      .then((res) => {
+        const allAnswers = res.data.results;
+        setAnswers(allAnswers);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     findQuestions(productId);
+    findAnswers(productId);
   }, []);
 
+  useEffect(() => {
+    findQuestions(productId);
+    findAnswers(productId);
+  }, [productId]);
+
+  //passing down function to search bar that updates
+
+  console.log('THIS IS ANSWERS IN MAIN', answers);
 
   return (
     <div>
@@ -51,13 +71,13 @@ function QuestionsAndAnswers() {
       </Container>
 
       <Search questions={questions} />
-      <QuestionsList questions={questions} />
+      <QuestionsList questions={questions} answers={answers}/>
 
       <Container>
         <Row>
-          <Col>
+          {/* <Col>
             <Button variant="outline-secondary">MORE OUTLINED QUESTIONS</Button>
-          </Col>
+          </Col> */}
           <Col>
             <Button variant="outline-secondary" onClick={() => setModalShow(true)}>
               ADD A QUESTION {plusIcon}
