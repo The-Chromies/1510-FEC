@@ -2,7 +2,7 @@
 import React, { useRef, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Navbar, Container, Row, Col, Grid,
+  Navbar, Container, Row, Col, Grid, Button,
 } from 'react-bootstrap';
 import axios from 'axios';
 import uuid from 'node-uuid';
@@ -133,10 +133,14 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       <div className="secondary-meters" key={`d2${tempKey}`}>
         <Row key={`r4${tempKey}`}>
           <Col key={`c6${tempKey}`}>
-            <button id="rev-help" ref={helpRef} type="button" className="btn-sm btn-success" onClick={(e) => { handleHelp(e, review.review_id); clickTracker('Ratings', e); }}>{`Helpfulness - ${helpfulness}`}</button>
+            <Button id="rev-help" ref={helpRef} type="button" variant="outline-success" onClick={(e) => { handleHelp(e, review.review_id); clickTracker('Ratings', e); }}>
+              {`HELPFULNESS - ${helpfulness}`}
+            </Button>
           </Col>
           <Col key={`c7${tempKey}`}>
-            <button id="rev-report" ref={reportRef} type="button" className="btn-sm btn-outline-info" onClick={(e) => { handleReport(e, review.review_id); clickTracker('Ratings', e); }}>Report</button>
+            <Button id="rev-report" ref={reportRef} type="button" variant="outline-danger" onClick={(e) => { handleReport(e, review.review_id); clickTracker('Ratings', e); }}>
+              REPORT
+            </Button>
           </Col>
         </Row>
       </div>

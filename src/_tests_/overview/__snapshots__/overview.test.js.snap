@@ -11,7 +11,7 @@ Array [
       className="navbar-brand"
       href="#home"
     >
-      Borgin and Burkes
+      The Chromies
     </a>
     <div
       className="mr-auto navbar-nav"
@@ -21,6 +21,9 @@ Array [
   <div
     className="container"
   >
+    <marquee>
+      SITE-WIDE ANNOUNCEMENT: GOLDENROD, MAROON, AND CHARTREUSE MORNING JOGGERS ON SALE!
+    </marquee>
     <div
       className="overview-container row"
     >
