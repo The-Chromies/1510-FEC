@@ -30,6 +30,7 @@ function RatingsAndReviews(props) {
   const [reviewList, setReviewList] = useState(null);
   const [reviewListFull, setReviewListFull] = useState(testReviewList);
   const [reviewMeta, setReviewMeta] = useState(metaTestData);
+  const [search, setSearch] = useState('');
   // const [productId, setProductId] = useState('18445');
   // const [revCount, setRevCount] = useState(0);
 
@@ -60,10 +61,17 @@ function RatingsAndReviews(props) {
     // eslint-disable-next-line no-var
     var subsetRevList = [];
     // console.log(reviewListFull);
-    if (starFilter) {
-      subsetRevList = reviewListFull.filter((rev) => rev.rating === starFilter).slice(0, fetchNum);
+    if (search) {
+      console.log(search);
+      subsetRevList = reviewListFull.filter((rev) => rev.body.search(search) > -1).slice(0, fetchNum);
     } else {
       subsetRevList = reviewListFull.slice(0, fetchNum);
+    }
+
+    if (starFilter) {
+      subsetRevList = subsetRevList.filter((rev) => rev.rating === starFilter).slice(0, fetchNum);
+    } else {
+      subsetRevList = subsetRevList.slice(0, fetchNum);
     }
     // console.log(subsetRevList);
 
@@ -71,6 +79,7 @@ function RatingsAndReviews(props) {
   };
 
   const findReviews = () => {
+    console.log('Finding Reviews');
     if (revCount > 0) {
       axios.get(`http://${localServer}:3000/ratings/review/${productId}/${sortKey}/${revCount}`)
         .then((result) => {
@@ -162,7 +171,7 @@ function RatingsAndReviews(props) {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" reviewMeta={reviewMeta} clickTracker={clickTracker} generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" filterReviewList={filterReviewList} findReviews={findReviews} search={search} setSearch={setSearch} reviewMeta={reviewMeta} clickTracker={clickTracker} generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>
