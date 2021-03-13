@@ -10,8 +10,8 @@ import ProductCard from './ProductCard';
 import OutfitList from './OutfitList';
 
 const responsive = {
+  // RULES FOR DISPLAYING CARDS ON SCREEN
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 4,
   },
@@ -28,6 +28,7 @@ const responsive = {
     items: 1,
   },
 };
+// MAPPING THROUGH RELATED LIST TO DISPLAY RELATED LIST CAROUSEL AND INFO
 function RelatedList(props) {
   console.log('test in relatedList', props.productInfo[0].features);
   return (
@@ -43,7 +44,6 @@ function RelatedList(props) {
 }
 
 RelatedList.propTypes = {
-  // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   productInfo: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(Array).isRequired,
   rating: PropTypes.instanceOf(Array).isRequired,

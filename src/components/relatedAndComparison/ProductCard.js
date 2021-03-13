@@ -22,9 +22,7 @@ import PropTypes from 'prop-types';
 import CompareModal from './CompareModal.js';
 import { ContactContext } from '../../Global-Context';
 
-// import Carousel from 'react-multi-carousel';
-// import { Paper, Button } from '@material-ui/core';
-
+// STYLING FOR CAROUSEL
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
@@ -41,24 +39,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProductCardRelated(props) {
+  // NEEDED VAIABLES AND METHODS FROM GLOBAL CONTEXT
   const {
     productId, setProductId,
   } = useContext(ContactContext);
-  // console.log('CARDDDD', props.styles);
-  // console.log('HEY', props.product);
   const classes = useStyles();
-  // const [expanded, setExpanded] = React.useState(false);
 
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
+  // WHEN CLICKING ON A CARD, RENDERS ALL OTHER COMPONTES TO BE SET TO THAT SPECIFIC PRODUCT ID
   const handleCardClick = (id) => {
     setProductId(id);
-    // console.log('CLICKING CARD');
   };
-  // console.log('jahdisagdaydg', productId);
 
+  // RELATED LIST CARD FORMAT WITH INFO
   return (
     <>
       <div className="press">
@@ -98,17 +90,9 @@ export default function ProductCardRelated(props) {
 }
 
 ProductCardRelated.propTypes = {
-  // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   product: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(String).isRequired,
   productFeatures: PropTypes.instanceOf(Object).isRequired,
   rating: PropTypes.instanceOf(Number).isRequired,
   stars: PropTypes.instanceOf(Function).isRequired,
 };
-
-// action={
-//   <IconButton aria-label="settings">
-//     <CompareModal onClick={handleOpen}/>
-//     <StarBorderIcon />
-//   </IconButton>
-// }

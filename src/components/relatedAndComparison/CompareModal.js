@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 import { ContactContext } from '../../Global-Context';
 
+// MODAL STYLING
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TransitionsModal(props) {
+  // NEEDED VAIABLES AND METHODS FROM GLOBAL CONTEXT
   const {
     localServer,
   } = useContext(ContactContext);
@@ -35,6 +37,7 @@ export default function TransitionsModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  // OPEN AND CLOSING FUNCTION FOR MODAL
   const handleOpen = () => {
     setOpen(true);
   };
@@ -43,18 +46,7 @@ export default function TransitionsModal(props) {
     setOpen(false);
   };
 
-  const getProduct = (id) => {
-    axios.get(`http://${localServer}:3000/related/product/${id}`)
-      .then((results) => {
-      // console.log('jajajaj', results.data);
-      // setRelatedList([results.data, ...relatedList]);
-      // setProductInfo(results.data);
-      })
-      .catch((err) => {
-        console.log('err getting product info:', err);
-      });
-  };
-
+  // MODAL POPUP AND SETUP
   return (
     <>
       <div>
@@ -102,7 +94,6 @@ export default function TransitionsModal(props) {
                     ))}
                   </tbody>
                 </table>
-                {/* <p>{props.productFeatures}</p> */}
               </div>
             </div>
           </Fade>
@@ -113,8 +104,5 @@ export default function TransitionsModal(props) {
 }
 
 TransitionsModal.propTypes = {
-  // relatedProducts: PropTypes.instanceOf(Array).isRequired,
-  // product: PropTypes.instanceOf(Array).isRequired,
-  // styles: PropTypes.instanceOf(String).isRequired,
   productFeatures: PropTypes.instanceOf(Array).isRequired,
 };

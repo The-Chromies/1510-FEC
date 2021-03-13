@@ -24,6 +24,7 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { ContactContext } from '../../Global-Context';
 
+// STYLING FOR CAROUSEL
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
@@ -39,19 +40,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function OutfitList(props) {
-  console.log('CARDDDD', props.styles);
-  // console.log('HEY', props.styles[0].results)
-
+  // NEEDED VAIABLES AND METHODS FROM GLOBAL CONTEXT
   const {
     productId, setProductId, outfitStyle, getProduct, getStyle, handelAddOutfit, outfitProduct, setOutfitProduct, setOutfitStyle, localServer,
   } = useContext(ContactContext);
+
+  // CAROUSEL STYLING
   const classes = useStyles();
 
-  const handleCardClick = () => {
-    //* ****must route to overview with id of selected product*****
-    console.log('CLICKING CARD');
+  // WHEN CLICKING ON A CARD, RENDERS ALL OTHER COMPONTES TO BE SET TO THAT SPECIFIC PRODUCT ID
+  const handleCardClick = (id) => {
+    setProductId(id);
   };
 
+  // BUTTON TO DELETE A SPECIFIC PRODUCT FROM OUTFIT LIST CAROUSEL AND UPDATING POSITION
   const handleDelete = () => {
     const outfitProductCopy = [...outfitProduct];
     let index;
@@ -66,7 +68,6 @@ export default function OutfitList(props) {
     setOutfitStyle(outfitStyleCopy);
   };
 
-  console.log('KEYKEYKEY', props.product);
   return (
     <>
       <div className="press">
@@ -108,11 +109,9 @@ export default function OutfitList(props) {
 }
 
 OutfitList.propTypes = {
-  // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(Array).isRequired,
   rating: PropTypes.instanceOf(Array).isRequired,
   stars: PropTypes.instanceOf(Function).isRequired,
   product: PropTypes.instanceOf(Array).isRequired,
-  // setOutfitProduct: PropTypes.instanceOf(Function).isRequired,
 
 };

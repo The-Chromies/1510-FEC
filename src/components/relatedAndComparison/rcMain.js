@@ -14,66 +14,30 @@ import RelatedList from './RelatedList';
 import OutfitCarousel from './OutfitCarousel';
 import { ContactContext } from '../../Global-Context';
 
-const useStyles = makeStyles((theme) => ({
-  largeIcon: {
-    width: 100,
-    height: 100,
-    display: 'inline-block',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    marginTop: 100,
-    // paddingLeft: 200,
-
-  },
-  bIcon: {
-    width: 100,
-    height: 100,
-    display: 'inline-block',
-
-  },
-
-}));
-
 function RelatedAndComparison() {
+  // BRINGING VARIABLES AND FUNCTIONS FROM THE GLOBAL CONTEX WHERE ALL COMPONENTS CAN ACCESS THEM
   const {
     localServer, productId, setProductId, revCount, avgRating, generateStarImage, outfitProduct, setOutfitProduct, outfitStyle, setOutfitStyle, getProduct, getStyle, handelAddOutfit,
   } = useContext(ContactContext);
 
-  const classes = useStyles();
-
+  // REACT HOOKS
   const [relatedList, setRelatedList] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
   const [styles, setStyles] = useState(null);
-  // const [outfitProduct, setOutfitProduct] = useState(null);
-  // const [outfitStyle, setOutfitStyle] = useState(null);
 
-  // useEffect(() => {
-  //   console.log('relatedList useEffect', relatedList);
-  // }, [relatedList]);
-
+  // TAKES PRODUCT ID TO GET RELATED PRODUCTS ARRAY AND SETS IT
   const getRelatedProducts = (id) => {
     axios.get(`http://${localServer}:3000/related/relatedp/${id}`)
       .then((results) => {
-      // results.data.forEach((id) => {
-        //   // console.log('hahahaha', id);
-        //   getProduct(id)
-        // })
         setRelatedList(results.data);
       })
       .catch((err) => {
         console.log('err in getRelatedProducts:', err);
       });
-
-    // .then(()=> {
-    //   // fufillPromise()
-    //   console.log('TESTESTES', relatedList);
-    // })
   };
-
+  // MAPS THOUGH RELATED PRODUCTS ARRAY TO GET THE INFO ON EACH PRODUCT AND THEN STYLE OF EACH AS WELL
   const getRelatedAndStyle = () => {
-    // console.log('running function fufillPromise', relatedList);
     const productDataArr = relatedList.map((id) =>
-    // console.log('id from promise array', id);
       axios.get(`http://${localServer}:3000/related/product/${id}`)
         .then((results) => results.data)
         .catch((err) => {
@@ -84,6 +48,7 @@ function RelatedAndComparison() {
       .catch((err) => {
         console.log('STYLES ERROR', err);
       }));
+      // WAITS FOR THE AXIOS TO HEPPEN ON EACH ELEMENT IN ARRAY THEN SETS THEM
     Promise.all(productDataArr)
       .then((results) => {
         console.log('TESTING:', results);
@@ -100,25 +65,6 @@ function RelatedAndComparison() {
       });
   };
 
-  // const getProduct = (id) => {
-  //   axios.get(`http://localhost:3000/related/product/${id}`)
-  //     .then((results) => {
-  //       console.log('OUTFITPRODUCT!!', results.data);
-  //       // setRelatedList([results.data, ...relatedList]);
-  //       setOutfitProduct(results.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log('err getting outfit product info:', err);
-  //     });
-  // };
-
-  // const getStyle = (id) => {
-  //   axios.get(`http://localhost:3000/overview/styles/${id}`)
-  //     .then((results) => {
-  //       setOutfitStyle(results.data);
-  //     });
-  // };
-
   useEffect(() => {
     getRelatedProducts(productId);
   }, []);
@@ -130,21 +76,6 @@ function RelatedAndComparison() {
     }
   }, [relatedList]);
 
-  // const handelAddOutfit = (id) => {
-  //   // alert('You added to your outfit!');
-  //   setProductId(id);
-  //   getProduct(id);
-  //   getStyle(id);
-  // };
-  // console.log('jahdisagdaydg', productId);
-
-  // useEffect(() => {
-  //   getRelatedProducts(productId);
-  //   // if (relatedList.length > 0) {
-  //   //   getRelatedAndStyle();
-  //   // }
-  // }, []);
-
   return (
     <div className="related-comparison-container">
       Related And Comparison
@@ -152,15 +83,9 @@ function RelatedAndComparison() {
         ? <RelatedList className="centerList" relatedProducts={relatedList} productInfo={productInfo} styles={styles} rating={avgRating} stars={generateStarImage} />
         : null}
 
-      {/* <IconButton className={classes.largeIcon}>
-        Add Outfit!
-        <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
-      </IconButton> */}
-
       <OutfitCarousel rating={avgRating} stars={generateStarImage} setOutfitProduct={setOutfitProduct} />
     </div>
   );
 }
 
 export default RelatedAndComparison;
-// styles={outfitStyle.results[0].photos[0].thumbnail_url}
