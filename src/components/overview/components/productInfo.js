@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable import/named */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-closing-tag-location */
@@ -13,15 +14,14 @@ import {
 } from 'react-share';
 import { ContactContext } from '../../../Global-Context';
 
-function ProductInfo({
-  product, selected, goToReviews, sendClick,
-}) {
+function ProductInfo({ product, selected, goToReviews, sendClick }) {
   const {
     productId, setProductId, generateStarImage, revCount, avgRating, clickTracker, localServer,
   } = useContext(ContactContext);
 
   return (
     <div className="product-info">
+      {/* if no reviews or ratings, do not display starts or rev count */}
       {revCount !== 0
         ? <>
           <div>{generateStarImage(avgRating)}</div>
@@ -32,8 +32,9 @@ function ProductInfo({
           </div>
         </>
         : null}
-      <div>{product.category}</div>
-      <h3>{product.name}</h3>
+      <div className="product-cat">{product.category}</div>
+      <h3 className="product-name">{product.name}</h3>
+      {/* render sale price if exists & strike through orginal price */}
       { selected && selected.sale_price === null ? <div>{`$${selected.original_price}`}</div>
         : selected && selected.sale_price !== null
           ? <div className="modified-prices">
@@ -46,7 +47,7 @@ function ProductInfo({
         {product.description}
       </div>
       {/* facebook redirect error will go away after deployment/no longer using localhost
-      currently will reciever error: Parameter 'href' should represent a valid URL */}
+      with localhost will reciever error: Parameter 'href' should represent a valid URL */}
       <FacebookShareButton url="http://3.19.64.77:3000" quote="Check out this product!">
         <FacebookIcon size={32} round onClick={() => { sendClick({ target: { className: 'facebook-share' } }); }} />
       </FacebookShareButton>
@@ -60,11 +61,10 @@ function ProductInfo({
   );
 }
 
-// ProductInfo.propTypes = {
-//   product: PropTypes.instanceOf(Object).isRequired,
-//   selected: PropTypes.instanceOf(Object).isRequired,
-//   sendClick: PropTypes.instanceOf(Function).isRequired,
-//   goToReviews: PropTypes.instanceOf(Function).isRequired,
-// };
+ProductInfo.propTypes = {
+  product: PropTypes.instanceOf(Object).isRequired,
+  goToReviews: PropTypes.instanceOf(Function).isRequired,
+  sendClick: PropTypes.instanceOf(Function).isRequired,
+};
 
 export default ProductInfo;
