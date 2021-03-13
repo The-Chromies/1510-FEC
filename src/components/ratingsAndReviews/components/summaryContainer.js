@@ -25,8 +25,6 @@ function SummaryContainer({
     charList = Object.keys(meta.characteristics);
   }
 
-  // console.log('meta');
-  // console.log(meta);
   // eslint-disable-next-line react/prop-types
   const { ratings } = meta;
   const keys = Object.keys(ratings);
@@ -34,6 +32,7 @@ function SummaryContainer({
   // console.log('countRev', countReviews)
   const recPerc = Math.floor(100 * (Number(meta.recommended.true) / (Number(meta.recommended.false) + Number(meta.recommended.true))));
 
+  // Generate the stars for the summary component dynamically
   let j = 0;
   for (let i = 1; i <= 5; i += 1) {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events

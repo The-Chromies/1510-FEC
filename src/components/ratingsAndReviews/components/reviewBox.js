@@ -26,6 +26,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
   const reviewRef = useRef();
   const bodyRef = useRef();
 
+  // Submit help post to API
   const handleHelp = (e, id) => {
     // console.log(id);
     // console.log(e);
@@ -46,6 +47,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       });
   };
 
+  // Submit report post to API
   const handleReport = (e, id) => {
     axios({
       method: 'put',
@@ -106,7 +108,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
         <Col className="review-rating justify-content-start" xs={12} md={4} key={`c1${tempKey}`}>
           <span>{generateStarImage(review.rating, `star${tempKey}`)}</span>
         </Col>
-        <Col className="review-profile text-uppercase font-weight-bold col-sm" key={`c2${tempKey}`}>
+        <Col className="review-profile font-weight-bold col-sm" key={`c2${tempKey}`}>
           <span>{review.reviewer_name}</span>
         </Col>
         <Col className="review-profile text-muted font-weight-light justify-content-end col-sm" key={`c3${tempKey}`}>

@@ -17,23 +17,26 @@ function ImageGallery({
 }) {
   const [length, setLength] = useState(0);
   const [currentThumbnail, setCurrentThumbnail] = useState(0);
+  // expanded toggle flag
   const [expanded, setExpanded] = useState(false);
+  // arr to save up to 7 images at a time
   const [displayThumbnails, setDisplayThumbnails] = useState([]);
 
-  // Set the length to match current children from props
+  // set the length to match current children from props when a style is selected
   useEffect(() => {
     selected && setLength(selected.photos.length);
     setDisplayThumbnails([0, 1, 2, 3, 4, 5, 6]);
   }, [selected]);
 
+  // pure css arrows
   const next = () => currentIndex < (length - 1) && resetIndex(currentIndex + 1);
-
   const prev = () => currentIndex > 0 && resetIndex(currentIndex - 1);
 
+  // expanded carousel toggle
   const setExpandedState = () => setExpanded(true);
-
   const setCollapsed = () => setExpanded(false);
 
+  // thumbnail carousel image arrows - max 7 thumbnails at a time
   const down = () => {
     let downArr = [...displayThumbnails];
     if (downArr[downArr.length - 1] !== selected.photos.length - 1) {
@@ -42,7 +45,6 @@ function ImageGallery({
       setDisplayThumbnails(downArr);
     }
   };
-
   const up = () => {
     const upArr = [...displayThumbnails];
     if (upArr[0] !== 0) {
@@ -53,7 +55,6 @@ function ImageGallery({
   };
 
   return (
-    // pure css carousel
     <React.Fragment>
       <ExpandedCarousel
         show={expanded}
@@ -72,7 +73,7 @@ function ImageGallery({
           { selected
           && <div className="thumbnail-carousel">
             { selected.photos.map((thumbnail, i) => (
-              <React.Fragment>
+              <React.Fragment key={i}>
                 {displayThumbnails.includes(i) && <img key={i} alt="" className={currentIndex === i ? 'selected-thumbnail' : 'thumbnail-carousel-img'} src={thumbnail.thumbnail_url} onClick={(e) => { resetIndex(i); sendClick(e); }} />}
               </React.Fragment>
             )) }

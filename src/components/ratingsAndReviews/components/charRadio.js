@@ -12,6 +12,7 @@ import uuid from 'node-uuid';
 function CharRadio({
   name, chars, id, setCharObj, charObj,
 }) {
+  // Handle radio selection and add it to the form data.
   const handleRadio = (e) => {
     const charName = name;
     const charId = e.target.name;
@@ -22,6 +23,7 @@ function CharRadio({
     }
   };
 
+  // CURRENT BUG: The radio ticks will occasionally disappear, but the data is still there.
   return (
     <div className="char-radio" key={uuid()}>
       <hr />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function SearchReviews({
   setSearch, search, findReviews, filterReviewList,
 }) {
-  // console.log(props)
+  // Dynamically adjust search value as input progresses
   const handleSearch = (e) => {
     setSearch(e);
     filterReviewList(0);

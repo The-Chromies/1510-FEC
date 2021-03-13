@@ -2,7 +2,6 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
-// import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';

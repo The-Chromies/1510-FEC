@@ -9,22 +9,23 @@ import LocalServer from './env/localServ';
 export const ContactContext = createContext();
 
 export const ContactContextProvider = (props) => {
-  let [productId, setProductId] = useState(18078);
+  // global state accessible to all components
+  let [productId, setProductId] = useState(18085);
   const [revCount, setRevCount] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
+  // arr of products added to outfit list in rc
   const [outfitProduct, setOutfitProduct] = useState([]);
+  // arr of styles added to outfit list in rc
   const [outfitStyle, setOutfitStyle] = useState([]);
+  // selected product
   const [product, setProduct] = useState(null);
+  // selected styles obj
   const [styles, setStyles] = useState(null);
-  const [selected, setSelected] = useState(null);
   const localServer = LocalServer;
-  // Look at 18078 summary container is strange
-  // Look at at images for 18079 in overview
-  // Ratings and review should not show up for 18080
 
-  // click tracking function to pass down to components
+  // click tracking function
   const clickTracker = (widgetName, e) => {
-  // post req to /interactions endpoint w/ element of page clicked, time of click, & module clicked
+  // post to /interactions endpoint w/ element's class, widget, & time of click
     let date = new Date();
     let clickData = {
       element: e.target.className,
@@ -33,35 +34,14 @@ export const ContactContextProvider = (props) => {
     };
     axios.post(`http://${localServer}:3000/interactions`, clickData)
       .then((res) => {
-        console.log('SUCCESSFUL POST TO INTERACTIONS');
+        // console.log('SUCCESSFUL POST TO INTERACTIONS');
         console.log(res);
       })
       .catch((err) => {
-        console.log('FAILED TO POST TO INTERACTIONS');
+        // console.log('FAILED TO POST TO INTERACTIONS');
         console.log(err);
       });
   };
-
-  // const getProduct = (id) => {
-  //   axios.get(`http://localhost:3000/overview/product/${id}`)
-  //     .then((res) => {
-  //       setProduct(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const getStyles = (id) => {
-  //   axios.get(`http://localhost:3000/overview/styles/${id}`)
-  //     .then((res) => {
-  //       setStyles(res.data);
-  //       setSelected(res.data.results[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   const generateStarImage = (ratingValue, keyId) => {
     const starCount = ratingValue > 0 ? (Math.round((ratingValue) * 4) / 4).toFixed(2) : 0;
@@ -99,25 +79,12 @@ export const ContactContextProvider = (props) => {
     return (<div className="inline-star" style={{ display: 'inline-flex' }} key={uuid()}>{starArr}</div>);
   };
 
+  // get selected product & style for ov & rc components
   const getProduct = (id) => {
     axios.get(`http://${localServer}:3000/related/product/${id}`)
       .then((results) => {
         console.log('OUTFITPRODUCT!!', results.data);
-        // setRelatedList([results.data, ...relatedList]);
         let outfitProductList = [...outfitProduct];
-        // if (outfitProductList.length > 0) {
-        //   outfitProductList.forEach((outfit) => {
-        //     if (outfit.id !== id) {
-        //       outfitProductList.push(results.data);
-        //       setOutfitProduct(outfitProductList);
-        //     } else {
-        //       console.log('same prod');
-        //     }
-        //   });
-        // } else {
-        //   outfitProductList.push(results.data);
-        //   setOutfitProduct(outfitProductList);
-        // }
         outfitProductList.push(results.data);
         setOutfitProduct(outfitProductList);
       })
@@ -130,27 +97,13 @@ export const ContactContextProvider = (props) => {
     axios.get(`http://${localServer}:3000/overview/styles/${id}`)
       .then((results) => {
         let outfitStyleList = [...outfitStyle];
-        // if (outfitStyleList.length > 0) {
-        //   outfitStyleList.forEach((style) => {
-        //     console.log('this is the style: ', style);
-        //     // if (style.id !== id) {
-        //     //   outfitStyleList.push(results.data);
-        //     //   setOutfitStyle(outfitStyleList);
-        //     // } else {
-        //     //   console.log('same style');
-        //     // }
-        //   });
-        // } else {
-        //   outfitStyleList.push(results.data);
-        //   setOutfitStyle(outfitStyleList);
-        // }
         outfitStyleList.push(results.data);
         setOutfitStyle(outfitStyleList);
       });
   };
 
+  // add product to outfit list
   const handelAddOutfit = (id) => {
-    // alert('You added to your outfit!');
     setProductId(id);
     getProduct(id);
     getStyle(id);
@@ -166,8 +119,6 @@ export const ContactContextProvider = (props) => {
       avgRating,
       product,
       styles,
-      selected,
-      setSelected,
       setAvgRating,
       clickTracker,
       outfitProduct,

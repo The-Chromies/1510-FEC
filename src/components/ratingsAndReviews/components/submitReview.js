@@ -28,6 +28,7 @@ function ReviewListContainer({
     charList = Object.keys(reviewMeta.characteristics);
   }
 
+  // Define form value structure for submit
   const formValues = Object.freeze({
     product_id: Number(productId),
     rating: 1,
@@ -44,6 +45,7 @@ function ReviewListContainer({
 
   //   const htmlEncode = (str) => String(str).replace(/[^\w. ]/gi, (c) => `&#${c.charCodeAt(0)};`);
 
+  // Define long form characteristic labels
   const charLabels = {
     Size: {
       labelLow: 'A size too small',
@@ -90,19 +92,16 @@ function ReviewListContainer({
   };
   const charKeys = Object.keys(charLabels);
 
+  // handle form data changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
     });
   };
-  const handlePhoto = (e) => {
-    // console.log(e)
-    // var file = e.refs.file.files[0];
-    // var reader = new FileReader();
-    // var url = reader.readAsDataURL(file);
-    // console.log(url)
 
+  // Handle photo specific data
+  const handlePhoto = (e) => {
     const regex = /[/.](gif|jpg|jpeg|tiff|png)$/i;
     if (formData.photos.length < 5) {
       if (regex.test(e.target.value)) {
@@ -116,6 +115,7 @@ function ReviewListContainer({
     }
   };
 
+  // handle submit of new review
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Data');
