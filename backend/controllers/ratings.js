@@ -94,6 +94,8 @@ module.exports = {
       photos: req.body.photos,
       characteristics: req.body.characteristics,
     };
+    console.log('this is the data');
+    console.log(data)
     // console.log('WE ARE HITTING THE CONTROLLER');
     query.createReview(data, (err, results) => {
       if (err) {

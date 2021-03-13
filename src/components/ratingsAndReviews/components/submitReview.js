@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 import React, { useState, useContext } from 'react';
@@ -11,11 +12,20 @@ import CharRadio from './charRadio';
 import { ContactContext } from '../../../Global-Context';
 
 function ReviewListContainer({
-  productId, showNewRev, handleClose, findReviewMeta,
+  productId, showNewRev, handleClose, findReviewMeta, reviewMeta,
 }) {
   const {
     localServer,
   } = useContext(ContactContext);
+
+  // eslint-disable-next-line no-var
+  let [charObj, setCharObj] = useState({});
+
+  let charList = [];
+  if (reviewMeta.characteristics) {
+    charList = Object.keys(reviewMeta.characteristics);
+  }
+
   const formValues = Object.freeze({
     product_id: Number(productId),
     rating: 1,
@@ -25,7 +35,7 @@ function ReviewListContainer({
     name: '',
     email: '',
     photos: [],
-    characteristics: {},
+    characteristics: charObj,
   });
   const [formData, setFormData] = useState(formValues);
 
@@ -126,17 +136,17 @@ function ReviewListContainer({
                 </label>
               </Col>
             </Row>
-            <Row sm={12} md={12}>
-              <Col>
-                {charKeys.map((char) => <CharRadio key={uuid()} name={char} charList={charLabels[char]} />)}
-              </Col>
-            </Row>
             <Row>
               <Col sm={12} md={12}>
                 <label htmlFor="star-select">
                   How many Stars would you give this product?
                 </label>
                 <input name="rating" onChange={handleChange} type="range" value={formData.rating} className="custom-range" min="1" max="5" step="1" id="star-select" required />
+              </Col>
+            </Row>
+            <Row sm={12} md={12}>
+              <Col>
+                {charList.map((char) => <CharRadio key={uuid()} setCharObj={setCharObj} charObj={charObj} name={char} chars={charLabels[char]} id={reviewMeta.characteristics} />)}
               </Col>
             </Row>
             <hr />
@@ -165,6 +175,7 @@ ReviewListContainer.propTypes = {
   handleClose: PropTypes.instanceOf(Function).isRequired,
   productId: PropTypes.number.isRequired,
   findReviewMeta: PropTypes.instanceOf(Function).isRequired,
+  reviewMeta: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ReviewListContainer;

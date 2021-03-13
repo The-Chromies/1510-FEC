@@ -10,13 +10,13 @@ import PropTypes from 'prop-types';
 import {
   Navbar, Container, Row, Col, Grid,
 } from 'react-bootstrap';
+import uuid from 'node-uuid';
 import SummaryStar from './summaryStar';
 import CharChart from './charChart';
 
 function SummaryContainer({
   meta, generateStarImage, handleStarClick, starFilter, avgRating,
 }) {
-  console.log('meta', meta)
   // console.log(meta);
   const starList = [];
   let charList = [];
@@ -48,8 +48,8 @@ function SummaryContainer({
 
   return (
     <Container key="summary-inside" className="summary-container container border-primary">
-      <div className="border border-secondary shadow">
-        <h3>Summary Container</h3>
+      <div className="border border-secondary shadow ">
+        <h5 className="font-weight-bold">Summary Container</h5>
         <Row>
           <Col xs={4} md={4} className="font-weight-bold">
             <span key="rating-avg" className="text-center">
@@ -73,8 +73,8 @@ function SummaryContainer({
       </div>
       <hr />
       <div className="border border-secondary shadow">
-        <h3>Product Characteristics</h3>
-        {charList.map((char) => <CharChart value={Number(meta.characteristics[char].value)} name={char} />)}
+        <h5 className="font-weight-bold">Product Characteristics</h5>
+        {charList.map((char) => <CharChart key={uuid()} value={Number(meta.characteristics[char].value)} name={char} />)}
       </div>
     </Container>
   );

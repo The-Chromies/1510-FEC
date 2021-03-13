@@ -152,8 +152,8 @@ function RatingsAndReviews(props) {
     retContainer = (
       <Container className="review-key-container" key="review-container-generic">
         <Row>
-          <Col className="border border-secondary rounded shadow m-3">
-            <h1 className="text-center"> Ratings and Reviews </h1>
+          <Col className="mt-10 m-3">
+            <h3 className="text-left"> Ratings and Reviews </h3>
           </Col>
         </Row>
         <Row key="rating-review-container" className="rating-review-container">
@@ -162,7 +162,7 @@ function RatingsAndReviews(props) {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" reviewMeta={reviewMeta} generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>

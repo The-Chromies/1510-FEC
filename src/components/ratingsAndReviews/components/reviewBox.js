@@ -115,12 +115,12 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       <div className="review-content" key={`d1${tempKey}`}>
         <Row key={`r2${tempKey}`}>
           <Col key={`c4${tempKey}`}>
-            <h3 className="review-title  text-bolder text-truncate">{review.summary}</h3>
+            <h5 className="review-title  font-weight-bold text-truncate text-break">{review.summary}</h5>
           </Col>
         </Row>
         <Row key={`r3${tempKey}`}>
           <Col key={`c5${tempKey}`}>
-            <span className="review-body text-body border-info lead">{revBody}</span>
+            <span className="review-body text-break text-body border-info">{revBody}</span>
           </Col>
         </Row>
       </div>

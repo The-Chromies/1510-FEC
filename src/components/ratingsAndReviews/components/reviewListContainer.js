@@ -8,7 +8,7 @@ import ReviewBox from './reviewBox';
 import SubmitReviewModal from './submitReview';
 
 function ReviewListContainer({
-  findReviewMeta, productId, reviewList, generateStarImage, handleFetchMore, revFlag,
+  findReviewMeta, productId, reviewList, generateStarImage, handleFetchMore, revFlag, reviewMeta,
 }) {
   const [showNewRev, setShowNewRev] = useState(false);
   const handleClose = () => setShowNewRev(false);
@@ -16,7 +16,7 @@ function ReviewListContainer({
 
   return (
     <>
-      <SubmitReviewModal show={showNewRev} showNewRev={showNewRev} findReviewMeta={findReviewMeta} productId={productId} onHide={handleClose} handleClose={handleClose} handleOpen={handleOpen} />
+      <SubmitReviewModal show={showNewRev} reviewMeta={reviewMeta} showNewRev={showNewRev} findReviewMeta={findReviewMeta} productId={productId} onHide={handleClose} handleClose={handleClose} handleOpen={handleOpen} />
       <div className="container review-container">
         {reviewList.map((review) => <ReviewBox key={review.review_id} tempKey={review.review_id} generateStarImage={generateStarImage} review={review} />)}
         <Button className="btn-outline-light" onClick={handleOpen}>Add Review</Button>
@@ -33,6 +33,7 @@ ReviewListContainer.propTypes = {
   productId: PropTypes.number.isRequired,
   findReviewMeta: PropTypes.instanceOf(Function).isRequired,
   revFlag: PropTypes.bool.isRequired,
+  reviewMeta: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ReviewListContainer;
