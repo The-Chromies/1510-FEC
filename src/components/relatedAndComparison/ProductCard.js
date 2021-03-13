@@ -22,9 +22,7 @@ import PropTypes from 'prop-types';
 import CompareModal from './CompareModal.js';
 import { ContactContext } from '../../Global-Context';
 
-// import Carousel from 'react-multi-carousel';
-// import { Paper, Button } from '@material-ui/core';
-
+// STYLING FOR CAROUSEL
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 220,
@@ -41,74 +39,60 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProductCardRelated(props) {
+  // NEEDED VAIABLES AND METHODS FROM GLOBAL CONTEXT
   const {
     productId, setProductId,
   } = useContext(ContactContext);
-  // console.log('CARDDDD', props.styles);
-  // console.log('HEY', props.product);
   const classes = useStyles();
-  // const [expanded, setExpanded] = React.useState(false);
 
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
+  // WHEN CLICKING ON A CARD, RENDERS ALL OTHER COMPONTES TO BE SET TO THAT SPECIFIC PRODUCT ID
   const handleCardClick = (id) => {
     setProductId(id);
-    // console.log('CLICKING CARD');
   };
-  // console.log('jahdisagdaydg', productId);
 
+  // RELATED LIST CARD FORMAT WITH INFO
   return (
     <>
       <div className="press">
-      <Card className={classes.root}>
-        <CardHeader
-          className="cardHeader"
-          action={
-            <CompareModal productFeatures={props.productFeatures} />
+        <Card className={classes.root}>
+          <CardHeader
+            className="cardHeader"
+            action={
+              <CompareModal productFeatures={props.productFeatures} />
         }
         // title={props.product.category}
-          subheader={props.product.category}
-        />
-        <CardMedia
-          onClick={() => { handleCardClick(props.product.id); }}
-          className={classes.media}
-          image={props.styles}
-          title={props.product.name}
-        />
-        <CardContent onClick={() => { handleCardClick(props.product.id); }}>
-          <div className="cardInfo" variant="body2" color="textSecondary">
-            <h4>{props.product.name}</h4>
-            {props.product.description.substring(0, 100).concat('...')}
-            <h5>{props.product.default_price}</h5>
-            <div>{props.stars(props.rating)}</div>
-          </div>
-        </CardContent>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </Card>
+            subheader={props.product.category}
+          />
+          <CardMedia
+            onClick={() => { handleCardClick(props.product.id); }}
+            className={classes.media}
+            image={props.styles}
+            title={props.product.name}
+          />
+          <CardContent onClick={() => { handleCardClick(props.product.id); }}>
+            <div className="cardInfo" variant="body2" color="textSecondary">
+              <h4>{props.product.name}</h4>
+              {props.product.description.substring(0, 100).concat('...')}
+              <h5>{props.product.default_price}</h5>
+              <div>{props.stars(props.rating)}</div>
+            </div>
+          </CardContent>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </Card>
       </div>
     </>
   );
 }
 
 ProductCardRelated.propTypes = {
-  // relatedProducts: PropTypes.instanceOf(Array).isRequired,
   product: PropTypes.instanceOf(Array).isRequired,
   styles: PropTypes.instanceOf(String).isRequired,
   productFeatures: PropTypes.instanceOf(Object).isRequired,
   rating: PropTypes.instanceOf(Number).isRequired,
   stars: PropTypes.instanceOf(Function).isRequired,
 };
-
-// action={
-//   <IconButton aria-label="settings">
-//     <CompareModal onClick={handleOpen}/>
-//     <StarBorderIcon />
-//   </IconButton>
-// }
