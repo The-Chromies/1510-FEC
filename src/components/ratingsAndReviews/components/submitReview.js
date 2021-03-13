@@ -15,7 +15,7 @@ function ReviewListContainer({
   productId, showNewRev, handleClose, findReviewMeta, reviewMeta,
 }) {
   const {
-    localServer,
+    localServer, clickTracker,
   } = useContext(ContactContext);
 
   // eslint-disable-next-line no-var
@@ -111,6 +111,7 @@ function ReviewListContainer({
       .catch((error) => {
         console.log(error);
       });
+    clickTracker('Ratings', e);
     handleClose();
   };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -15,7 +16,7 @@ import SummaryStar from './summaryStar';
 import CharChart from './charChart';
 
 function SummaryContainer({
-  meta, generateStarImage, handleStarClick, starFilter, avgRating,
+  meta, generateStarImage, handleStarClick, starFilter, avgRating, clickTracker,
 }) {
   // console.log(meta);
   const starList = [];
@@ -68,7 +69,7 @@ function SummaryContainer({
           </span>
         </div>
         <hr />
-        {starFilter ? <span className="hoverStar text-center text-bolder" onClick={() => { handleStarClick(''); }}>Remove Filter</span> : null}
+        {starFilter ? <span className="hoverStar text-center text-bolder" onClick={(e) => { handleStarClick(''); clickTracker('Ratings', e); }}>Remove Filter</span> : null}
         {starList}
       </div>
       <hr />

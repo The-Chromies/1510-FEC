@@ -9,10 +9,10 @@ import uuid from 'node-uuid';
 import { ContactContext } from '../../../Global-Context';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
-  // console.log(review);
+  console.log(review);
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
   const {
-    localServer,
+    localServer, clickTracker,
   } = useContext(ContactContext);
 
   const dateVal = new Date(review.date);
@@ -127,10 +127,10 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
       <div className="secondary-meters" key={`d2${tempKey}`}>
         <Row key={`r4${tempKey}`}>
           <Col key={`c6${tempKey}`}>
-            <button id="rev-help" ref={helpRef} type="button" className="btn-sm btn-success" onClick={(e) => { handleHelp(e, review.review_id); }}>{`Helpfulness - ${helpfulness}`}</button>
+            <button id="rev-help" ref={helpRef} type="button" className="btn-sm btn-success" onClick={(e) => { handleHelp(e, review.review_id); clickTracker('Ratings', e); }}>{`Helpfulness - ${helpfulness}`}</button>
           </Col>
           <Col key={`c7${tempKey}`}>
-            <button id="rev-report" ref={reportRef} type="button" className="btn-sm btn-outline-info" onClick={(e) => { handleReport(e, review.review_id); }}>Report</button>
+            <button id="rev-report" ref={reportRef} type="button" className="btn-sm btn-outline-info" onClick={(e) => { handleReport(e, review.review_id); clickTracker('Ratings', e); }}>Report</button>
           </Col>
         </Row>
       </div>

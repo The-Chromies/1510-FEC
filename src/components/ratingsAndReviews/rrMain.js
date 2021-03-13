@@ -17,7 +17,7 @@ import metaTestData from './testData/metadataTest';
 
 function RatingsAndReviews(props) {
   let {
-    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating, localServer,
+    generateStarImage, productId, setProductId, revCount, setRevCount, setAvgRating, avgRating, localServer, clickTracker,
   } = useContext(ContactContext);
 
   // Adjustments for Testing
@@ -162,7 +162,7 @@ function RatingsAndReviews(props) {
           </Col>
           <Col xs={6} md={8} key="c2-review-container-generic">
             <ReviewFilter key="review-filter" className="review-filter" meta={reviewMeta} setSortKey={setSortKey} />
-            <ReviewListContainer key="review-container" className="container" reviewMeta={reviewMeta} generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
+            <ReviewListContainer key="review-container" className="container" reviewMeta={reviewMeta} clickTracker={clickTracker} generateStarImage={generateStarImage} revFlag={revFlag} findReviewMeta={findReviewMeta} revCount={revCount} handleFetchMore={handleFetchMore} productId={productId} reviewList={reviewList} />
           </Col>
         </Row>
       </Container>
