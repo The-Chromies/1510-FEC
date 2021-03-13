@@ -183,7 +183,7 @@ function ReviewListContainer({
               <label htmlFor="message-subject">
                 Review Body
               </label>
-              <textarea name="body" onChange={handleChange} className="form-control has-validation" id="message-body is-valid" pattern=".{1,1000}" placeholder="What did you think?" required />
+              <textarea name="body" onChange={handleChange} className="form-control has-validation" id="message-body is-valid" pattern=".{50,1000}" placeholder="What did you think?" required />
             </div>
             <label htmlFor="photo-btn">Add Photo</label>
             <input type="file" id="photo-btn" value={formData.photos} onChange={(e) => { handlePhoto(e); clickTracker('Ratings', e); }} />

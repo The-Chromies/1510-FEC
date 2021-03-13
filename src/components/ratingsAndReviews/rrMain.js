@@ -62,7 +62,7 @@ function RatingsAndReviews(props) {
     var subsetRevList = [];
     // console.log(reviewListFull);
     if (search) {
-      console.log(search);
+      // console.log(search);
       subsetRevList = reviewListFull.filter((rev) => rev.body.search(search) > -1).slice(0, fetchNum);
     } else {
       subsetRevList = reviewListFull.slice(0, fetchNum);
