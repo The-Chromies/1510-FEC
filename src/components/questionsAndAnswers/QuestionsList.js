@@ -6,21 +6,17 @@ import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './Search.js';
 
-const QuestionList = ({ questions }) => {
-
-
-
+const QuestionList = ({ questions, answers }) => {
+  console.log('THIS IS ANSWERS', answers);
   return (
     <Container variant="outline-secondary" className="question-container">
-      {/* <Search /> */}
       <div className="border border-secondary shadow">
         {questions.map((question, i) => (
           <Question question={question} key={i} />
         ))}
-
       </div>
-    </Container>)
-
-}
+    </Container>
+  );
+};
 
 export default QuestionList;
