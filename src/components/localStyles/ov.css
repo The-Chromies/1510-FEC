@@ -1,4 +1,11 @@
 /* expanded view & carousel */
+.navbar {
+    border-radius: 0px;
+}
+
+.navbar-brand {
+  font-size: 2.25rem;
+}
 .expanded {
   margin: auto;
   position: absolute;
@@ -309,8 +316,8 @@
 
 .add-buttons {
   height: 40px;
-  width: 190px;
-  padding: 20px;
+  width: 290px;
+  padding-top: 10px;
   float: left;
 }
 

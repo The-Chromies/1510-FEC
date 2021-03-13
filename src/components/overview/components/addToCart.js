@@ -12,10 +12,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import $ from 'jquery';
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import QtyOption from './qtyOption';
 import { ContactContext } from '../../../Global-Context';
 
 function AddToCart({ selected, sendClick }) {
+  const starIcon = <FontAwesomeIcon icon={faStar} />;
   const [size, setSize] = useState(0);
   const [sku, setSku] = useState(0);
   const [noSize, setNoSize] = useState(false);
@@ -84,7 +88,7 @@ function AddToCart({ selected, sendClick }) {
             {/* all sizes for selected style */}
             { Object.keys(selected.skus).map((skuId, i) => (
               <React.Fragment key={i}>
-                <option key={i} id={sku}>{selected.skus[skuId].size}</option>
+                <option className="size-options" key={i} id={sku}>{selected.skus[skuId].size}</option>
               </React.Fragment>
             ))}
           </select>
@@ -99,7 +103,7 @@ function AddToCart({ selected, sendClick }) {
               Object.keys(selected.skus).map((skuId, i) => (
                 <React.Fragment key={i}>
                   { selected.skus[skuId].size === size ?
-                    <QtyOption key={i} qty={selected.skus[skuId].quantity} sendClick={sendClick} />
+                    <QtyOption qty={selected.skus[skuId].quantity} sendClick={sendClick} />
                     : null }
                 </React.Fragment>
               ))
@@ -111,11 +115,17 @@ function AddToCart({ selected, sendClick }) {
       </div>
       <div className="add-buttons">
         { selected && Object.keys(selected.skus)[0] !== 'null'
-          ? <button type="submit" className="add-to-cart-button" onClick={(e) => { openSize(); addToCart(); sendClick(e); }}>Add to Cart</button>
+          ? <Button variant="outline-secondary" style={{ height: 40, width: 98, marginRight: 35 }} onClick={(e) => { openSize(); addToCart(); sendClick(e); }}>
+            ADD TO CART
+            </Button>
           : null }
-        <div onClick={(e) => { sendClick(e); addToRelated(); }} className="add-to-related">
-          <img key={17} src="../public/imgs/star.png" alt="" id="related-star" />
-        </div>
+        {/* <div onClick={(e) => { sendClick(e); addToRelated(); }} className="add-to-related"> */}
+        <Button variant="outline-secondary" style={{ height: 40, width: 48 }} onClick={(e) => { sendClick(e); addToRelated(); }}>
+          {/* <i className="bi bi-star" /> */}
+          {starIcon}
+          {/* <img key={17} src="../public/imgs/star.png" alt="" id="related-star" /> */}
+        </Button>
+        {/* </div> */}
       </div>
     </div>
   );

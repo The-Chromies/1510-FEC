@@ -77,8 +77,7 @@ function Overview({ goToReviews }) {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">The Chromies</Navbar.Brand>
-        <Nav className="mr-auto" />
+        <Navbar.Brand>The Chromies</Navbar.Brand>
       </Navbar>
       <Container>
         <marquee>SITE-WIDE ANNOUNCEMENT: GOLDENROD, MAROON, AND CHARTREUSE MORNING JOGGERS ON SALE!</marquee>

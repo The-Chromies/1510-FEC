@@ -4,12 +4,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../localStyles/rc.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { Paper, Button } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import RelatedList from './RelatedList';
 import OutfitCarousel from './OutfitCarousel';
 import { ContactContext } from '../../Global-Context';
@@ -78,7 +72,7 @@ function RelatedAndComparison() {
 
   return (
     <div className="related-comparison-container">
-      Related And Comparison
+      <h5 style={{ marginLeft: 47 }}>Related And Comparison</h5>
       {relatedList && productInfo && styles
         ? <RelatedList className="centerList" relatedProducts={relatedList} productInfo={productInfo} styles={styles} rating={avgRating} stars={generateStarImage} />
         : null}

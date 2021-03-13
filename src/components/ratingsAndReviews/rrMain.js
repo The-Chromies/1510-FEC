@@ -159,7 +159,7 @@ function RatingsAndReviews(props) {
       <Container className="review-key-container" key="review-container-generic">
         <Row>
           <Col className="mt-10 m-3">
-            <h3 className="text-left"> Ratings and Reviews </h3>
+            <h5 className="text-left"> Ratings and Reviews </h5>
           </Col>
         </Row>
         <Row key="rating-review-container" className="rating-review-container">

@@ -21,8 +21,16 @@ function ReviewListContainer({
       <SearchReviews findReviews={findReviews} filterReviewList={filterReviewList} search={search} setSearch={setSearch} />
       <div className="container review-container">
         {reviewList.map((review) => <ReviewBox key={review.review_id} tempKey={review.review_id} generateStarImage={generateStarImage} review={review} />)}
-        <Button className="btn-outline-light" onClick={handleOpen}>Add Review</Button>
-        {revFlag ? <Button className="btn-outline-light" onClick={handleFetchMore}>Load More</Button> : null }
+        <Button variant="outline-secondary" onClick={handleOpen}>
+          ADD REVIEW
+        </Button>
+        {revFlag
+          ? (
+            <Button variant="outline-secondary" onClick={handleFetchMore}>
+              LOAD MORE
+            </Button>
+          )
+          : null }
       </div>
     </>
   );
