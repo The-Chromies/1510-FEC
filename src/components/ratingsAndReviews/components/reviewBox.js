@@ -10,7 +10,7 @@ import { ContactContext } from '../../../Global-Context';
 import RenderPhoto from './renderPhoto';
 
 function ReviewBox({ review, generateStarImage, tempKey }) {
-  console.log(review);
+  // console.log(review);
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
   const {
     localServer, clickTracker,
@@ -126,7 +126,7 @@ function ReviewBox({ review, generateStarImage, tempKey }) {
         </Row>
       </div>
       <div className="photo-array" key={uuid()}>
-        {review.photos.map((photo) => <RenderPhoto photo={photo} />)}
+        {review.photos.map((photo) => <RenderPhoto key={uuid()} photo={photo} />)}
       </div>
       <div className="secondary-meters" key={`d2${tempKey}`}>
         <Row key={`r4${tempKey}`}>

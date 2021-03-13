@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
@@ -10,6 +11,7 @@ import axios from 'axios';
 import uuid from 'node-uuid';
 import CharRadio from './charRadio';
 import { ContactContext } from '../../../Global-Context';
+import RenderPhoto from './renderPhoto';
 
 function ReviewListContainer({
   productId, showNewRev, handleClose, findReviewMeta, reviewMeta,
@@ -38,6 +40,7 @@ function ReviewListContainer({
     characteristics: charObj,
   });
   const [formData, setFormData] = useState(formValues);
+  const [photoUpdate, setPhotoUpdate] = useState(false);
 
   //   const htmlEncode = (str) => String(str).replace(/[^\w. ]/gi, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -92,6 +95,25 @@ function ReviewListContainer({
       ...formData,
       [e.target.name]: e.target.value.trim(),
     });
+  };
+  const handlePhoto = (e) => {
+    // console.log(e)
+    // var file = e.refs.file.files[0];
+    // var reader = new FileReader();
+    // var url = reader.readAsDataURL(file);
+    // console.log(url)
+
+    const regex = /[/.](gif|jpg|jpeg|tiff|png)$/i;
+    if (formData.photos.length < 5) {
+      if (regex.test(e.target.value)) {
+        formData.photos.push(e.target.value);
+        setPhotoUpdate(true);
+      } else {
+        alert('You must upload a gif,jpg,jpeg,tiff, or png.');
+      }
+    } else {
+      alert('You can only upload 5 photos.');
+    }
   };
 
   const handleSubmit = (e) => {
@@ -163,6 +185,9 @@ function ReviewListContainer({
               </label>
               <textarea name="body" onChange={handleChange} className="form-control has-validation" id="message-body is-valid" pattern=".{1,1000}" placeholder="What did you think?" required />
             </div>
+            <label htmlFor="photo-btn">Add Photo</label>
+            <input type="file" id="photo-btn" value={formData.photos} onChange={(e) => { handlePhoto(e); clickTracker('Ratings', e); }} />
+            {photoUpdate ? formData.photos.map((photo) => <RenderPhoto key={uuid()} photo={photo} />) : null}
             <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Submit Review</button>
           </form>
         </Modal.Body>

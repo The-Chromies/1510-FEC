@@ -3,14 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'node-uuid';
-import {
-  Row, Col,
-} from 'react-bootstrap';
 
 function RenderPhoto({ photo }) {
   return (
     <div className="review-photo review-filter flex-fill d-flex align-content-center align-items-center justify-content-center">
-      <div key={uuid()} onClick={() =>{window.open(photo.url, 'mywindow'); }}><img src={photo.url} alt="" className="review-photo" /></div>
+      <div key={uuid()} onClick={() => { window.open(photo.url, 'mywindow'); }}><img src={photo.url} alt="" className="review-photo" /></div>
     </div>
   );
 }
