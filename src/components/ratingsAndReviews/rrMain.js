@@ -60,18 +60,16 @@ function RatingsAndReviews(props) {
     // console.log(reviewListFull);
     if (search) {
       // console.log(search);
-      subsetRevList = reviewListFull.filter((rev) => (rev.body.search(search) > -1) || (rev.summary.search(search) > -1) || (rev.reviewer_name.search(search) > -1)).slice(0, fetchNum);
+      subsetRevList = reviewListFull.filter((rev) => (rev.body.search(search) > -1) || (rev.summary.search(search) > -1) || (rev.reviewer_name.search(search) > -1));
     } else {
-      subsetRevList = reviewListFull.slice(0, fetchNum);
+      subsetRevList = reviewListFull;
     }
 
     if (starFilter) {
-      subsetRevList = subsetRevList.filter((rev) => rev.rating === starFilter).slice(0, fetchNum);
-    } else {
-      subsetRevList = subsetRevList.slice(0, fetchNum);
+      subsetRevList = subsetRevList.filter((rev) => rev.rating === starFilter);
     }
 
-    setReviewList(subsetRevList);
+    setReviewList(subsetRevList.slice(0, fetchNum));
   };
 
   // Fetch request to find new reviews
