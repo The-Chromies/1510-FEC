@@ -17,11 +17,11 @@ const responsive = {
   superLargeDesktop: {
   // RULES FOR DISPLAYING CARDS ON SCREEN
     breakpoint: { max: 4000, min: 3000 },
-    items: 4,
+    items: 3,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -69,23 +69,25 @@ function OutfitCarousel(props) {
   // OUTFIT LIST CAROUSEL AND ADD OUTFIT BUTTON
   return (
     <>
-      <Container className={classes.boxing}>
-        <div className="bname"> Add Outfit!</div>
-        <div className="press">
-          <IconButton className={classes.largeIcon}>
-            <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
-          </IconButton>
-        </div>
-        <Carousel
-          responsive={responsive}
-          className={classes.carousel}
-        >
+      <div className="holder">
+        <Container className={classes.boxing}>
+          <div className="bname"> Add Outfit!</div>
+          <div className="press">
+            <IconButton className={classes.largeIcon}>
+              <AddBoxIcon className={classes.bIcon} onClick={() => { handelAddOutfit(productId); }} />
+            </IconButton>
+          </div>
+          <Carousel
+            responsive={responsive}
+            className={classes.carousel}
+          >
 
-          {outfitStyle && outfitProduct ? outfitProduct.map((product, i) => (
-            <OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} styles={outfitStyle[i] && outfitStyle[i].results[0].photos[0].thumbnail_url} />
-          )) : null}
-        </Carousel>
-      </Container>
+            {outfitStyle && outfitProduct ? outfitProduct.map((product, i) => (
+              <OutfitList product={product} key={i} rating={props.rating} stars={props.stars} setOutfitProduct={props.setOutfitProduct} styles={outfitStyle[i] && outfitStyle[i].results[0].photos[0].thumbnail_url} />
+            )) : null}
+          </Carousel>
+        </Container>
+      </div>
     </>
   );
 }

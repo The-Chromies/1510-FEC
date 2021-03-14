@@ -203,7 +203,12 @@
 
 .style-selector {
   height: 285px;
-  width: 360px;
+  width: 350px;
+}
+@media only screen and (max-width: 1200px) {
+  .style-selector {
+    width: 265px;
+  }
 }
 
 .thumbnail-img {
@@ -214,7 +219,7 @@
   position: relative;
   top: 0;
   left: 0;
-  margin: 8px 8px;
+  margin: 10px 10px;
   cursor: pointer;
 }
 
@@ -223,7 +228,7 @@
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  margin: 8px 8px;
+  margin: 10px 10px;
   position: relative;
   top: 0;
   left: 0;
